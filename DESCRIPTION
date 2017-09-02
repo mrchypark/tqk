@@ -1,0 +1,14 @@
+Package: tqk
+Title: Get Financial data in korea for Tidy Quant package.
+Version: 0.0.0.9000
+Authors@R: person("Chanyub", "Park", email = "mrchypark@gmail.com", role = c("aut", "cre"))
+Description: Support korea financial data for tidy quant package.
+            especially add stock.prices.korea option in tq_get function.
+Depends: R (>= 3.4.1)
+License: MIT + file LICENSE
+URL: http://github.com/mrchypark/tqk
+BugReports: http://github.com/mrchypark/tqk/issues
+Encoding: UTF-8
+LazyData: true
+Suggests:
+    testthat
