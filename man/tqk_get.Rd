@@ -4,7 +4,8 @@
 \alias{tqk_get}
 \title{Get quantitative data from korea in `tibble` format}
 \usage{
-tqk_get(code, from, to = Sys.Date(), source = c("p", "d", "n"))
+tqk_get(code, from = "1900-01-01", to = Sys.Date(), tqform = T,
+  source = c("p", "d", "n"))
 }
 \arguments{
 \item{code}{Stock code.}
@@ -12,6 +13,8 @@ tqk_get(code, from, to = Sys.Date(), source = c("p", "d", "n"))
 \item{from}{Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.}
 
 \item{to}{Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.}
+
+\item{tqform}{transform data to tidyquant style.}
 
 \item{source}{not use now.}
 }

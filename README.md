@@ -1,1 +1,25 @@
-# tqk
+tqk
+================
+
+스타는 더욱 많은 코드, 데이터 공개의 힘이 됩니다. ;)
+----------------------------------------------------
+
+tidyquant에서 한국 주가 정보 활용
+---------------------------------
+
+tidyquant가 활용하는 yahoo나 google 주식은 한국 주식 데이터가 유명한 것만 있어 주식 분석을 하는데 문제가 있습니다. 그래서 우리나라에서 대표적으로 주식 데이터를 제공하는 p, n, d 사등의 페이지를 가져오는 함수를 작성하여 배포합니다.(현재 p사만 적용중)
+
+기능
+----
+
+1.  get\_code : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를 가져옵니다.
+2.  tqk\_get : code와 날짜를 기반으로 주식 정보를 가져옵니다. tidyquant 의 양식이 기본값이고 가져오는 데이터 형식 전체를 사용하고 싶으면 tqform=F 설정하시면 됩니다. tqform=T 일때 adjusted는 아직 close와 같은 값으로 계산식을 업데이트 해야 합니다.
+
+설치
+----
+
+``` r
+if (!requireNamespace("devtools")) install.packages("devtools")
+devtools::install_github("mrchypark/tqk")
+library(N2H4)
+```

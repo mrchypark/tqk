@@ -3,6 +3,7 @@
 #' @param code Stock code.
 #' @param from Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.
 #' @param to Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.
+#' @param tqform transform data to tidyquant style.
 #' @param source not use now.
 #' @export
 #' @import curl
@@ -10,9 +11,11 @@
 #' @importFrom magrittr %>%
 #' @importFrom tibble as.tibble
 
-tqk_get<-function(code, from, to=Sys.Date(), source=c("p","d","n")){
+tqk_get<-function(code, from="1900-01-01", to=Sys.Date(), tqform=T,source=c("p","d","n")){
   # todo
   # now just use p source only
+  print("please wait for getting data using internet.")
+  print("close and adjusted are same now.")
   root<-"http://paxnet.moneta.co.kr/stock/analysis/pagingListAjax?method=listByDate&abbrSymbol="
   tar<-paste0(root,code,"&currentPageNo=1")
 
@@ -25,18 +28,28 @@ tqk_get<-function(code, from, to=Sys.Date(), source=c("p","d","n")){
 
   pn<-1:mpn
 
-  success <- function(res){
-    dat <<- c(dat, list(res$content))
+  tars<-paste0(root,code,"&currentPageNo=",pn)
+  cont<-list()
+  for(i in 1:length(tars)){
+    cont[[i]] <-
+      curl_fetch_memory(tars[i])$content %>%
+      rawToChar
+    Sys.sleep(0.1)
   }
 
-  pool <- new_pool(host_con = 20)
-  dat <- list()
-  tars<-paste0(root,code,"&currentPageNo=",pn)
-
-  sapply(tars, function(x) curl_fetch_multi(x,success))
-  res <- multi_run()
-  dl<-lapply(dat, function(x) jsonlite::fromJSON(rawToChar(x))$list)
+  dl<-lapply(cont, function(x) jsonlite::fromJSON(x)$list)
   df<-as.tibble(do.call(rbind,dl))
+  if(tqform){
+    df<-df[,c("tradeDt","openPrice","highPrice","lowPrice","closePrice","volume")]
+    # todo
+    # adjusted close price cal
+    df$adjusted<-df$closePrice
+    names(df)<-c("date","open","high","low","close","volume","adjusted")
+    df$date<-as.Date(df$date)
+
+    df<-df[(df$date>=as.Date(from))&(df$date<=as.Date(to)),]
+    df<-df[order(df$date),]
+  }
   return(df)
 }
 

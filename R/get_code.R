@@ -10,7 +10,7 @@
 get_code<-function(){
   tar <- "http://bigdata-trader.com/itemcodehelp.jsp"
   cd <-
-    read_html(tar) %>%
+    html(tar) %>%
     html_nodes("table") %>%
     html_table %>%
     .[[1]]
