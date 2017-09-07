@@ -5,6 +5,7 @@
 #' @return tibble(code, name, category)
 #' @export
 #' @import rvest
+#' @importFrom xml2 read_html
 #' @importFrom tibble as.tibble
 
 get_code<-function(){
