@@ -4,6 +4,7 @@
 #'
 #' @return tibble(code, name, category)
 #' @export
+#' @import selectr
 #' @import rvest
 #' @importFrom xml2 read_html
 #' @importFrom tibble as.tibble

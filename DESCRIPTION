@@ -15,6 +15,7 @@ Suggests:
 Imports:
     xml2,
     curl,
+    selectr,
     jsonlite,
     magrittr,
     rvest,
