@@ -12,7 +12,7 @@ get_code<-function(){
   tar <- "http://bigdata-trader.com/itemcodehelp.jsp"
   cd <-
     read_html(tar) %>%
-    html_nodes("table") %>%
+    html_nodes(css="table") %>%
     html_table %>%
     .[[1]]
   cd<-as.tibble(cd)
