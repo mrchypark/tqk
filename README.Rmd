@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tqk)
-code<-get_code()
+code<-code_get()
 code
 samsung<-tqk_get(code[grep("삼성전자", code[,2]),1]
                  , from="2017-01-01")

@@ -20,14 +20,7 @@ tidyquant에서 한국 주가 정보 활용
 
 ``` r
 library(tqk)
-code<-get_code()
-```
-
-    ## Warning: 'html' is deprecated.
-    ## Use 'read_html' instead.
-    ## See help("Deprecated")
-
-``` r
+code<-code_get()
 code
 ```
 
@@ -58,7 +51,7 @@ samsung<-tqk_get(code[grep("삼성전자", code[,2]),1]
 samsung
 ```
 
-    ## # A tibble: 185 x 7
+    ## # A tibble: 186 x 7
     ##          date  open  high   low close volume adjusted
     ##        <date> <int> <int> <int> <int>  <dbl>    <int>
     ##  1 2017-01-02  2820  3035  2790  3000 478672     3000
@@ -70,8 +63,8 @@ samsung
     ##  7 2017-01-10  3010  3030  2900  2930 247850     2930
     ##  8 2017-01-11  2970  2985  2920  2930  92280     2930
     ##  9 2017-01-12  2935  2970  2880  2880 160546     2880
-    ## 10 2017-01-12  2935  2970  2880  2880 160546     2880
-    ## # ... with 175 more rows
+    ## 10 2017-01-13  2880  2930  2840  2880 135666     2880
+    ## # ... with 176 more rows
 
 설치
 ----

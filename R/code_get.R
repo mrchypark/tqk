@@ -9,7 +9,7 @@
 #' @importFrom xml2 read_html
 #' @importFrom tibble as.tibble
 
-get_code<-function(){
+code_get<-function(){
   tar <- "http://bigdata-trader.com/itemcodehelp.jsp"
   cd <-
     read_html(tar) %>%

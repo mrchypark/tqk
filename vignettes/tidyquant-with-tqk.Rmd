@@ -1,0 +1,188 @@
+---
+title: "tidyquant with tqk"
+author: "ChanYub Park"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{tidyquant with tqk}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo = FALSE, message = FALSE, warning = FALSE}
+knitr::opts_chunk$set(message = FALSE,
+                      warning = FALSE,
+                      fig.width = 8, 
+                      fig.height = 4.5,
+                      fig.align = 'center',
+                      out.width='95%', 
+                      dpi = 200)
+# devtools::load_all() # Travis CI fails on load_all()
+```
+
+> tidyquant로 한국 주식 하려면 tqk
+
+# 개요
+
+`tidyquant`의 `tq_get()`으로 한국의 데이터를 가져오는데 제약이 있어 시작했습니다. 우선 `code_get()`으로 종목 코드를 가져오고, `tqk_get()`으로 `tq_get()`과 같은 양식의 데이터를 확보하여 이후 `tidyquant`의 모든 기능을 한국 데이터로 활용할 수 있습니다.
+
+# 사전준비
+
+`tidyquant`와 `tqk` 패키지를 불러옵니다.
+
+```{r}
+library(tidyquant)
+library(tqk)
+```
+
+
+# 데이터 가져오기
+
+## 종목 코드 가져오기
+
+본래 `tidyquant` 패키지는 symbol(ex> 애플사는 AAPL)를 인자로 주식 데이터를 가져옵니다. 한국 주식은 각 종목별로 코드가 있으며 그것 때문에 코드와 종목명이 매치되있는 데이터를 확인할 수 있어야 합니다. `tqk` 패키지는 `code_get()`함수를 통해 진행 가능합니다. 
+
+```{r}
+library(tqk)
+code<-code_get()
+code
+```
+
+## 주식 데이터 가져오기
+
+`tqk_get()`은 종목 코드로 데이터를 가져오도록 만들었습니다. 
+
+```{r}
+ss_prices  <- tq_get(code[grep("삼성전자", code[,2]),1]
+                       , from="2017-01-01")
+ss_prices
+```
+
+데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 p사(구현 편의성)로 작성되어 있습니다.
+
+# 정량 데이터 계산
+
+`dplyr`의 `mutate()` 함수에서 `xts`/`zoo`, `quantmod` 와 `TTR` 의 함수를 사용할 수 있습니다. `tidyquant` 패키지는 내장 데이터로 Facebook, Amazon, Google, Netflix의 주가를 모은 `FANG`이라는 데이터로 사용 예를 들었습니다. 비슷한 한국예를 들기 위해서 SAMSUNG, HYUNDAI, AMOREPACIFIC, NAVER, KAKAO의 `SHANK` 데이터셋을 내장했습니다.
+
+
+Mutating functions enable the `xts`/`zoo`, `quantmod` and `TTR` functions to shine. We'll touch on the mutation functions briefly using the `FANG` data set, which consists of daily prices for FB, AMZN, GOOG, and NFLX from the beginning of 2013 to the end of 2016. We'll apply the functions to grouped data sets to get a feel for how each works
+
+```{r}
+data(FANG)
+FANG
+```
+
+For a detailed walkthrough of the compatible functions, see the next vignette in the series, [R Quantitative Analysis Package Integrations in tidyquant](TQ02-quant-integrations-in-tidyquant.html).
+
+## Transmute Quantitative Data, tq_transmute 
+
+Transmute the results of `tq_get()`. Transmute here holds almost the same meaning as in `dplyr`, only the newly created columns will be returned, but with `tq_transmute()`, the number of rows returned can be different than the original data frame. This is important for changing periodicity. An example is periodicity aggregation from daily to monthly.
+
+```{r}
+FANG %>%
+    group_by(symbol) %>%
+    tq_transmute(select = adjusted, mutate_fun = to.monthly, indexAt = "lastof")
+```
+
+Let's go through what happened. `select` allows you to easily choose what columns get passed to `mutate_fun`. In example above, `adjusted` selects the "adjusted" column from `data`, and sends it to the mutate function, `to.monthly`, which mutates the periodicity from daily to monthly. Additional arguments can be passed to the `mutate_fun` by way of `...`. We are passing the `indexAt` argument to return a date that matches the first date in the period. 
+
+### Working with non-OHLC data
+
+Returns from FRED, Oanda, and other sources do not have open, high, low, close (OHLC) format. However, this is not a problem with `select`. The following example shows how to transmute WTI Crude daily prices to monthly prices. Since we only have a single column to pass, we can leave the `select` argument as `NULL` which selects all columns by default. This sends the price column to the `to.period` mutate function. 
+
+```{r, message=FALSE, warning=FALSE}
+wti_prices <- tq_get("DCOILWTICO", get = "economic.data") 
+wti_prices %>%    
+    tq_transmute(mutate_fun = to.period,
+                 period = "months", 
+                 col_rename = "WTI Price")
+```
+
+
+## Mutate Quantitative Data, tq_mutate 
+
+Adds a column or set of columns to the tibble with the calculated attributes (hence the original tibble is returned, mutated with the additional columns). An example is getting the `MACD` from `close`, which mutates the original input by adding MACD and Signal columns. Note that we can quickly rename the columns using the `col_rename` argument.
+
+```{r}
+FANG %>%
+    group_by(symbol) %>%
+    tq_mutate(select     = close, 
+              mutate_fun = MACD, 
+              col_rename = c("MACD", "Signal"))
+```
+
+Note that a mutation can occur if, and only if, the mutation has the same structure of the original tibble. In other words, the calculation must have the same number of rows and row.names (or date fields), otherwise the mutation cannot be performed.
+
+### Mutate rolling regressions with rollapply
+
+A very powerful example is applying __custom functions__ across a rolling window using `rollapply`. A specific example is using the `rollapply` function to compute a rolling regression. This example is slightly more complicated so it will be broken down into three steps:
+
+1. Get returns
+2. Create a custom function
+3. Apply the custom function accross a rolling window using `tq_mutate(mutate_fun = rollapply)`
+
+_Step 1: Get Returns_
+
+First, get combined returns. The asset and baseline returns should be in wide format, which is needed for the `lm` function in the next step.
+
+```{r}
+fb_returns <- tq_get("FB", get  = "stock.prices", from = "2016-01-01", to   = "2016-12-31") %>%
+    tq_transmute(adjusted, periodReturn, period = "weekly", col_rename = "fb.returns")
+
+xlk_returns <- tq_get("XLK", from = "2016-01-01", to = "2016-12-31") %>%
+    tq_transmute(adjusted, periodReturn, period = "weekly", col_rename = "xlk.returns")
+
+returns_combined <- left_join(fb_returns, xlk_returns, by = "date")
+returns_combined
+```
+
+_Step 2: Create a custom function_
+
+Next, create a custom regression function, which will be used to apply over the rolling window in Step 3. An important point is that the "data" will be passed to the regression function as an `xts` object. The `timetk::tk_tbl` function takes care of converting to a data frame for the `lm` function to work properly with the columns "fb.returns" and "xlk.returns".
+
+```{r}
+regr_fun <- function(data) {
+    coef(lm(fb.returns ~ xlk.returns, data = timetk::tk_tbl(data, silent = TRUE)))
+}
+```
+
+_Step 3: Apply the custom function_
+
+Now we can use `tq_mutate()` to apply the custom regression function over a rolling window using `rollapply` from the `zoo` package. Internally, since we left `select = NULL`, the `returns_combined` data frame is being passed automatically to the `data` argument of the `rollapply` function. All you need to specify is the `mutate_fun = rollapply` and any additional arguments necessary to apply the `rollapply` function. We'll specify a 12 week window via `width = 12`. The `FUN` argument is our custom regression function, `regr_fun`. It's extremely important to specify `by.column = FALSE`, which tells `rollapply` to perform the computation using the data as a whole rather than apply the function to each column independently. The `col_rename` argument is used to rename the added columns.
+
+```{r}
+returns_combined %>%
+    tq_mutate(mutate_fun = rollapply,
+              width      = 12,
+              FUN        = regr_fun,
+              by.column  = FALSE,
+              col_rename = c("coef.0", "coef.1"))
+returns_combined
+```
+
+As shown above, the rolling regression coefficients were added to the data frame.
+
+
+
+## _xy Variants, tq_mutate_xy and tq_transmute_xy
+
+Enables working with mutation functions that require two primary inputs (e.g. EVWMA, VWAP, etc).
+
+### Mutate with two primary inputs
+
+EVWMA (exponential volume-weighted moving average) requires two inputs, price and volume. To work with these columns, we can switch to the xy variants, `tq_transmute_xy()` and `tq_mutate_xy()`. The only difference is instead of the `select` argument, you use `x` and `y` arguments to pass the columns needed based on the `mutate_fun` documentation.
+
+```{r, message=FALSE, warning=FALSE}
+FANG %>%
+    group_by(symbol) %>%
+    tq_mutate_xy(x = close, y = volume, 
+                 mutate_fun = EVWMA, col_rename = "EVWMA")
+```
+
+
+
+
+

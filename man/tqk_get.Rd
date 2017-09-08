@@ -2,7 +2,7 @@
 % Please edit documentation in R/tqk_get.R
 \name{tqk_get}
 \alias{tqk_get}
-\title{Get quantitative data from korea in `tibble` format}
+\title{Get quantitative data from korea in \code{tibble} format}
 \usage{
 tqk_get(code, from = "1900-01-01", to = Sys.Date(), tqform = T,
   source = c("p", "d", "n"))
@@ -19,5 +19,5 @@ tqk_get(code, from = "1900-01-01", to = Sys.Date(), tqform = T,
 \item{source}{not use now.}
 }
 \description{
-Get quantitative data from korea in `tibble` format
+Get quantitative data from korea in \code{tibble} format
 }
