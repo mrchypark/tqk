@@ -603,8 +603,7 @@ SHANK %>%
     coord_x_date(xlim = c(start, end)) +
     facet_wrap(~ symbol, scales = "free_y") +
     theme_tq_dark() +
-    scale_color_tq(theme = "dark") +
-    scale_y_continuous(labels = scales::dollar)
+    scale_color_tq(theme = "dark")
 ```
 
 
