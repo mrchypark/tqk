@@ -31,8 +31,14 @@ samsung
 ```r
 if (!requireNamespace("devtools")) install.packages("devtools")
 devtools::install_github("mrchypark/tqk")
+library(tidyquant)
 library(tqk)
 ```
 
-[1]: https://github.com/business-science/tidyquant
+## 사용 설명서
 
+`tidyquant`의 [설명서][3] 일부를 번역하고 `tqk`를 적용하여 한국 주식을 예로 든 [문서][2]를 준비 했습니다.
+
+[1]: https://github.com/business-science/tidyquant
+[2]: https://mrchypark.github.io/tqk/tidyquant-with-tqk.html
+[3]: https://github.com/business-science/tidyquant
