@@ -19,7 +19,8 @@ knitr::opts_chunk$set(message = FALSE,
                       fig.height = 4.5,
                       fig.align = 'center',
                       out.width='95%', 
-                      dpi = 200)
+                      dpi = 200,
+                      cache = T)
 # devtools::load_all() # Travis CI fails on load_all()
 ```
 
@@ -38,8 +39,56 @@ library(tidyquant)
 library(tqk)
 ```
 
+# 주식 데이터를 tidy 개념으로 tidyquant
 
-# 데이터 가져오기
+`tidyquant`는 `quantmod` 등 주식 분석을 주 목적으로 하는 중요 함수를 제공하는 중요한 패키지입니다. `tidy data` 개념을 활용한 데이터 핸들링, `ggplot`과 연계된 강한 차트 그리기, 야후를 기본으로 구글 및 각자 독자적인 데이터 소스로 부터 필요한 데이터를 손쉽게 가져오는 기능, 성능 분석 함수들을 제공하고 있습니다.
+
+## 주가 지수 가져오기
+
+`tidyquant`는 [야후 파이넨스](https://finance.yahoo.com)에서 정보를 가져옵니다. 가져오는 데이터 소스를 바꾸고 싶으면 어떤 곳에서 가져올지 결정할 수 있는데, `tq_get_options()`는 가능한 후보를 보여줍니다.
+
+```{r}
+if (!require(tidyquant)) install.packages("tidyquant", verbose = F)
+library(tidyquant)
+tq_get_options()
+```
+
+이때 코스피와 코스닥을 이르는 이름이 각각 `^KS11`와 `^KOSDAQ`입니다. 각각 한번 가져와 보겠습니다.
+
+```{r}
+tq_get("^KS11")
+tq_get("^KOSDAQ")
+```
+
+각 기업의 주가를 가져오려면 종목 번호를 알고 있어야 합니다. 양식은 `종목 번호.KS`입니다. 종목번호는 세종기업 데이터에서 가져온 정보를 활용하겠습니다.
+
+```{r}
+library(readr)
+url<-"https://github.com/mrchypark/sejongFinData/raw/master/codeData.csv"
+download.file(url,destfile = "./codeData.csv")
+codeData<-read_csv("./codeData.csv")
+head(codeData)
+```
+
+삼성전자를 가져와 볼까요.
+```{r}
+tar<-paste0(codeData[grep("^삼성전자$",codeData$`종목명`),1],".KS")
+tq_get(tar)
+```
+
+날짜를 지정할 수도 있습니다.
+```{r}
+tq_get(tar, from="2016-01-01", to="2016-05-05")
+
+```
+
+배당금 정보는 `dividends` 에서 확인하시면 됩니다.
+```{r}
+tq_get(tar, get = "dividends")
+
+```
+
+`야후 파이넨스`가 데이터 소스이다 보니 모든 정보가 있다고 보기 어렵니다. 그것을 커버하기 위해서 `tqk`가 시작됬습니다.
 
 ## 종목 코드 가져오기
 
@@ -56,132 +105,507 @@ code
 `tqk_get()`은 종목 코드로 데이터를 가져오도록 만들었습니다. 
 
 ```{r}
-ss_prices  <- tq_get(code[grep("삼성전자", code[,2]),1]
+ss_prices  <- tqk_get(code[grep("삼성전자", code[,2]),1]
                        , from="2017-01-01")
 ss_prices
 ```
 
 데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 p사(구현 편의성)로 작성되어 있습니다.
 
-# 정량 데이터 계산
+### Quandl
 
-`dplyr`의 `mutate()` 함수에서 `xts`/`zoo`, `quantmod` 와 `TTR` 의 함수를 사용할 수 있습니다. `tidyquant` 패키지는 내장 데이터로 Facebook, Amazon, Google, Netflix의 주가를 모은 `FANG`이라는 데이터로 사용 예를 들었습니다. 비슷한 한국예를 들기 위해서 SAMSUNG, HYUNDAI, AMOREPACIFIC, NAVER, KAKAO의 `SHANK` 데이터셋을 내장했습니다.
-
-
-Mutating functions enable the `xts`/`zoo`, `quantmod` and `TTR` functions to shine. We'll touch on the mutation functions briefly using the `FANG` data set, which consists of daily prices for FB, AMZN, GOOG, and NFLX from the beginning of 2013 to the end of 2016. We'll apply the functions to grouped data sets to get a feel for how each works
-
-```{r}
-data(FANG)
-FANG
-```
-
-For a detailed walkthrough of the compatible functions, see the next vignette in the series, [R Quantitative Analysis Package Integrations in tidyquant](TQ02-quant-integrations-in-tidyquant.html).
-
-## Transmute Quantitative Data, tq_transmute 
-
-Transmute the results of `tq_get()`. Transmute here holds almost the same meaning as in `dplyr`, only the newly created columns will be returned, but with `tq_transmute()`, the number of rows returned can be different than the original data frame. This is important for changing periodicity. An example is periodicity aggregation from daily to monthly.
-
-```{r}
-FANG %>%
-    group_by(symbol) %>%
-    tq_transmute(select = adjusted, mutate_fun = to.monthly, indexAt = "lastof")
-```
-
-Let's go through what happened. `select` allows you to easily choose what columns get passed to `mutate_fun`. In example above, `adjusted` selects the "adjusted" column from `data`, and sends it to the mutate function, `to.monthly`, which mutates the periodicity from daily to monthly. Additional arguments can be passed to the `mutate_fun` by way of `...`. We are passing the `indexAt` argument to return a date that matches the first date in the period. 
-
-### Working with non-OHLC data
-
-Returns from FRED, Oanda, and other sources do not have open, high, low, close (OHLC) format. However, this is not a problem with `select`. The following example shows how to transmute WTI Crude daily prices to monthly prices. Since we only have a single column to pass, we can leave the `select` argument as `NULL` which selects all columns by default. This sends the price column to the `to.period` mutate function. 
-
-```{r, message=FALSE, warning=FALSE}
-wti_prices <- tq_get("DCOILWTICO", get = "economic.data") 
-wti_prices %>%    
-    tq_transmute(mutate_fun = to.period,
-                 period = "months", 
-                 col_rename = "WTI Price")
-```
+[Quandl](https://www.quandl.com/)은 방대한 양의 경제, 주식에 대한 정보를 가지고 서비스하는 데이터 판매 기업입니다. `Quandl`이라는 자체 패키지만을 사용해도 되고, `tidyquant`가 내장하고 있어서 같이 사용해도 됩니다.
 
 
-## Mutate Quantitative Data, tq_mutate 
+## tidyverse와 함께 사용하는 시계열 데이터
 
-Adds a column or set of columns to the tibble with the calculated attributes (hence the original tibble is returned, mutated with the additional columns). An example is getting the `MACD` from `close`, which mutates the original input by adding MACD and Signal columns. Note that we can quickly rename the columns using the `col_rename` argument.
+그 동안의 주식관련 패키지들은 파이프 연산자 `%>%`와 함꼐 사용하지 못했는데, `tidyquant`는 그런 문제를 해결하였습니다. 아래 2가지 중요한 함수를 추가함으로써 `dplyr`과 `tidyr`의 함수와 함께 사용할 수 있게 되었습니다.
+
+
+* `tq_transmute()`: 계산된 내용의 컬럼만으로 데이터를 구성합니다.
+* `tq_mutate()`: 데이터에 계산된 내용의 컬럼을 추가합니다.
+
+## `tq_`에서 계산 가능한 함수들
+
+`tq_transmute_fun_options()` 함수는 각 참고 패키지에서 활용할 수 있는 함수의 리스트를 보여줍니다. 모두 `zoo`, `xts`, `quantmod`, `TTR`, `PerformanceAnalytics`의 5개 패키지내의 함수를 지원합니다.
 
 ```{r}
-FANG %>%
-    group_by(symbol) %>%
-    tq_mutate(select     = close, 
-              mutate_fun = MACD, 
-              col_rename = c("MACD", "Signal"))
+tq_transmute_fun_options() %>% str
 ```
 
-Note that a mutation can occur if, and only if, the mutation has the same structure of the original tibble. In other words, the calculation must have the same number of rows and row.names (or date fields), otherwise the mutation cannot be performed.
-
-### Mutate rolling regressions with rollapply
-
-A very powerful example is applying __custom functions__ across a rolling window using `rollapply`. A specific example is using the `rollapply` function to compute a rolling regression. This example is slightly more complicated so it will be broken down into three steps:
-
-1. Get returns
-2. Create a custom function
-3. Apply the custom function accross a rolling window using `tq_mutate(mutate_fun = rollapply)`
-
-_Step 1: Get Returns_
-
-First, get combined returns. The asset and baseline returns should be in wide format, which is needed for the `lm` function in the next step.
+### zoo 함수
 
 ```{r}
-fb_returns <- tq_get("FB", get  = "stock.prices", from = "2016-01-01", to   = "2016-12-31") %>%
-    tq_transmute(adjusted, periodReturn, period = "weekly", col_rename = "fb.returns")
-
-xlk_returns <- tq_get("XLK", from = "2016-01-01", to = "2016-12-31") %>%
-    tq_transmute(adjusted, periodReturn, period = "weekly", col_rename = "xlk.returns")
-
-returns_combined <- left_join(fb_returns, xlk_returns, by = "date")
-returns_combined
+tq_transmute_fun_options()$zoo
 ```
 
-_Step 2: Create a custom function_
+* 롤링관련 함수 :
+    * 롤링 마진에 기능을 적용하는 일반적인 기능.
+    * form :`rollapply(data, width, FUN, ..., by = 1, by.column = TRUE, fill = if (na.pad) NA, na.pad = FALSE, partial = FALSE, align = c("center", "left", "right"), coredata = TRUE)`.
+    * 옵션에는 `rollmax`,`rollmean`,`rollmedian`,`rollsum` 등이 있습니다.
 
-Next, create a custom regression function, which will be used to apply over the rolling window in Step 3. An important point is that the "data" will be passed to the regression function as an `xts` object. The `timetk::tk_tbl` function takes care of converting to a data frame for the `lm` function to work properly with the columns "fb.returns" and "xlk.returns".
+### xts 함수
 
 ```{r}
-regr_fun <- function(data) {
-    coef(lm(fb.returns ~ xlk.returns, data = timetk::tk_tbl(data, silent = TRUE)))
-}
+tq_transmute_fun_options()$xts
 ```
 
-_Step 3: Apply the custom function_
 
-Now we can use `tq_mutate()` to apply the custom regression function over a rolling window using `rollapply` from the `zoo` package. Internally, since we left `select = NULL`, the `returns_combined` data frame is being passed automatically to the `data` argument of the `rollapply` function. All you need to specify is the `mutate_fun = rollapply` and any additional arguments necessary to apply the `rollapply` function. We'll specify a 12 week window via `width = 12`. The `FUN` argument is our custom regression function, `regr_fun`. It's extremely important to specify `by.column = FALSE`, which tells `rollapply` to perform the computation using the data as a whole rather than apply the function to each column independently. The `col_rename` argument is used to rename the added columns.
+* 기간 적용 기능 :
+    * 기능을 시간 세그먼트 (예 : `max`, `min`, `mean` 등)에 적용합니다.
+    * 양식 :`apply.daily (x, FUN, ...)`.
+    * 옵션은`apply.daily`,`weekly`,`monthly`,`quarterly`,`yearly`를 포함합니다.
+
+* 기간 기능 :
+    * 시계열을 낮은 주기성의 시계열로 변환합니다 (예 : 매일 매일의 주기성으로 변환).
+    * 형식 :`to.period (x, period = 'months', k = 1, indexAt, name = NULL, OHLC = TRUE, ...)`.
+    * 옵션에는`to.minutes`,`hourly`,`daily`,`weekly`,`monthly`,`quarterly`,`yearly`가 포함됩니다.
+    * __참고__ :`to.period`와`to.monthly` (`to.weekly`,`to.quarterly` 등) 양식의 리턴 구조는 다릅니다. `to.period`는 날짜를 반환하고, to.months는 MON YYYY 문자를 반환합니다. `lubridate`를 통해 시계열로 작업하고 싶다면`to.period`를 사용하는 것이 가장 좋습니다.
+
+     
+### quantmod 함수
 
 ```{r}
-returns_combined %>%
-    tq_mutate(mutate_fun = rollapply,
-              width      = 12,
-              FUN        = regr_fun,
-              by.column  = FALSE,
-              col_rename = c("coef.0", "coef.1"))
-returns_combined
+tq_transmute_fun_options()$quantmod
 ```
 
-As shown above, the rolling regression coefficients were added to the data frame.
 
+* 비율 변경 (Delt) 및 Lag 기능
+    * Delt :`Delt (x1, x2 = NULL, k = 0, type = c ( "arithmetic", "log"))`
+        * Delt의 변형 : ClCl, HiCl, LoCl, LoHi, OpCl, OpHi, OpLo, OpOp
+        * 양식 :`Opcl (OHLC)`
+    * Lag :`Lag(x, k = 1)`/ Next :`Next(x, k = 1)`(`dplyr :: lag`과`dplyr :: lead`도 사용할 수 있습니다)
 
+* 기간 반환 함수 :
+    * 매일, 매주, 매월, 분기 별 및 연간을 포함하는 다양한주기에 대한 산술 또는 로그 반환을 가져옵니다.
+    * 형식 :`periodReturn (x, period = 'monthly', 부분 집합 = NULL, type = 'arithmetic', leading = TRUE, ...)`
 
-## _xy Variants, tq_mutate_xy and tq_transmute_xy
+* 시리즈 기능 :
+    * 계열을 설명하는 반환 값. 옵션에는 증감, 가감 및 고저 설명이 포함됩니다.
+    * 양식 :`seriesHi (x)`,`seriesIncr (x, thresh = 0, diff. = 1L)`,`seriesAccel (x)`
 
-Enables working with mutation functions that require two primary inputs (e.g. EVWMA, VWAP, etc).
+### TTR 함수
 
-### Mutate with two primary inputs
-
-EVWMA (exponential volume-weighted moving average) requires two inputs, price and volume. To work with these columns, we can switch to the xy variants, `tq_transmute_xy()` and `tq_mutate_xy()`. The only difference is instead of the `select` argument, you use `x` and `y` arguments to pass the columns needed based on the `mutate_fun` documentation.
-
-```{r, message=FALSE, warning=FALSE}
-FANG %>%
-    group_by(symbol) %>%
-    tq_mutate_xy(x = close, y = volume, 
-                 mutate_fun = EVWMA, col_rename = "EVWMA")
+```{r}
+tq_transmute_fun_options()$TTR
 ```
 
+* 웰즈 와일더의 방향 운동 지수 :
+    *`ADX (HLC, n = 14, maType, ...)`
+* 볼린저 밴드 :
+    * BBands (HLC, n = 20, maType, sd = 2, ...) : 볼린저 밴드
+* 변화율 / 운동량 :
+    *`ROC (x, n = 1, type = c ( "연속", "이산"), na.pad = TRUE)`: 변화율
+    *`운동량 (x, n = 1, na.pad = TRUE)`: 운동량
+* 이동 평균 (maType) :
+    *`SMA (x, n = 10, ...)`: 단순 이동 평균
+    *`EMA (x, n = 10, wilder = FALSE, ratio = NULL, ...)`: 지수 이동 평균
+    * DEMA (x, n = 10, v = 1, wilder = FALSE, ratio = NULL)`: 이중 지수 이동 평균
+    * WMA (x, n = 10, wts = 1 : n, ...)`: 가중 이동 평균
+    * EVWMA (가격, 수량, n = 10, ...) : 탄성, 체중 이동 평균
+    *`ZLEMA (x, n = 10, 비율 = NULL, ...)`: Zero Lag Exponential Moving Average
+    *`VWAP (가격, 물량, n = 10, ...)`: 물량 가중 평균 가격
+    * VMA (x, w, 비율 = 1, ...) : 가변 길이 이동 평균
+    *`HMA (x, n = 20, ...)`: 선체 이동 평균
+    *`ALMA (x, n = 9, offset = 0.85, sigma = 6, ...)`: Arnaud Legoux 이사 평균
+* MACD Oscillator :
+    MACD (x, nFast = 12, nSlow = 26, nSig = 9, maType, percent = TRUE, ...)
+* 상대 강도 지수 :
+    *`RSI (가격, n = 14, maType, ...)`
+* runFun :
+    *`runSum (x, n = 10, cumulative = FALSE)`: n- 기간 이동 윈도우에 대한 합계를 반환합니다.
+    *`runMin (x, n = 10, cumulative = FALSE)`: n- 기간 이동 윈도우에 대한 최소값을 반환합니다.
+    *`runMax (x, n = 10, cumulative = FALSE)`: n- 기간 이동 윈도우에 대해 최대 값을 반환합니다.
+    *`runMean (x, n = 10, cumulative = FALSE)`: n-period 이동 윈도우를 의미합니다.
+    *`runMedian (x, n = 10, non.unique = "mean", cumulative = FALSE)`: n-period 이동 윈도우에 대한 중앙값을 반환합니다.
+    * `runCov (x, y, n = 10, use = "all.obs", sample = TRUE, 누적 = FALSE)`: n-period 이동 윈도우에 대한 공분산을 반환합니다.
+    *`runCor (x, y, n = 10, use = "all.obs", sample = TRUE, 누적 = FALSE)`: n-period 이동 윈도우에 대한 상관 관계를 반환합니다.
+    *`runVar (x, y = NULL, n = 10, 샘플 = TRUE, 누적 = FALSE)`: n- 기간 이동 윈도우에 대한 분산을 반환합니다.
+    *`runSD (x, n = 10, 샘플 = TRUE, 누적 = FALSE)`: n- 기간 이동 윈도우에 대한 표준 편차를 반환합니다.
+    `runMAD (x, n = 10, center = NULL, stat = "중간 값", 상수 = 1.4826, non.unique = "평균", cumulative = FALSE)`n 기간 이동에 대한 중간 / 평균 절대 편차를 반환합니다. 창문.
+    *`wilderSum (x, n = 10)`: n- 기간 이동 윈도우에 대해 Welles Wilder 스타일 가중치 합계를 되 돌린다.
+* Stochastic Oscillator / Stochastic Momentum Index :
+    Stochastic Oscillator (HLC, nFastK = 14, nFastD = 3, nSlowD = 3, maType, bounded = TRUE, smooth = 1, ...)
+    * SMI (HLC, n = 13, nFast = 2, nSlow = 25, nSig = 9, maType, bounded = TRUE, ...) : 확률 모멘텀 지수
+
+### PerformanceAnalytics 함수
+
+```{r}
+tq_transmute_fun_options()$PerformanceAnalytics
+```
+
+*`Return.annualized` 및`Return.annualized.excess` : 기간 반환을 취하여 연간 수익으로 통합합니다.
+*`Return.clean` : 반환 값에서 특이 값을 제거합니다.
+*`Return.excess` : 무위험 이자율을 초과하는 수익률로 수익률에서 무위험 이자율을 제거합니다.
+*`zerofill` : 'NA'값을 0으로 대체하는 데 사용됩니다.
+
+## ggplot2와 연계된 차트 그리기
+
+`ggplot2` 차트를 그리는데 `R`에서 가장 유명한 패키지 입니다. `gg`는 [Grammar of Graphics](http://www.springer.com/us/book/9780387245447)의 줄임말로 그림을 생성하는 것에 대한 규칙을 제안하고 있습니다. `tidyquant`는 `ggplot2`에 더해 아래와 같은 기능을 추가로 제공합니다.
+
+* __차트 종류__ : 두 개의 차트 타입 시각화는`geom_barchart`와`geom_candlestick`을 사용하여 가능합니다.
+* __이동 평균__ : 'geom_ma'를 사용하여 7 개의 이동 평균 시각화를 사용할 수 있습니다.
+* __Bollinger Bands__ : Bollinger 밴드는 'geom_bbands'를 사용하여 시각화 할 수 있습니다. BBand 이동 평균은 이동 평균에서 사용할 수있는 7 가지 중 하나 일 수 있습니다.
+* __날짜 범위 확대__ : 차트의 특정 영역을 확대 할 때 데이터 손실을 방지하는 두 가지`coord` 함수 (`coord_x_date` 및`coord_x_datetime`)를 사용할 수 있습니다. 이것은 이동 평균 및 Bollinger 밴드 기하학을 사용할 때 중요합니다.
+
+### 살펴보기
+
+`tqk_get`를 이용해서 사용할 데이터를 가져옵니다. 내장 데이터인 `SHANK`과 삼성, 네이버를 예시로 사용하겠습니다.
+
+```{r}
+library(tqk)
+data(SHANK)
+
+SS <- tqk_get(code[grep("^삼성전자$",code$name),1], to = "2016-12-31")
+NVR <- tqk_get(code[grep("^NHN$",code$name),1], to = "2016-12-31")
+```
+
+'end` 매개 변수는 예제 전체에서 날짜 제한을 설정할 때 사용됩니다.
+
+```{r}
+end <- as_date("2016-12-31")
+```
+
+## 차트 종류
+
+* [Bar Chart](http://www.investopedia.com/terms/b/barchart.asp): `geom_barchart`을 사용합니다.
+* [Candlestick Chart](http://www.investopedia.com/terms/c/candlestick.asp): `geom_candlestick`을 사용합니다.
+
+### 라인 차트
+
+`tidyquant`의 `geom_`함수를 사용하여 가로 막대형 차트와 촛대형 차트를 시각화하기 전에 단순한 선 차트로 주가를 시각화하여 `그래픽 문법`을 확인해보겠습니다. 이것은`ggplot2` 패키지의`geom_line`을 사용하여 이루어집니다. 주식 데이터로 시작하고 파이프 연산자 (`%> %`)를 사용하여`ggplot ()`함수로 보냅니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_line() +
+    labs(title = "SamSung Line Chart", y = "Closing Price", x = "") + 
+    theme_tq()
+```
+
+
+### 바 차트
+
+바 차트는  `geom_line`를 `geom_barchart`로 바꾸는 걸로 해결됩니다. `aes()`내의 내용을 의미에 맞게 조정하는 것으로 바 차트를 그리는 것이 끝납니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_barchart(aes(open = open, high = high, low = low, close = close)) +
+    labs(title = "SamSung Bar Chart", y = "Closing Price", x = "") + 
+    theme_tq()
+```
+
+우리는`coord_x_date`를 사용하여 특정 섹션을 확대 / 축소합니다.이 섹션에는`xlim` 및`ylim` 인수가`c (start, end)`로 지정되어 차트의 특정 영역에 초점을 맞 춥니 다. `xlim`의 경우 우리는`lubridate`를 사용하여 문자 날짜를 날짜 클래스로 변환 한 다음`weeks ()`함수를 사용하여 6 주를 뺍니다. `ylim`의 경우 가격을 100에서 120까지 확대합니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_barchart(aes(open = open, high = high, low = low, close = close)) +
+    labs(title = "SamSung Bar Chart", 
+         subtitle = "Zoomed in using coord_x_date",
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(end - weeks(6), end),
+                 ylim = c(1600000, 1800000)) + 
+    theme_tq()
+```
+
+색상은`color_up` 및`color_down` 인수를 사용하여 수정할 수 있으며`size`와 같은 매개 변수를 사용하여 모양을 제어 할 수 있습니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_barchart(aes(open = open, high = high, low = low, close = close),
+                     color_up = "darkgreen", color_down = "darkred", size = 1) +
+    labs(title = "SamSung Bar Chart", 
+         subtitle = "Zoomed in, Experimenting with Formatting",
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(end - weeks(6), end),
+                 ylim = c(1600000, 1800000)) + 
+    theme_tq()
+```
+
+### 캔들 차트
+
+캔들 차트 또한 바 차트를 그리는 것과 거의 같습니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+    labs(title = "SamSung Candlestick Chart", y = "Closing Price", x = "") +
+    theme_tq()
+```
+
+색상은`color_up`과`color_down`을 사용하여 선 색상을 조절할 수 있고, `fill_up`과`fill_down`은 사각형을 채 웁니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close),
+                        color_up = "darkgreen", color_down = "darkred", 
+                        fill_up  = "darkgreen", fill_down  = "darkred") +
+    labs(title = "SamSung Candlestick Chart", 
+         subtitle = "Zoomed in, Experimenting with Formatting",
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(end - weeks(6), end),
+                 ylim = c(1600000, 1800000)) + 
+    theme_tq()
+```
+
+<a class="anchor" id="mult-chart"></a>
+
+### 여러개의 차트를 그리기
+
+`facet_wrap`을 사용하여 동시에 여러 주식을 시각화 할 수 있습니다. `ggplot ()`의 `aes()`에`group`을 추가하고`ggplot` 워크 플로우의 끝에서`facet_wrap()`함수와 결합함으로써 네 개의 "FANG"주식을 동시에 모두 볼 수 있습니다.
+
+
+```{r, fig.height=5}
+start <- end - weeks(6)
+SHANK %>%
+    filter(date >= start - days(2 * 15)) %>%
+    ggplot(aes(x = date, y = close, group = symbol)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+    labs(title = "SHANK Candlestick Chart", 
+         subtitle = "Experimenting with Mulitple Stocks",
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(start, end)) +
+    facet_wrap(~ symbol, ncol = 2, scale = "free_y") + 
+    theme_tq()
+```
+
+## 트랜드 시각화
+
+[Moving averages](http://www.investopedia.com/terms/m/movingaverage.asp) are critical to evaluating time-series trends. `tidyquant` includes geoms to enable "rapid prototyping" to quickly visualize signals using moving averages and Bollinger bands.
+
+<a class="anchor" id="mavg"></a>
+
+### 이동 평균
+
+`tidyquant`에서는 다양한 이동평균 함수를 제공합니다.
+
+* __[Simple moving averages (SMA)](http://www.investopedia.com/terms/s/sma.asp)__
+* __[Exponential moving averages (EMA)](http://www.investopedia.com/terms/e/ema.asp)__
+* __[Weighted moving averages (WMA)](http://www.investopedia.com/ask/answers/071414/whats-difference-between-moving-average-and-weighted-moving-average.asp)__
+* __[Double exponential moving averages (DEMA)](http://www.investopedia.com/articles/trading/10/double-exponential-moving-average.asp)__
+* __[Zero-lag exponential moving averages (ZLEMA)](https://en.wikipedia.org/wiki/Zero_lag_exponential_moving_average)__
+* __[Volume-weighted moving averages (VWMA)](http://www.investopedia.com/articles/trading/11/trading-with-vwap-mvwap.asp)__ (also known as VWAP)
+* __[Elastic, volume-weighted moving averages (EVWMA)](http://www.investopedia.com/articles/trading/11/trading-with-vwap-mvwap.asp)__ (also known as MVWAP)
+
+이동 평균은`geom_ma` 함수로 차트에 추가 된 레이어로 적용됩니다. 기하 구조는`TTR` 패키지에서`SMA`,`EMA`,`WMA`,`DEMA`,`ZLEMA`,`VWMA`,`EVWMA`와 같은 기본 이동 평균 함수의 래퍼입니다.
+
+### Example 1: 50일/200일 단순 이동 평균 차트 작성
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_candlestick(aes(open = open, high = high, low = low, close = close)) +
+    geom_ma(ma_fun = SMA, n = 50, linetype = 5, size = 1.25) +
+    geom_ma(ma_fun = SMA, n = 200, color = "red", size = 1.25) + 
+    labs(title = "SamSung Candlestick Chart", 
+         subtitle = "50 and 200-Day SMA", 
+         y = "Closing Price", x = "") + 
+         coord_x_date(xlim = c(end - weeks(24), end),
+                      ylim = c(1500000, 1850000)) + 
+    theme_tq()
+```
+
+### Example 2: 지수 이동 평균 차트
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close)) +
+    geom_barchart(aes(open = open, high = high, low = low, close = close)) +
+    geom_ma(ma_fun = EMA, n = 50, wilder = TRUE, linetype = 5, size = 1.25) +
+    geom_ma(ma_fun = EMA, n = 200, wilder = TRUE, color = "red", size = 1.25) + 
+    labs(title = "SamSung Bar Chart", 
+         subtitle = "50 and 200-Day EMA", 
+         y = "Closing Price", x = "") + 
+         coord_x_date(xlim = c(end - weeks(24), end),
+                      ylim = c(1500000, 1850000)) + 
+    theme_tq()
+```
+
+## 볼린저 밴드
+
+[Bollinger Bands] https://en.wikipedia.org/wiki/Bollinger_Bands)는 이동 평균(일반적으로 상하 2SD) 주위의 범위를 플로팅하여 변동성을 시각화하는 데 사용됩니다. 그것들은 이동 평균을 사용하기 때문에,`geom_bbands` 함수는`geom_ma`와 거의 동일하게 작동합니다. 동일한 7 개의 이동 평균이 호환됩니다. 가장 큰 차이점은 기본적으로 2 인 표준 편차 인`sd` 인수와 밴드를 계산하는 데 필요한 'high', 'low'및 'close'를 `aes()`에 추가하는 것입니다.
+
+### Example 1: SMA를 사용하여 BBands 적용
+
+간단한 이동 평균을 사용하여 Bollinger Bands를 추가하는 기본 예제를 살펴 보겠습니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close, open = open,
+               high = high, low = low, close = close)) +
+    geom_candlestick() +
+    geom_bbands(ma_fun = SMA, sd = 2, n = 20) +
+    labs(title = "SamSung Candlestick Chart", 
+         subtitle = "BBands with SMA Applied", 
+         y = "Closing Price", x = "") + 
+         coord_x_date(xlim = c(end - weeks(24), end),
+                      ylim = c(1500000, 1850000)) + 
+    theme_tq()
+```
+
+### Example 2: Bollinger Bands의 모양 바꾸기
+
+모양은`color_ma`,`color_bands`,`alpha`,`fill` 인자를 사용하여 수정할 수 있습니다. BBands에 새로운 서식을 적용한 Example 1과 같은 그림이 있습니다.
+
+```{r}
+SS %>%
+    ggplot(aes(x = date, y = close, open = open,
+               high = high, low = low, close = close)) +
+    geom_candlestick() +
+    geom_bbands(ma_fun = SMA, sd = 2, n = 20, 
+                linetype = 4, size = 1, alpha = 0.2, 
+                fill        = palette_light()[[1]], 
+                color_bands = palette_light()[[1]], 
+                color_ma    = palette_light()[[2]]) +
+    labs(title = "SamSung Candlestick Chart", 
+         subtitle = "BBands with SMA Applied, Experimenting with Formatting", 
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(end - weeks(24), end),
+                 ylim = c(1500000, 1850000)) + 
+    theme_tq()
+```
+
+
+### Example 3: 여러 주식에 BBands 추가
+
+```{r, fig.height=5}
+start <- end - weeks(12)
+SHANK %>%
+    filter(date >= start - days(2 * 20)) %>%
+    ggplot(aes(x = date, y = close, 
+               open = open, high = high, low = low, close = close, 
+               group = symbol)) +
+    geom_barchart() +
+    geom_bbands(ma_fun = SMA, sd = 2, n = 20, linetype = 5) +
+    labs(title = "SHANK Bar Chart", 
+         subtitle = "BBands with SMA Applied, Experimenting with Multiple Stocks", 
+         y = "Closing Price", x = "") + 
+    coord_x_date(xlim = c(start, end)) +
+    facet_wrap(~ symbol, ncol = 2, scales = "free_y") + 
+    theme_tq()
+```
+
+
+## ggplot2 함수
+
+기본 `ggplot2`는 재무 데이터를 분석하는데 유용한 많은 기능을 가지고 있습니다. 네이버(NVR)을 사용하여 몇 가지 간단한 예제를 살펴 보겠습니다.
+
+
+### Example 1 : scale_y_log10을 사용한 로그 스케일
+
+`ggplot2`는 y 축을 로그 스케일로 스케일하기위한`scale_y_log10 ()`함수를 가지고 있습니다. 이는 분석 할 수있는 선형 추세를 조정하는 경향이 있으므로 매우 유용합니다.
+
+__Continuous Scale__:
+
+```{r}
+NVR %>%
+    ggplot(aes(x = date, y = adjusted)) +
+    geom_line(color = palette_light()[[1]]) + 
+    scale_y_continuous() +
+    labs(title = "Naver Line Chart", 
+         subtitle = "Continuous Scale", 
+         y = "Closing Price", x = "") + 
+    theme_tq()
+```
+
+__Log Scale__:
+
+```{r}
+NVR %>%
+    ggplot(aes(x = date, y = adjusted)) +
+    geom_line(color = palette_light()[[1]]) + 
+    scale_y_log10() +
+    labs(title = "Naver Line Chart", 
+         subtitle = "Log Scale", 
+         y = "Closing Price", x = "") + 
+    theme_tq()
+```
+
+
+### Example 2: geom_smooth로 회귀 추세선
+
+우리는 워크 플로우에`geom_smooth ()`함수를 빠르게 추가하는 추세선을 적용 할 수 있습니다. 이 함수는 선형(`lm`)과 loess(`loess`) 를 포함한 몇 가지 예측 방법을 가지고 있습니다. 
+
+__Linear__:
+
+```{r}
+NVR %>%
+    ggplot(aes(x = date, y = adjusted)) +
+    geom_line(color = palette_light()[[1]]) + 
+    scale_y_log10() +
+    geom_smooth(method = "lm") +
+    labs(title = "Naver Line Chart", 
+         subtitle = "Log Scale, Applying Linear Trendline", 
+         y = "Adjusted Closing Price", x = "") + 
+    theme_tq()
+```
+
+### Example 3: geom_segment로 차트 볼륨
+
+우리는`geom_segment ()`함수를 사용하여 라인의 시작과 끝을 xy 점으로하는 일일 볼륨을 차트로 표시 할 수 있습니다. `aes()`를 사용하여 볼륨의 값을 기준으로 색상을 지정하여 이러한 데이터를 강조 표시합니다. 
+
+```{r}
+NVR %>%
+    ggplot(aes(x = date, y = volume)) +
+    geom_segment(aes(xend = date, yend = 0, color = volume)) + 
+    geom_smooth(method = "loess", se = FALSE) +
+    labs(title = "Naver Volume Chart", 
+         subtitle = "Charting Daily Volume", 
+         y = "Volume", x = "") +
+    theme_tq() +
+    theme(legend.position = "none") 
+```
+
+특정 지역을 확대 할 수 있습니다. `scale_color_gradient`를 사용하여 고점 및 저점을 빠르게 시각화 할 수 있으며`geom_smooth`를 사용하여 추세를 볼 수 있습니다.
+
+```{r}
+start <- end - weeks(24)
+NVR %>%
+    filter(date >= start - days(50)) %>%
+    ggplot(aes(x = date, y = volume)) +
+    geom_segment(aes(xend = date, yend = 0, color = volume)) +
+    geom_smooth(method = "loess", se = FALSE) +
+    labs(title = "Naver Bar Chart", 
+         subtitle = "Charting Daily Volume, Zooming In", 
+         y = "Volume", x = "") + 
+    coord_x_date(xlim = c(start, end)) +
+    scale_color_gradient(low = "red", high = "darkblue") +
+    theme_tq() + 
+    theme(legend.position = "none") 
+```
+
+
+## 테마
+
+`tidyquant` 패키지는 3 가지 테마로 구성되어있어 신속하게 재무 차트를 조정 할 수 있습니다.
+
+* __Light__: `theme_tq()` + `scale_color_tq()` + `scale_fill_tq()`
+* __Dark__: `theme_tq_dark()` + `scale_color_tq(theme = "dark")` + `scale_fill_tq(theme = "dark")`
+* __Green__: `theme_tq_green()` + `scale_color_tq(theme = "green")` + `scale_fill_tq(theme = "green")`
+
+## Dark
+
+```{r, fig.height = 6}
+n_mavg <- 50 # Number of periods (days) for moving average
+SHANK %>%
+    filter(date >= start - days(2 * n_mavg)) %>%
+    ggplot(aes(x = date, y = close, color = symbol)) +
+    geom_line(size = 1) +
+    geom_ma(n = 15, color = "darkblue", size = 1) + 
+    geom_ma(n = n_mavg, color = "red", size = 1) +
+    labs(title = "Dark Theme",
+         x = "", y = "Closing Price") +
+    coord_x_date(xlim = c(start, end)) +
+    facet_wrap(~ symbol, scales = "free_y") +
+    theme_tq_dark() +
+    scale_color_tq(theme = "dark") +
+    scale_y_continuous(labels = scales::dollar)
+```
 
 
 
