@@ -79,4 +79,4 @@ library(tqk)
 사용 설명서
 -----------
 
-`tidyquant`의 [설명서](https://github.com/business-science/tidyquant) 일부를 번역하고 `tqk`를 적용하여 한국 주식을 예로 든 [문서](https://mrchypark.github.io/tqk/tidyquant-with-tqk.html)를 준비 했습니다.
+`tidyquant`의 [설명서](https://github.com/business-science/tidyquant) 일부를 번역하고 `tqk`를 적용하여 한국 주식을 예로 든 [문서](https://mrchypark.github.io/tqk_docs/tidyquant-with-tqk.html)를 준비 했습니다.
