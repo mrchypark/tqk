@@ -1,5 +1,5 @@
 library(tqk)
-library(dplyr)
+library(tidyr)
 
 sam<-tqk_get("005930", to="2017-09-07")
 hyun<-tqk_get("005380", to="2017-09-07")
