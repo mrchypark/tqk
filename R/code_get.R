@@ -4,17 +4,17 @@
 #'
 #' @return tibble(code, name, category)
 #' @export
-#' @import selectr
-#' @import rvest
+#' @importFrom rvest html_nodes html_table
 #' @importFrom xml2 read_html
 #' @importFrom tibble as.tibble
 
 code_get<-function(){
+  . <- NULL
   tar <- "http://bigdata-trader.com/itemcodehelp.jsp"
   cd <-
-    read_html(tar) %>%
-    html_nodes(css="table") %>%
-    html_table %>%
+    xml2::read_html(tar) %>%
+    rvest::html_nodes(css="table") %>%
+    rvest::html_table %>%
     .[[1]]
   cd<-as.tibble(cd)
   names(cd)<-c("code","name","category")

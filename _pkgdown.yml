@@ -1,0 +1,19 @@
+title: tqk
+url: https://mrchypark.github.io/tqk
+template:
+  params:
+    ganalytics: UA-47822682-14
+
+navbar:
+  title: "tqk"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Reference"
+      href: "reference/"
+    - text: "Vignette"
+      href: https://mrchypark.github.io/tqk-docs/tidyquant-with-tqk.html
+  right:
+    - icon: fa-github
+      href: https://github.com/mrchypark/tqk

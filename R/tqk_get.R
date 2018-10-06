@@ -6,12 +6,13 @@
 #' @param tqform transform data to tidyquant style.
 #' @param source not use now.
 #' @export
-#' @import curl
+#' @importFrom curl curl_fetch_memory
 #' @importFrom jsonlite fromJSON
 #' @importFrom magrittr %>%
 #' @importFrom tibble as.tibble
 
 tqk_get<-function(code, from="1900-01-01", to=Sys.Date(), tqform=T,source=c("p","d","n")){
+  . <- NULL
   # todo
   # now just use p source only
   print("please wait for getting data using internet.")
@@ -19,7 +20,7 @@ tqk_get<-function(code, from="1900-01-01", to=Sys.Date(), tqform=T,source=c("p",
   root<-"http://paxnet.moneta.co.kr/stock/analysis/pagingListAjax?method=listByDate&abbrSymbol="
   tar<-paste0(root,code,"&currentPageNo=1")
 
-  mpn<-curl_fetch_memory(tar) %>%
+  mpn<-curl::curl_fetch_memory(tar) %>%
     .$content %>%
     rawToChar() %>%
     jsonlite::fromJSON() %>%
