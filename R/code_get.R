@@ -14,9 +14,9 @@ code_get<-function(){
   cd <-
     xml2::read_html(tar) %>%
     rvest::html_nodes(css="table") %>%
-    rvest::html_table %>%
-    .[[1]]
-  cd<-as.tibble(cd)
+    rvest::html_table() %>%
+    .[[1]] %>%
+    tibble::as.tibble()
   names(cd)<-c("code","name","category")
   return(cd)
 }
