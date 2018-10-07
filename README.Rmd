@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ### [사용 설명서 바로가기][2]
 
 [1]: https://github.com/business-science/tidyquant
-[2]: https://mrchypark.github.io/tqk-docs/tidyquant-with-tqk.html
+[2]: https://mrchypark.github.io/tqk/articles/tqk-introduce.html
 [3]: https://github.com/business-science/tidyquant
 
 
