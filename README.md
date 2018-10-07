@@ -15,11 +15,11 @@
 
 `tidyquant`의 [설명서](https://github.com/business-science/tidyquant) 일부를
 번역하고 `tqk`를 적용하여 한국 주식을 예로 든
-[문서](https://mrchypark.github.io/tqk-docs/tidyquant-with-tqk.html)를
+[문서](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)를
 준비
 했습니다.
 
-### [사용 설명서 바로가기](https://mrchypark.github.io/tqk-docs/tidyquant-with-tqk.html)
+### [사용 설명서 바로가기](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)
 
 ## tidyquant에서 한국 주가 정보 활용
 
@@ -58,14 +58,14 @@ code
     ## # ... with 2,296 more rows
 
 ``` r
-sscode <- code[grep("삼성전자", code[,2]),1]
+sscode <- code[grep("^삼성전자$", code$name),1]
 sscode
 ```
 
     ## # A tibble: 1 x 1
     ##   code  
     ##   <chr> 
-    ## 1 060310
+    ## 1 005930
 
 ``` r
 samsung<-tqk_get(sscode, from="2017-01-01")
@@ -79,18 +79,65 @@ samsung
 ```
 
     ## # A tibble: 471 x 7
-    ##    date        open  high   low close volume adjusted
-    ##    <date>     <int> <int> <int> <int>  <dbl>    <int>
-    ##  1 2017-01-02  2820  3035  2790  3000 478672     3000
-    ##  2 2017-01-03  3070  3070  2900  3030 309507     3030
-    ##  3 2017-01-04  3030  3095  2980  3090 248971     3090
-    ##  4 2017-01-05  3090  3300  3050  3090 928979     3090
-    ##  5 2017-01-06  3090  3095  3015  3015 202702     3015
-    ##  6 2017-01-09  3045  3090  2995  3010 125422     3010
-    ##  7 2017-01-10  3010  3030  2900  2930 247850     2930
-    ##  8 2017-01-11  2970  2985  2920  2930  92280     2930
-    ##  9 2017-01-12  2935  2970  2880  2880 160546     2880
-    ## 10 2017-01-12  2935  2970  2880  2880 160546     2880
+    ##    date        open  high   low close   volume adjusted
+    ##    <date>     <int> <int> <int> <int>    <dbl>    <int>
+    ##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
+    ##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
+    ##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
+    ##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
+    ##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
+    ##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
+    ##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
+    ##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
+    ##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
+    ## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
+    ## # ... with 461 more rows
+
+## 파이프 (`%>%`) 사용 with dplyr
+
+``` r
+library(tqk)
+library(dplyr)
+```
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+``` r
+code_get() %>% 
+  filter(grepl("^삼성전자$", name)) %>% 
+  select(code) %>% 
+  tqk_get(from = "2017-01-01") -> ss
+```
+
+    ## [1] "please wait for getting data using internet."
+    ## [1] "close and adjusted are same now."
+
+``` r
+ss
+```
+
+    ## # A tibble: 471 x 7
+    ##    date        open  high   low close   volume adjusted
+    ##    <date>     <int> <int> <int> <int>    <dbl>    <int>
+    ##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
+    ##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
+    ##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
+    ##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
+    ##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
+    ##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
+    ##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
+    ##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
+    ##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
+    ## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
     ## # ... with 461 more rows
 
 ## 설치

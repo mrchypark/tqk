@@ -41,10 +41,22 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tqk)
 code<-code_get()
 code
-sscode <- code[grep("삼성전자", code[,2]),1]
+sscode <- code[grep("^삼성전자$", code$name),1]
 sscode
 samsung<-tqk_get(sscode, from="2017-01-01")
 samsung
+```
+
+## 파이프 (`%>%`) 사용 with dplyr
+
+```{r}
+library(tqk)
+library(dplyr)
+code_get() %>% 
+  filter(grepl("^삼성전자$", name)) %>% 
+  select(code) %>% 
+  tqk_get(from = "2017-01-01") -> ss
+ss
 ```
 
 ## 설치

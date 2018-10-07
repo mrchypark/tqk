@@ -41,6 +41,7 @@ tqk_get <-
       cont[[i]] <-
         curl::curl_fetch_memory(tars[i])$content %>%
         rawToChar()
+      Sys.sleep(0.1)
     }
 
     dl <- lapply(cont, function(x)

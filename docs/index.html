@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Financial data in korea with tidyquant package • tqk</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -155,36 +156,71 @@
 ##  9 222170 ARIRANG S&amp;P한국배당성장 ETF     
 ## 10 161490 ARIRANG 경기방어주      ETF     
 ## # ... with 2,296 more rows</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sscode &lt;-<span class="st"> </span>code[<span class="kw">grep</span>(<span class="st">"삼성전자"</span>, code[,<span class="dv">2</span>]),<span class="dv">1</span>]</a>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sscode &lt;-<span class="st"> </span>code[<span class="kw">grep</span>(<span class="st">"^삼성전자$"</span>, code<span class="op">$</span>name),<span class="dv">1</span>]</a>
 <a class="sourceLine" id="cb3-2" data-line-number="2">sscode</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   code  
 ##   &lt;chr&gt; 
-## 1 060310</code></pre>
+## 1 005930</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">samsung&lt;-<span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(sscode, <span class="dt">from=</span><span class="st">"2017-01-01"</span>)</a></code></pre></div>
 <pre><code>## [1] "please wait for getting data using internet."
 ## [1] "close and adjusted are same now."</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">samsung</a></code></pre></div>
 <pre><code>## # A tibble: 471 x 7
-##    date        open  high   low close volume adjusted
-##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;dbl&gt;    &lt;int&gt;
-##  1 2017-01-02  2820  3035  2790  3000 478672     3000
-##  2 2017-01-03  3070  3070  2900  3030 309507     3030
-##  3 2017-01-04  3030  3095  2980  3090 248971     3090
-##  4 2017-01-05  3090  3300  3050  3090 928979     3090
-##  5 2017-01-06  3090  3095  3015  3015 202702     3015
-##  6 2017-01-09  3045  3090  2995  3010 125422     3010
-##  7 2017-01-10  3010  3030  2900  2930 247850     2930
-##  8 2017-01-11  2970  2985  2920  2930  92280     2930
-##  9 2017-01-12  2935  2970  2880  2880 160546     2880
-## 10 2017-01-12  2935  2970  2880  2880 160546     2880
+##    date        open  high   low close   volume adjusted
+##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;
+##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
+##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
+##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
+##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
+##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
+##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
+##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
+##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
+##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
+## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
+## # ... with 461 more rows</code></pre>
+</div>
+<div id="--with-dplyr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#--with-dplyr" class="anchor"></a>파이프 (<code>%&gt;%</code>) 사용 with dplyr</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<pre><code>## 
+## 다음의 패키지를 부착합니다: 'dplyr'</code></pre>
+<pre><code>## The following objects are masked from 'package:stats':
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/code_get.html">code_get</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"^삼성전자$"</span>, name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(code) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2017-01-01"</span>) -&gt;<span class="st"> </span>ss</a></code></pre></div>
+<pre><code>## [1] "please wait for getting data using internet."
+## [1] "close and adjusted are same now."</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">ss</a></code></pre></div>
+<pre><code>## # A tibble: 471 x 7
+##    date        open  high   low close   volume adjusted
+##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;
+##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
+##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
+##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
+##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
+##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
+##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
+##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
+##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
+##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
+## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
 ## # ... with 461 more rows</code></pre>
 </div>
 <div class="section level2">
 <h2>설치</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"remotes"</span>)) <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"mrchypark/tqk"</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">library</span>(tqk)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"remotes"</span>)) <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"mrchypark/tqk"</span>)</a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">library</span>(tqk)</a></code></pre></div>
 </div>
 </div>
   </div>
