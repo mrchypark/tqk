@@ -39,7 +39,7 @@ knitr::opts_chunk$set(message = FALSE,
 `tidyquant`는 [야후 파이넨스](https://finance.yahoo.com)에서 정보를 가져옵니다. 가져오는 데이터 소스를 바꾸고 싶으면 어떤 곳에서 가져올지 결정할 수 있는데, `tq_get_options()`는 가능한 후보를 보여줍니다.
 
 ```{r}
-if (!require(tidyquant)) install.packages("tidyquant", repos = "https://cloud.r-project.org/")
+if (!require(tidyquant)) install.packages("tidyquant", repos = "https://cloud.r-project.org/", verbose = F)
 library(tidyquant)
 tq_get_options()
 ```
@@ -84,7 +84,7 @@ ssdiv
 
 ```{r}
 if (!require(remotes)) install.packages("remotes", verbose = F)
-remotes::install_github("mrchypark/tqk")
+if (!require(tqk)) remotes::install_github("mrchypark/tqk", verbose = F)
 library(tqk)
 code<-code_get()
 code
