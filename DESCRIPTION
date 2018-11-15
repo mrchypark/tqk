@@ -1,7 +1,11 @@
 Package: tqk
 Title: Get Financial data in korea with tidyquant package
 Version: 0.0.3
-Authors@R: person("Chanyub", "Park", email = "mrchypark@gmail.com", role = c("aut", "cre"))
+Authors@R: person(given = "Chanyub",
+             family = "Park",
+             role = c("aut","cre"),
+             email = "mrchypark@gmail.com",
+             comment = c(ORCID = "0000-0001-6474-2570"))
 Description: Support korea financial data for tidy quant package.
             especially add stock.prices.korea option in tq_get function.
             for now, provide tqk_get function instead.
