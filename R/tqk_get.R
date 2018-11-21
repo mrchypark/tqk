@@ -92,9 +92,9 @@ tqk_get <-
         .$data %>%
         purrr::transpose() %>%
         tibble::as_tibble() %>%
-        ## todo
-        ## i don't know why sometime occur error because of timestamp col
-        dplyr::select(-timestamp) %>%
+        dplyr::mutate_if(~ is.double(.x[[1]]), ~as.double(.x)) %>%
+        dplyr::mutate_if(~ is.integer(.x[[1]]), ~as.double(.x)) %>%
+        dplyr::mutate_if(~ is.character(.x[[1]]), ~as.character(.x)) %>%
         dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
         tidyr::unnest() %>%
         dplyr::mutate(date = as.Date(date))
@@ -117,6 +117,9 @@ tqk_get <-
           .$data %>%
           purrr::transpose() %>%
           tibble::as_tibble() %>%
+          dplyr::mutate_if(~ is.double(.x[[1]]), ~as.double(.x)) %>%
+          dplyr::mutate_if(~ is.integer(.x[[1]]), ~as.double(.x)) %>%
+          dplyr::mutate_if(~ is.character(.x[[1]]), ~as.character(.x)) %>%
           dplyr::select(date, tradePrice) %>%
           tidyr::unnest() %>%
           dplyr::mutate(date = as.Date(date)) %>%
