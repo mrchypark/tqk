@@ -99,7 +99,7 @@ ss_prices <-
   code_get() %>% 
   filter(grepl("^삼성전자$",name)) %>% 
   select(code) %>% 
-  tqk_get(from = "2017-01-01")
+  tqk_get(from = "2018-05-01")
 
 ss_prices
 ```

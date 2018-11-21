@@ -2,17 +2,18 @@
 #'
 #' Get code for korea finance market
 #'
-#' @return tibble(code, name, category)
+#' @return a [tibble][tibble::tibble-package]
 #' @export
 #' @importFrom rvest html_nodes html_table
-#' @importFrom xml2 read_html
+#' @importFrom httr GET content
 #' @importFrom tibble as.tibble
 
 code_get<-function(){
   . <- NULL
   tar <- "http://bigdata-trader.com/itemcodehelp.jsp"
   cd <-
-    xml2::read_html(tar) %>%
+    httr::GET(tar) %>%
+    httr::content() %>%
     rvest::html_nodes(css="table") %>%
     rvest::html_table() %>%
     .[[1]] %>%

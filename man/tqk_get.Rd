@@ -2,22 +2,25 @@
 % Please edit documentation in R/tqk_get.R
 \name{tqk_get}
 \alias{tqk_get}
-\title{Get quantitative data from korea in \code{tibble} format}
+\title{Get quantitative data from korea}
 \usage{
-tqk_get(code, from = "1900-01-01", to = Sys.Date(), tqform = T,
-  source = c("p", "d", "n"))
+tqk_get(x, get = c("daum", "paxnet"), from = "1900-01-01",
+  to = Sys.Date(), tqform = T)
 }
 \arguments{
-\item{code}{Stock code.}
+\item{x}{Stock x. only Korean type like "005930" is samsong.}
+
+\item{get}{where to get data. Default is daum.}
 
 \item{from}{Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.}
 
 \item{to}{Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.}
 
 \item{tqform}{transform data to tidyquant style.}
-
-\item{source}{not use now.}
+}
+\value{
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
-Get quantitative data from korea in \code{tibble} format
+Get quantitative data from korea
 }

@@ -1,3 +1,5 @@
+^R/\.logo\.R$
+^R/\.gendata\.R$
 ^docs$
 ^_pkgdown\.yml$
 ^.*\.Rproj$

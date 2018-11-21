@@ -17,13 +17,15 @@ LazyData: true
 Depends:
     R (>= 3.3.0)
 Imports:
-    xml2,
     curl,
-    selectr,
     jsonlite,
     magrittr,
     rvest,
-    tibble
+    tibble,
+    tidyr,
+    purrr, 
+    httr, 
+    dplyr
 Suggests:
     knitr,
     rmarkdown,

@@ -7,7 +7,7 @@
 code_get()
 }
 \value{
-tibble(code, name, category)
+a \link[tibble:tibble-package]{tibble}
 }
 \description{
 Get code for korea finance market
