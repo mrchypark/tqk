@@ -25,11 +25,14 @@ Imports:
     tidyr,
     purrr, 
     httr, 
-    dplyr
+    dplyr,
+    rlang
 Suggests:
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    remotes,
+    tidyquant
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

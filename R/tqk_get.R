@@ -15,6 +15,7 @@
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select_if mutate rename left_join
 #' @importFrom tidyr unnest
+#' @importFrom rlang .data
 
 tqk_get <-
   function(x,
@@ -22,7 +23,6 @@ tqk_get <-
            from = "1900-01-01",
            to = Sys.Date(),
            tqform = T) {
-    . <- NULL
 
     stopifnot(get %in% c("daum", "paxnet"))
 
@@ -92,6 +92,9 @@ tqk_get <-
         .$data %>%
         purrr::transpose() %>%
         tibble::as_tibble() %>%
+        ## todo
+        ## i don't know why sometime occur error because of timestamp col
+        dplyr::select(-timestamp) %>%
         dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
         tidyr::unnest() %>%
         dplyr::mutate(date = as.Date(date))
