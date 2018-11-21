@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get quantitative data from korea in <code>tibble</code> format — tqk_get • tqk</title>
+<title>Get quantitative data from korea — tqk_get • tqk</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Get quantitative data from korea in <code>tibble</code> format — tqk_get" />
+<meta property="og:title" content="Get quantitative data from korea — tqk_get" />
 
-<meta property="og:description" content="Get quantitative data from korea in tibble format" />
+<meta property="og:description" content="Get quantitative data from korea" />
 
 <meta property="og:image" content="mrchypark.github.io/tqk/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -76,7 +76,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tqk</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -127,26 +127,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get quantitative data from korea in <code>tibble</code> format</h1>
+    <h1>Get quantitative data from korea</h1>
     <small class="dont-index">Source: <a href='https://github.com/mrchypark/tqk/blob/master/R/tqk_get.R'><code>R/tqk_get.R</code></a></small>
     <div class="hidden name"><code>tqk_get.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get quantitative data from korea in <code>tibble</code> format</p>
+    <p>Get quantitative data from korea</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>tqk_get</span>(<span class='no'>code</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>tqform</span> <span class='kw'>=</span> <span class='no'>T</span>,
-  <span class='kw'>source</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"p"</span>, <span class='st'>"d"</span>, <span class='st'>"n"</span>))</pre>
+    <pre class="usage"><span class='fu'>tqk_get</span>(<span class='no'>x</span>, <span class='kw'>get</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"daum"</span>, <span class='st'>"paxnet"</span>), <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"1900-01-01"</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='fu'>Sys.Date</span>(), <span class='kw'>tqform</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>code</th>
-      <td><p>Stock code.</p></td>
+      <th>x</th>
+      <td><p>Stock x. only Korean type like "005930" is samsong.</p></td>
+    </tr>
+    <tr>
+      <th>get</th>
+      <td><p>where to get data. Default is daum.</p></td>
     </tr>
     <tr>
       <th>from</th>
@@ -160,11 +164,11 @@
       <th>tqform</th>
       <td><p>transform data to tidyquant style.</p></td>
     </tr>
-    <tr>
-      <th>source</th>
-      <td><p>not use now.</p></td>
-    </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a <a href='http://www.rdocumentation.org/packages/tibble/topics/tibble-package'>tibble</a></p>
     
 
   </div>
@@ -172,7 +176,9 @@
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

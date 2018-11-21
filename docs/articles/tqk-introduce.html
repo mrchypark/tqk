@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tqk</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1>tidyquant with tqk</h1>
                         <h4 class="author">ChanYub Park</h4>
             
-            <h4 class="date">2018-10-07</h4>
+            <h4 class="date">2018-11-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mrchypark/tqk/blob/master/vignettes/tqk-introduce.Rmd"><code>vignettes/tqk-introduce.Rmd</code></a></small>
       <div class="hidden name"><code>tqk-introduce.Rmd</code></div>
@@ -125,7 +125,7 @@
 ## [13] "alphavantager"       "rblpapi"</code></pre>
 <p>이때 코스피와 코스닥을 이르는 이름이 각각 <code>^KS11</code>와 <code>^KOSDAQ</code>입니다. 각각 한번 가져와 보겠습니다.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">tq_get</span>(<span class="st">"^KS11"</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 2,671 x 7
+<pre><code>## # A tibble: 2,703 x 7
 ##    date        open  high   low close volume adjusted
 ##    &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 2008-01-02 1891. 1892. 1853. 1853. 246800    1853.
@@ -138,52 +138,52 @@
 ##  8 2008-01-11 1845. 1847. 1776. 1782. 280200    1782.
 ##  9 2008-01-14 1781  1791. 1754. 1766. 249000    1766.
 ## 10 2008-01-15 1782. 1782. 1723. 1747. 295200    1747.
-## # ... with 2,661 more rows</code></pre>
+## # ... with 2,693 more rows</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">tq_get</span>(<span class="st">"^KOSDAQ"</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   date        open  high   low close volume adjusted
 ##   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-## 1 2018-10-05  785.  791.  769.  774. 573663     774.</code></pre>
+## 1 2018-11-21  682.  696.  677.  696. 573867     696.</code></pre>
 <p>각 기업의 주가를 가져오려면 종목 번호를 알고 있어야 합니다. 양식은 <code>종목번호.KS</code>입니다. 종목번호는 <a href="http://dart.fss.or.kr/">전자공시시스템</a>에서 사용하는 번호입니다.</p>
 <p><img src="https://user-images.githubusercontent.com/6179259/46579905-19484e00-ca55-11e8-8385-284cda1e4576.png" width="100%"></p>
 <p>삼성전자 번호는 <strong>005930</strong> 이군요!</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ss &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">"005930.KS"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">ss</a></code></pre></div>
-<pre><code>## # A tibble: 2,671 x 7
+<pre><code>## # A tibble: 2,703 x 7
 ##    date        open  high   low close   volume adjusted
 ##    &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1 2008-01-02 11180 11200 10840 10880 18047200    0.873
-##  2 2008-01-03 10760 11060 10640 10920 19346500    0.876
-##  3 2008-01-04 10920 10960 10760 10780 17997350    0.865
-##  4 2008-01-07 10360 10480 10340 10380 39787200    0.833
-##  5 2008-01-08 10380 10480 10320 10320 24783700    0.828
-##  6 2008-01-09 10340 10580 10260 10500 23865450    0.842
-##  7 2008-01-10 10440 10580 10320 10320 31551350    0.828
-##  8 2008-01-11 10360 10520 10220 10320 23425150    0.828
-##  9 2008-01-14 10280 10520 10280 10500 22167000    0.842
-## 10 2008-01-15 10660 10820 10420 10640 40283950    0.854
-## # ... with 2,661 more rows</code></pre>
+##  1 2008-01-02 11180 11200 10840 10880 18047200    0.866
+##  2 2008-01-03 10760 11060 10640 10920 19346500    0.870
+##  3 2008-01-04 10920 10960 10760 10780 17997350    0.858
+##  4 2008-01-07 10360 10480 10340 10380 39787200    0.827
+##  5 2008-01-08 10380 10480 10320 10320 24783700    0.822
+##  6 2008-01-09 10340 10580 10260 10500 23865450    0.836
+##  7 2008-01-10 10440 10580 10320 10320 31551350    0.822
+##  8 2008-01-11 10360 10520 10220 10320 23425150    0.822
+##  9 2008-01-14 10280 10520 10280 10500 22167000    0.836
+## 10 2008-01-15 10660 10820 10420 10640 40283950    0.847
+## # ... with 2,693 more rows</code></pre>
 <p>날짜를 지정할 수도 있습니다.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ssdate &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">"005930.KS"</span>, <span class="dt">from=</span><span class="st">"2016-01-01"</span>, <span class="dt">to=</span><span class="st">"2016-05-05"</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">ssdate</a></code></pre></div>
 <pre><code>## # A tibble: 83 x 7
 ##    date        open  high   low close   volume adjusted
 ##    &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-##  1 2016-01-04 25200 25200 24100 24100 15346950    1177.
-##  2 2016-01-05 24040 24360 23720 24160 10800100    1180.
-##  3 2016-01-06 24160 24160 23360 23500 18337600    1148.
-##  4 2016-01-07 23320 23660 23020 23260 14119400    1136.
-##  5 2016-01-08 23260 23720 23260 23420 12888150    1144.
-##  6 2016-01-11 23120 23320 22920 23040 12063850    1125.
-##  7 2016-01-12 22960 23320 22880 22920 10314150    1120.
-##  8 2016-01-13 23060 23180 22960 22960  7165800    1122.
-##  9 2016-01-14 22620 22840 22620 22760 10451100    1112.
-## 10 2016-01-15 22800 23040 22480 22640 10473200    1106.
+##  1 2016-01-04 25200 25200 24100 24100 15346950    1168.
+##  2 2016-01-05 24040 24360 23720 24160 10800100    1171.
+##  3 2016-01-06 24160 24160 23360 23500 18337600    1139.
+##  4 2016-01-07 23320 23660 23020 23260 14119400    1128.
+##  5 2016-01-08 23260 23720 23260 23420 12888150    1135.
+##  6 2016-01-11 23120 23320 22920 23040 12063850    1117.
+##  7 2016-01-12 22960 23320 22880 22920 10314150    1111.
+##  8 2016-01-13 23060 23180 22960 22960  7165800    1113.
+##  9 2016-01-14 22620 22840 22620 22760 10451100    1103.
+## 10 2016-01-15 22800 23040 22480 22640 10473200    1098.
 ## # ... with 73 more rows</code></pre>
 <p>배당금 정보는 <code>dividends</code> 에서 확인하시면 됩니다.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">ssdiv &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">"005930.KS"</span>, <span class="dt">get =</span> <span class="st">"dividends"</span>)</a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">ssdiv</a></code></pre></div>
-<pre><code>## # A tibble: 24 x 2
+<pre><code>## # A tibble: 25 x 2
 ##    date       dividends
 ##    &lt;date&gt;         &lt;dbl&gt;
 ##  1 2008-06-27       500
@@ -196,7 +196,7 @@
 ##  8 2011-12-28      5000
 ##  9 2012-06-28       500
 ## 10 2012-12-27      7500
-## # ... with 14 more rows</code></pre>
+## # ... with 15 more rows</code></pre>
 <p><code>야후 파이넨스</code>가 데이터 소스이다 보니 모든 정보가 있다고 보기 어렵니다. 거기다 종목 번호를 일일이 찾는 것도 힘들구요. 이런 문제를 해결하기 위해서 <code>tqk</code>가 시작됬습니다.</p>
 </div>
 </div>
@@ -235,24 +235,23 @@
 <a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/code_get.html">code_get</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"^삼성전자$"</span>,name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(code) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2017-01-01"</span>)</a></code></pre></div>
-<pre><code>## [1] "please wait for getting data using internet."
-## [1] "close and adjusted are same now."</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">ss_prices</a></code></pre></div>
-<pre><code>## # A tibble: 471 x 7
-##    date        open  high   low close   volume adjusted
-##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;
-##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
-##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
-##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
-##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
-##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
-##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
-##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
-##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
-##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
-## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
-## # ... with 461 more rows</code></pre>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2018-05-01"</span>)</a>
+<a class="sourceLine" id="cb15-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb15-7" data-line-number="7">ss_prices</a></code></pre></div>
+<pre><code>## # A tibble: 136 x 7
+##    date          open    high     low   close   volume adjusted
+##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
+##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
+##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000
+##  3 2018-05-04   53000   53900   51800   51900 39565391    51900
+##  4 2018-05-08   52600   53200   51900   52600 23104720    52600
+##  5 2018-05-09   52600   52800   50900   50900 16128305    50900
+##  6 2018-05-10   51700   51700   50600   51600 13905263    51600
+##  7 2018-05-11   52000   52200   51200   51300 10314997    51300
+##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
+##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
+## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
+## # ... with 126 more rows</code></pre>
 <p>데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 p사(구현 편의성)로 작성되어 있습니다.</p>
 <div id="quandl" class="section level3">
 <h3 class="hasAnchor">
@@ -275,7 +274,7 @@
 <h2 class="hasAnchor">
 <a href="#tq_---" class="anchor"></a><code>tq_</code>에서 계산 가능한 함수들</h2>
 <p><code>tq_transmute_fun_options()</code> 함수는 각 참고 패키지에서 활용할 수 있는 함수의 리스트를 보여줍니다. 모두 <code>zoo</code>, <code>xts</code>, <code>quantmod</code>, <code>TTR</code>, <code>PerformanceAnalytics</code>의 5개 패키지내의 함수를 지원합니다.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>() <span class="op">%&gt;%</span><span class="st"> </span>str</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>() <span class="op">%&gt;%</span><span class="st"> </span>str</a></code></pre></div>
 <pre><code>## List of 5
 ##  $ zoo                 : chr [1:14] "rollapply" "rollapplyr" "rollmax" "rollmax.default" ...
 ##  $ xts                 : chr [1:27] "apply.daily" "apply.monthly" "apply.quarterly" "apply.weekly" ...
@@ -285,7 +284,7 @@
 <div id="zoo-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#zoo-" class="anchor"></a>zoo 함수</h3>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>zoo</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>zoo</a></code></pre></div>
 <pre><code>##  [1] "rollapply"          "rollapplyr"         "rollmax"           
 ##  [4] "rollmax.default"    "rollmaxr"           "rollmean"          
 ##  [7] "rollmean.default"   "rollmeanr"          "rollmedian"        
@@ -304,7 +303,7 @@
 <div id="xts-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#xts-" class="anchor"></a>xts 함수</h3>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>xts</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>xts</a></code></pre></div>
 <pre><code>##  [1] "apply.daily"     "apply.monthly"   "apply.quarterly"
 ##  [4] "apply.weekly"    "apply.yearly"    "diff.xts"       
 ##  [7] "lag.xts"         "period.apply"    "period.max"     
@@ -336,7 +335,7 @@
 <div id="quantmod-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#quantmod-" class="anchor"></a>quantmod 함수</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>quantmod</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>quantmod</a></code></pre></div>
 <pre><code>##  [1] "allReturns"      "annualReturn"    "ClCl"           
 ##  [4] "dailyReturn"     "Delt"            "HiCl"           
 ##  [7] "Lag"             "LoCl"            "LoHi"           
@@ -378,7 +377,7 @@
 <div id="ttr-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ttr-" class="anchor"></a>TTR 함수</h3>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>TTR</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>TTR</a></code></pre></div>
 <pre><code>##  [1] "adjRatios"          "ADX"                "ALMA"              
 ##  [4] "aroon"              "ATR"                "BBands"            
 ##  [7] "CCI"                "chaikinAD"          "chaikinVolatility" 
@@ -436,7 +435,7 @@
 <div id="performanceanalytics-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#performanceanalytics-" class="anchor"></a>PerformanceAnalytics 함수</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>PerformanceAnalytics</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">tq_transmute_fun_options</span>()<span class="op">$</span>PerformanceAnalytics</a></code></pre></div>
 <pre><code>## [1] "Return.annualized"        "Return.annualized.excess"
 ## [3] "Return.clean"             "Return.cumulative"       
 ## [5] "Return.excess"            "Return.Geltner"          
@@ -461,17 +460,13 @@
 <div class="section level3">
 <h3>살펴보기</h3>
 <p><code>tqk_get</code>를 이용해서 사용할 데이터를 가져옵니다. 내장 데이터인 <code>SHANK</code>과 삼성, 네이버를 예시로 사용하겠습니다.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="kw">data</span>(SHANK)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">SS &lt;-<span class="st"> </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(code[<span class="kw">grep</span>(<span class="st">"^삼성전자$"</span>,code<span class="op">$</span>name),<span class="dv">1</span>], <span class="dt">to =</span> <span class="st">"2016-12-31"</span>)</a></code></pre></div>
-<pre><code>## [1] "please wait for getting data using internet."
-## [1] "close and adjusted are same now."</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">NVR &lt;-<span class="st"> </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(code[<span class="kw">grep</span>(<span class="st">"^NHN$"</span>,code<span class="op">$</span>name),<span class="dv">1</span>], <span class="dt">to =</span> <span class="st">"2016-12-31"</span>)</a></code></pre></div>
-<pre><code>## [1] "please wait for getting data using internet."
-## [1] "close and adjusted are same now."</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="kw">data</span>(SHANK)</a>
+<a class="sourceLine" id="cb29-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb29-4" data-line-number="4">SS &lt;-<span class="st"> </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(code[<span class="kw">grep</span>(<span class="st">"^삼성전자$"</span>,code<span class="op">$</span>name),<span class="dv">1</span>], <span class="dt">to =</span> <span class="st">"2016-12-31"</span>)</a>
+<a class="sourceLine" id="cb29-5" data-line-number="5">NVR &lt;-<span class="st"> </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(code[<span class="kw">grep</span>(<span class="st">"^NHN$"</span>,code<span class="op">$</span>name),<span class="dv">1</span>], <span class="dt">to =</span> <span class="st">"2016-12-31"</span>)</a></code></pre></div>
 <p>’end` 매개 변수는 예제 전체에서 날짜 제한을 설정할 때 사용됩니다.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">end &lt;-<span class="st"> </span><span class="kw">as_date</span>(<span class="st">"2016-12-31"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">end &lt;-<span class="st"> </span><span class="kw">as_date</span>(<span class="st">"2016-12-31"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="-" class="section level2">
@@ -487,69 +482,69 @@
 <h3 class="hasAnchor">
 <a href="#-" class="anchor"></a>라인 차트</h3>
 <p><code>tidyquant</code>의 <code>geom_</code>함수를 사용하여 가로 막대형 차트와 촛대형 차트를 시각화하기 전에 단순한 선 차트로 주가를 시각화하여 <code>그래픽 문법</code>을 확인해보겠습니다. 이것은<code>ggplot2</code> 패키지의<code>geom_line</code>을 사용하여 이루어집니다. 주식 데이터로 시작하고 파이프 연산자 (<code>%&gt; %</code>)를 사용하여<code>ggplot ()</code>함수로 보냅니다.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb36-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Line Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb36-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Line Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-17-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#-" class="anchor"></a>바 차트</h3>
 <p>바 차트는 <code>geom_line</code>를 <code>geom_barchart</code>로 바꾸는 걸로 해결됩니다. <code>aes()</code>내의 내용을 의미에 맞게 조정하는 것으로 바 차트를 그리는 것이 끝납니다.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-18-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p>우리는<code>coord_x_date</code>를 사용하여 특정 섹션을 확대 / 축소합니다.이 섹션에는<code>xlim</code> 및<code>ylim</code> 인수가<code>c (start, end)</code>로 지정되어 차트의 특정 영역에 초점을 맞 춥니 다. <code>xlim</code>의 경우 우리는<code>lubridate</code>를 사용하여 문자 날짜를 날짜 클래스로 변환 한 다음<code>weeks ()</code>함수를 사용하여 6 주를 뺍니다. <code>ylim</code>의 경우 가격을 100에서 120까지 확대합니다.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
-<a class="sourceLine" id="cb38-5" data-line-number="5">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in using coord_x_date"</span>,</a>
-<a class="sourceLine" id="cb38-6" data-line-number="6">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-7" data-line-number="7"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
-<a class="sourceLine" id="cb38-8" data-line-number="8">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
+<a class="sourceLine" id="cb33-5" data-line-number="5">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in using coord_x_date"</span>,</a>
+<a class="sourceLine" id="cb33-6" data-line-number="6">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-7" data-line-number="7"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
+<a class="sourceLine" id="cb33-8" data-line-number="8">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-19-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p>색상은<code>color_up</code> 및<code>color_down</code> 인수를 사용하여 수정할 수 있으며<code>size</code>와 같은 매개 변수를 사용하여 모양을 제어 할 수 있습니다.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close),</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">                     <span class="dt">color_up =</span> <span class="st">"darkgreen"</span>, <span class="dt">color_down =</span> <span class="st">"darkred"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in, Experimenting with Formatting"</span>,</a>
-<a class="sourceLine" id="cb39-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
-<a class="sourceLine" id="cb39-9" data-line-number="9">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb39-10" data-line-number="10"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close),</a>
+<a class="sourceLine" id="cb34-4" data-line-number="4">                     <span class="dt">color_up =</span> <span class="st">"darkgreen"</span>, <span class="dt">color_down =</span> <span class="st">"darkred"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb34-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
+<a class="sourceLine" id="cb34-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in, Experimenting with Formatting"</span>,</a>
+<a class="sourceLine" id="cb34-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-8" data-line-number="8"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
+<a class="sourceLine" id="cb34-9" data-line-number="9">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb34-10" data-line-number="10"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-20-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#-" class="anchor"></a>캔들 차트</h3>
 <p>캔들 차트 또한 바 차트를 그리는 것과 거의 같습니다.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-21-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p>색상은<code>color_up</code>과<code>color_down</code>을 사용하여 선 색상을 조절할 수 있고, <code>fill_up</code>과<code>fill_down</code>은 사각형을 채 웁니다.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close),</a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">                        <span class="dt">color_up =</span> <span class="st">"darkgreen"</span>, <span class="dt">color_down =</span> <span class="st">"darkred"</span>, </a>
-<a class="sourceLine" id="cb41-5" data-line-number="5">                        <span class="dt">fill_up  =</span> <span class="st">"darkgreen"</span>, <span class="dt">fill_down  =</span> <span class="st">"darkred"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb41-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
-<a class="sourceLine" id="cb41-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in, Experimenting with Formatting"</span>,</a>
-<a class="sourceLine" id="cb41-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-9" data-line-number="9"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
-<a class="sourceLine" id="cb41-10" data-line-number="10">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close),</a>
+<a class="sourceLine" id="cb36-4" data-line-number="4">                        <span class="dt">color_up =</span> <span class="st">"darkgreen"</span>, <span class="dt">color_down =</span> <span class="st">"darkred"</span>, </a>
+<a class="sourceLine" id="cb36-5" data-line-number="5">                        <span class="dt">fill_up  =</span> <span class="st">"darkgreen"</span>, <span class="dt">fill_down  =</span> <span class="st">"darkred"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb36-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
+<a class="sourceLine" id="cb36-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Zoomed in, Experimenting with Formatting"</span>,</a>
+<a class="sourceLine" id="cb36-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-9" data-line-number="9"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>), end),</a>
+<a class="sourceLine" id="cb36-10" data-line-number="10">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1600000</span>, <span class="dv">1800000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-22-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p><a class="anchor" id="mult-chart"></a></p>
 </div>
@@ -557,17 +552,17 @@
 <h3 class="hasAnchor">
 <a href="#--" class="anchor"></a>여러개의 차트를 그리기</h3>
 <p><code>facet_wrap</code>을 사용하여 동시에 여러 주식을 시각화 할 수 있습니다. <code>ggplot ()</code>의 <code>aes()</code>에<code>group</code>을 추가하고<code>ggplot</code> 워크 플로우의 끝에서<code>facet_wrap()</code>함수와 결합함으로써 네 개의 “FANG”주식을 동시에 모두 볼 수 있습니다.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">group =</span> symbol)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb42-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SHANK Candlestick Chart"</span>, </a>
-<a class="sourceLine" id="cb42-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Experimenting with Mulitple Stocks"</span>,</a>
-<a class="sourceLine" id="cb42-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-9" data-line-number="9"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb42-10" data-line-number="10"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scale =</span> <span class="st">"free_y"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb37-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">15</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">group =</span> symbol)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SHANK Candlestick Chart"</span>, </a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Experimenting with Mulitple Stocks"</span>,</a>
+<a class="sourceLine" id="cb37-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-9" data-line-number="9"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-10" data-line-number="10"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scale =</span> <span class="st">"free_y"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-23-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -596,33 +591,33 @@
 <div id="example-1-50200-----" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-1-50200-----" class="anchor"></a>Example 1: 50일/200일 단순 이동 평균 차트 작성</h3>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">linetype =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
-<a class="sourceLine" id="cb43-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"50 and 200-Day SMA"</span>, </a>
-<a class="sourceLine" id="cb43-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
-<a class="sourceLine" id="cb43-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_candlestick</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">linetype =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
+<a class="sourceLine" id="cb38-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"50 and 200-Day SMA"</span>, </a>
+<a class="sourceLine" id="cb38-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
+<a class="sourceLine" id="cb38-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-24-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="example-2----" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-2----" class="anchor"></a>Example 2: 지수 이동 평균 차트</h3>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> EMA, <span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">wilder =</span> <span class="ot">TRUE</span>, <span class="dt">linetype =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> EMA, <span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">wilder =</span> <span class="ot">TRUE</span>, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
-<a class="sourceLine" id="cb44-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"50 and 200-Day EMA"</span>, </a>
-<a class="sourceLine" id="cb44-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
-<a class="sourceLine" id="cb44-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb39-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_barchart</span>(<span class="kw">aes</span>(<span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> EMA, <span class="dt">n =</span> <span class="dv">50</span>, <span class="dt">wilder =</span> <span class="ot">TRUE</span>, <span class="dt">linetype =</span> <span class="dv">5</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">ma_fun =</span> EMA, <span class="dt">n =</span> <span class="dv">200</span>, <span class="dt">wilder =</span> <span class="ot">TRUE</span>, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="fl">1.25</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Bar Chart"</span>, </a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"50 and 200-Day EMA"</span>, </a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
+<a class="sourceLine" id="cb39-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-25-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -634,57 +629,57 @@
 <h3 class="hasAnchor">
 <a href="#example-1-sma--bbands-" class="anchor"></a>Example 1: SMA를 사용하여 BBands 적용</h3>
 <p>간단한 이동 평균을 사용하여 Bollinger Bands를 추가하는 기본 예제를 살펴 보겠습니다.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">open =</span> open,</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3">               <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_candlestick</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
-<a class="sourceLine" id="cb45-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied"</span>, </a>
-<a class="sourceLine" id="cb45-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
-<a class="sourceLine" id="cb45-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">open =</span> open,</a>
+<a class="sourceLine" id="cb40-3" data-line-number="3">               <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_candlestick</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied"</span>, </a>
+<a class="sourceLine" id="cb40-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="st">         </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
+<a class="sourceLine" id="cb40-10" data-line-number="10">                      <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-11" data-line-number="11"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-26-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="example-2-bollinger-bands--" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-2-bollinger-bands--" class="anchor"></a>Example 2: Bollinger Bands의 모양 바꾸기</h3>
 <p>모양은<code>color_ma</code>,<code>color_bands</code>,<code>alpha</code>,<code>fill</code> 인자를 사용하여 수정할 수 있습니다. BBands에 새로운 서식을 적용한 Example 1과 같은 그림이 있습니다.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">open =</span> open,</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">               <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_candlestick</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>, </a>
-<a class="sourceLine" id="cb46-6" data-line-number="6">                <span class="dt">linetype =</span> <span class="dv">4</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>, </a>
-<a class="sourceLine" id="cb46-7" data-line-number="7">                <span class="dt">fill        =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]], </a>
-<a class="sourceLine" id="cb46-8" data-line-number="8">                <span class="dt">color_bands =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]], </a>
-<a class="sourceLine" id="cb46-9" data-line-number="9">                <span class="dt">color_ma    =</span> <span class="kw">palette_light</span>()[[<span class="dv">2</span>]]) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-10" data-line-number="10"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
-<a class="sourceLine" id="cb46-11" data-line-number="11">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied, Experimenting with Formatting"</span>, </a>
-<a class="sourceLine" id="cb46-12" data-line-number="12">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb46-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
-<a class="sourceLine" id="cb46-14" data-line-number="14">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb46-15" data-line-number="15"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">SS <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">open =</span> open,</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3">               <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_candlestick</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>, </a>
+<a class="sourceLine" id="cb41-6" data-line-number="6">                <span class="dt">linetype =</span> <span class="dv">4</span>, <span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>, </a>
+<a class="sourceLine" id="cb41-7" data-line-number="7">                <span class="dt">fill        =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]], </a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">                <span class="dt">color_bands =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]], </a>
+<a class="sourceLine" id="cb41-9" data-line-number="9">                <span class="dt">color_ma    =</span> <span class="kw">palette_light</span>()[[<span class="dv">2</span>]]) <span class="op">+</span></a>
+<a class="sourceLine" id="cb41-10" data-line-number="10"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SamSung Candlestick Chart"</span>, </a>
+<a class="sourceLine" id="cb41-11" data-line-number="11">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied, Experimenting with Formatting"</span>, </a>
+<a class="sourceLine" id="cb41-12" data-line-number="12">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-13" data-line-number="13"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>), end),</a>
+<a class="sourceLine" id="cb41-14" data-line-number="14">                 <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">1500000</span>, <span class="dv">1850000</span>)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-15" data-line-number="15"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-27-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="example-3---bbands-" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-3---bbands-" class="anchor"></a>Example 3: 여러 주식에 BBands 추가</h3>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">20</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, </a>
-<a class="sourceLine" id="cb47-5" data-line-number="5">               <span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close, </a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">               <span class="dt">group =</span> symbol)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_barchart</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">linetype =</span> <span class="dv">5</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SHANK Bar Chart"</span>, </a>
-<a class="sourceLine" id="cb47-10" data-line-number="10">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied, Experimenting with Multiple Stocks"</span>, </a>
-<a class="sourceLine" id="cb47-11" data-line-number="11">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-12" data-line-number="12"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-13" data-line-number="13"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">"free_y"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-14" data-line-number="14"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">20</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, </a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">               <span class="dt">open =</span> open, <span class="dt">high =</span> high, <span class="dt">low =</span> low, <span class="dt">close =</span> close, </a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">               <span class="dt">group =</span> symbol)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_barchart</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-8" data-line-number="8"><span class="st">    </span><span class="kw">geom_bbands</span>(<span class="dt">ma_fun =</span> SMA, <span class="dt">sd =</span> <span class="dv">2</span>, <span class="dt">n =</span> <span class="dv">20</span>, <span class="dt">linetype =</span> <span class="dv">5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-9" data-line-number="9"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"SHANK Bar Chart"</span>, </a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">         <span class="dt">subtitle =</span> <span class="st">"BBands with SMA Applied, Experimenting with Multiple Stocks"</span>, </a>
+<a class="sourceLine" id="cb42-11" data-line-number="11">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-12" data-line-number="12"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb42-13" data-line-number="13"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">scales =</span> <span class="st">"free_y"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-14" data-line-number="14"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-28-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -697,24 +692,24 @@
 <a href="#example-1-scale_y_log10---" class="anchor"></a>Example 1 : scale_y_log10을 사용한 로그 스케일</h3>
 <p><code>ggplot2</code>는 y 축을 로그 스케일로 스케일하기위한<code>scale_y_log10 ()</code>함수를 가지고 있습니다. 이는 분석 할 수있는 선형 추세를 조정하는 경향이 있으므로 매우 유용합니다.</p>
 <p><strong>Continuous Scale</strong>:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_continuous</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
-<a class="sourceLine" id="cb48-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Continuous Scale"</span>, </a>
-<a class="sourceLine" id="cb48-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_continuous</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Continuous Scale"</span>, </a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-29-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p><strong>Log Scale</strong>:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb49-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb49-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
-<a class="sourceLine" id="cb49-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Log Scale"</span>, </a>
-<a class="sourceLine" id="cb49-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb49-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb44-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
+<a class="sourceLine" id="cb44-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Log Scale"</span>, </a>
+<a class="sourceLine" id="cb44-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-30-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="example-2-geom_smooth--" class="section level3">
@@ -722,45 +717,45 @@
 <a href="#example-2-geom_smooth--" class="anchor"></a>Example 2: geom_smooth로 회귀 추세선</h3>
 <p>우리는 워크 플로우에<code>geom_smooth ()</code>함수를 빠르게 추가하는 추세선을 적용 할 수 있습니다. 이 함수는 선형(<code>lm</code>)과 loess(<code>loess</code>) 를 포함한 몇 가지 예측 방법을 가지고 있습니다.</p>
 <p><strong>Linear</strong>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
-<a class="sourceLine" id="cb50-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Log Scale, Applying Linear Trendline"</span>, </a>
-<a class="sourceLine" id="cb50-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Adjusted Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb50-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> adjusted)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="kw">palette_light</span>()[[<span class="dv">1</span>]]) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"lm"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb45-6" data-line-number="6"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Line Chart"</span>, </a>
+<a class="sourceLine" id="cb45-7" data-line-number="7">         <span class="dt">subtitle =</span> <span class="st">"Log Scale, Applying Linear Trendline"</span>, </a>
+<a class="sourceLine" id="cb45-8" data-line-number="8">         <span class="dt">y =</span> <span class="st">"Adjusted Closing Price"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb45-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_tq</span>()</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-31-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 <div id="example-3-geom_segment--" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-3-geom_segment--" class="anchor"></a>Example 3: geom_segment로 차트 볼륨</h3>
 <p>우리는<code>geom_segment ()</code>함수를 사용하여 라인의 시작과 끝을 xy 점으로하는 일일 볼륨을 차트로 표시 할 수 있습니다. <code>aes()</code>를 사용하여 볼륨의 값을 기준으로 색상을 지정하여 이러한 데이터를 강조 표시합니다.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> volume)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> date, <span class="dt">yend =</span> <span class="dv">0</span>, <span class="dt">color =</span> volume)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb51-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"loess"</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Volume Chart"</span>, </a>
-<a class="sourceLine" id="cb51-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Charting Daily Volume"</span>, </a>
-<a class="sourceLine" id="cb51-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Volume"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-9" data-line-number="9"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">NVR <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> volume)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> date, <span class="dt">yend =</span> <span class="dv">0</span>, <span class="dt">color =</span> volume)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"loess"</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-5" data-line-number="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Volume Chart"</span>, </a>
+<a class="sourceLine" id="cb46-6" data-line-number="6">         <span class="dt">subtitle =</span> <span class="st">"Charting Daily Volume"</span>, </a>
+<a class="sourceLine" id="cb46-7" data-line-number="7">         <span class="dt">y =</span> <span class="st">"Volume"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-8" data-line-number="8"><span class="st">    </span><span class="kw">theme_tq</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-9" data-line-number="9"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) </a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-32-1.png" width="95%" style="display: block; margin: auto;"></p>
 <p>특정 지역을 확대 할 수 있습니다. <code>scale_color_gradient</code>를 사용하여 고점 및 저점을 빠르게 시각화 할 수 있으며<code>geom_smooth</code>를 사용하여 추세를 볼 수 있습니다.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>)</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">NVR <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">50</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> volume)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> date, <span class="dt">yend =</span> <span class="dv">0</span>, <span class="dt">color =</span> volume)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"loess"</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Bar Chart"</span>, </a>
-<a class="sourceLine" id="cb52-8" data-line-number="8">         <span class="dt">subtitle =</span> <span class="st">"Charting Daily Volume, Zooming In"</span>, </a>
-<a class="sourceLine" id="cb52-9" data-line-number="9">         <span class="dt">y =</span> <span class="st">"Volume"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-11" data-line-number="11"><span class="st">    </span><span class="kw">scale_color_gradient</span>(<span class="dt">low =</span> <span class="st">"red"</span>, <span class="dt">high =</span> <span class="st">"darkblue"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_tq</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb52-13" data-line-number="13"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">start &lt;-<span class="st"> </span>end <span class="op">-</span><span class="st"> </span><span class="kw">weeks</span>(<span class="dv">24</span>)</a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">NVR <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">50</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> volume)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend =</span> date, <span class="dt">yend =</span> <span class="dv">0</span>, <span class="dt">color =</span> volume)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">"loess"</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-7" data-line-number="7"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Naver Bar Chart"</span>, </a>
+<a class="sourceLine" id="cb47-8" data-line-number="8">         <span class="dt">subtitle =</span> <span class="st">"Charting Daily Volume, Zooming In"</span>, </a>
+<a class="sourceLine" id="cb47-9" data-line-number="9">         <span class="dt">y =</span> <span class="st">"Volume"</span>, <span class="dt">x =</span> <span class="st">""</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-11" data-line-number="11"><span class="st">    </span><span class="kw">scale_color_gradient</span>(<span class="dt">low =</span> <span class="st">"red"</span>, <span class="dt">high =</span> <span class="st">"darkblue"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_tq</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-13" data-line-number="13"><span class="st">    </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">"none"</span>) </a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-33-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 </div>
@@ -782,19 +777,19 @@
 <div id="dark" class="section level2">
 <h2 class="hasAnchor">
 <a href="#dark" class="anchor"></a>Dark</h2>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">n_mavg &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># Number of periods (days) for moving average</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>n_mavg)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">color =</span> symbol)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">n =</span> <span class="dv">15</span>, <span class="dt">color =</span> <span class="st">"darkblue"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb53-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">n =</span> n_mavg, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Dark Theme"</span>,</a>
-<a class="sourceLine" id="cb53-9" data-line-number="9">         <span class="dt">x =</span> <span class="st">""</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-11" data-line-number="11"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">scales =</span> <span class="st">"free_y"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_tq_dark</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-13" data-line-number="13"><span class="st">    </span><span class="kw">scale_color_tq</span>(<span class="dt">theme =</span> <span class="st">"dark"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">n_mavg &lt;-<span class="st"> </span><span class="dv">50</span> <span class="co"># Number of periods (days) for moving average</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">SHANK <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3"><span class="st">    </span><span class="kw">filter</span>(date <span class="op">&gt;=</span><span class="st"> </span>start <span class="op">-</span><span class="st"> </span><span class="kw">days</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span>n_mavg)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> close, <span class="dt">color =</span> symbol)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">n =</span> <span class="dv">15</span>, <span class="dt">color =</span> <span class="st">"darkblue"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"><span class="st">    </span><span class="kw">geom_ma</span>(<span class="dt">n =</span> n_mavg, <span class="dt">color =</span> <span class="st">"red"</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">"Dark Theme"</span>,</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">         <span class="dt">x =</span> <span class="st">""</span>, <span class="dt">y =</span> <span class="st">"Closing Price"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="st">    </span><span class="kw">coord_x_date</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(start, end)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-11" data-line-number="11"><span class="st">    </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>symbol, <span class="dt">scales =</span> <span class="st">"free_y"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-12" data-line-number="12"><span class="st">    </span><span class="kw">theme_tq_dark</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb48-13" data-line-number="13"><span class="st">    </span><span class="kw">scale_color_tq</span>(<span class="dt">theme =</span> <span class="st">"dark"</span>)</a></code></pre></div>
 <p><img src="tqk-introduce_files/figure-html/unnamed-chunk-34-1.png" width="95%" style="display: block; margin: auto;"></p>
 </div>
 </div>

@@ -1,9 +1,15 @@
+# tqk 0.0.4
+
+* Changed param name `tqk_get()` to sync `tq_get()` from `tidyquant`.
+* Added daum source and changed as defualt.
+* Adjusted column is work.
+
 # tqk 0.0.3
 
 * Added a `NEWS.md` file to track changes to the package.
 * Added pkgdown page and logo.
 
-# tqk 0.0.3
+# tqk 0.0.2
 
 * Added `tqk_get()` function for get finance data for korean company.
 

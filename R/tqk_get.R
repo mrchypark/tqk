@@ -86,7 +86,6 @@ tqk_get <-
         httr::user_agent("tqk package in r by chanyub.park mrchypark@gmail.com")
       tar <- paste0(root, x, "/days?limit=4999&adjusted=false")
 
-      print(tar)
       df <-
         httr::GET(tar, ad, ua) %>%
         httr::content() %>%

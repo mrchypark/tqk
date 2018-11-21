@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tqk</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
       </span>
     </div>
 
@@ -140,7 +140,7 @@
 <div class="section level2">
 <h2>사용법</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">code&lt;-<span class="kw"><a href="reference/code_get.html">code_get</a></span>()</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">code &lt;-<span class="st"> </span><span class="kw"><a href="reference/code_get.html">code_get</a></span>()</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">code</a></code></pre></div>
 <pre><code>## # A tibble: 2,306 x 3
 ##    code   name                    category
@@ -162,24 +162,23 @@
 ##   code  
 ##   &lt;chr&gt; 
 ## 1 005930</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">samsung&lt;-<span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(sscode, <span class="dt">from=</span><span class="st">"2017-01-01"</span>)</a></code></pre></div>
-<pre><code>## [1] "please wait for getting data using internet."
-## [1] "close and adjusted are same now."</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">samsung &lt;-<span class="st"> </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(sscode, <span class="dt">from=</span><span class="st">"2018-05-01"</span>)</a></code></pre></div>
+<pre><code>## Joining, by = "date"</code></pre>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">samsung</a></code></pre></div>
-<pre><code>## # A tibble: 471 x 7
-##    date        open  high   low close   volume adjusted
-##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;
-##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
-##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
-##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
-##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
-##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
-##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
-##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
-##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
-##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
-## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
-## # ... with 461 more rows</code></pre>
+<pre><code>## # A tibble: 136 x 7
+##    date          open    high     low   close   volume adjusted
+##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
+##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
+##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000
+##  3 2018-05-04   53000   53900   51800   51900 39565391    51900
+##  4 2018-05-08   52600   53200   51900   52600 23104720    52600
+##  5 2018-05-09   52600   52800   50900   50900 16128305    50900
+##  6 2018-05-10   51700   51700   50600   51600 13905263    51600
+##  7 2018-05-11   52000   52200   51200   51300 10314997    51300
+##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
+##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
+## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
+## # ... with 126 more rows</code></pre>
 </div>
 <div id="--with-dplyr" class="section level2">
 <h2 class="hasAnchor">
@@ -197,24 +196,23 @@
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/code_get.html">code_get</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"^삼성전자$"</span>, name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(code) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2017-01-01"</span>) -&gt;<span class="st"> </span>ss</a></code></pre></div>
-<pre><code>## [1] "please wait for getting data using internet."
-## [1] "close and adjusted are same now."</code></pre>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2018-05-01"</span>) -&gt;<span class="st"> </span>ss</a></code></pre></div>
+<pre><code>## Joining, by = "date"</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">ss</a></code></pre></div>
-<pre><code>## # A tibble: 471 x 7
-##    date        open  high   low close   volume adjusted
-##    &lt;date&gt;     &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt;
-##  1 2017-01-02 35980 36240 35880 36100  4650600    36100
-##  2 2017-01-03 36280 36620 36020 36480  7357650    36480
-##  3 2017-01-04 36500 36520 36100 36160  7971750    36160
-##  4 2017-01-05 36060 36060 35540 35560 10967450    35560
-##  5 2017-01-06 36180 36440 36040 36200  8880950    36200
-##  6 2017-01-09 36600 37500 36560 37220 13194900    37220
-##  7 2017-01-10 37280 37400 37080 37240  9099800    37240
-##  8 2017-01-11 37520 38560 37420 38280 12018150    38280
-##  9 2017-01-12 38000 38800 37980 38800 11669150    38800
-## 10 2017-01-12 38000 38800 37980 38800 11669150    38800
-## # ... with 461 more rows</code></pre>
+<pre><code>## # A tibble: 136 x 7
+##    date          open    high     low   close   volume adjusted
+##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
+##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
+##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000
+##  3 2018-05-04   53000   53900   51800   51900 39565391    51900
+##  4 2018-05-08   52600   53200   51900   52600 23104720    52600
+##  5 2018-05-09   52600   52800   50900   50900 16128305    50900
+##  6 2018-05-10   51700   51700   50600   51600 13905263    51600
+##  7 2018-05-11   52000   52200   51200   51300 10314997    51300
+##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
+##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
+## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
+## # ... with 126 more rows</code></pre>
 </div>
 <div class="section level2">
 <h2>설치</h2>
@@ -246,7 +244,7 @@
 <div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Chanyub Park <br><small class="roles"> Author, maintainer </small>  </li>
+<li>Chanyub Park <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-6474-2570" target="orcid.widget"><img src="https://members.orcid.org/sites/default/files/vector_iD_icon.svg" class="orcid" alt="ORCID" height="16"></a> </li>
 </ul>
 </div>
 

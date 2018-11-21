@@ -39,11 +39,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 library(tqk)
-code<-code_get()
+code <- code_get()
 code
 sscode <- code[grep("^삼성전자$", code$name),1]
 sscode
-samsung<-tqk_get(sscode, from="2017-01-01")
+samsung <- tqk_get(sscode, from="2018-05-01")
 samsung
 ```
 
@@ -55,7 +55,7 @@ library(dplyr)
 code_get() %>% 
   filter(grepl("^삼성전자$", name)) %>% 
   select(code) %>% 
-  tqk_get(from = "2017-01-01") -> ss
+  tqk_get(from = "2018-05-01") -> ss
 ss
 ```
 
