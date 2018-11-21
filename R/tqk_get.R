@@ -14,8 +14,6 @@
 #' @importFrom purrr transpose
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr select_if mutate rename left_join
-#' @importFrom tidyr unnest
-#' @importFrom rlang .data
 
 tqk_get <-
   function(x,
@@ -89,14 +87,16 @@ tqk_get <-
       df <-
         httr::GET(tar, ad, ua) %>%
         httr::content() %>%
-        .$data %>%
+        .$data
+      if (is.null(df)) {
+        return(df)
+      }
+      df <-
+        df %>%
         purrr::transpose() %>%
         tibble::as_tibble() %>%
-        dplyr::mutate_if(~ is.double(.x[[1]]), ~as.double(.x)) %>%
-        dplyr::mutate_if(~ is.integer(.x[[1]]), ~as.double(.x)) %>%
-        dplyr::mutate_if(~ is.character(.x[[1]]), ~as.character(.x)) %>%
         dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
-        tidyr::unnest() %>%
+        purrr::map_dfc(~ unlist(ifelse(purrr::map(.x, is.null),0,.x))) %>%
         dplyr::mutate(date = as.Date(date))
 
       if (tqform) {
@@ -117,15 +117,13 @@ tqk_get <-
           .$data %>%
           purrr::transpose() %>%
           tibble::as_tibble() %>%
-          dplyr::mutate_if(~ is.double(.x[[1]]), ~as.double(.x)) %>%
-          dplyr::mutate_if(~ is.integer(.x[[1]]), ~as.double(.x)) %>%
-          dplyr::mutate_if(~ is.character(.x[[1]]), ~as.character(.x)) %>%
+          dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
+          purrr::map_dfc(~ unlist(ifelse(purrr::map(.x, is.null),0,.x))) %>%
           dplyr::select(date, tradePrice) %>%
-          tidyr::unnest() %>%
           dplyr::mutate(date = as.Date(date)) %>%
           dplyr::rename(adjusted = tradePrice)
 
-        df <- df %>% dplyr::left_join(adj)
+        df <- df %>% dplyr::left_join(adj, by = "date")
 
         names(df) <-
           c("date",

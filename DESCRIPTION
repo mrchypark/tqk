@@ -22,7 +22,6 @@ Imports:
     magrittr,
     rvest,
     tibble,
-    tidyr,
     purrr, 
     httr, 
     dplyr,
