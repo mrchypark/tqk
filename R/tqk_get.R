@@ -22,6 +22,8 @@ tqk_get <-
            to = Sys.Date(),
            tqform = T) {
 
+    . <- tradePrice <- NULL
+
     stopifnot(get %in% c("daum", "paxnet"))
 
     if (get[1] == "paxnet") {

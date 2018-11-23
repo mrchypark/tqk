@@ -16,7 +16,7 @@
             for now, provide tqk_get function instead.">
 <meta property="og:image" content="mrchypark.github.io/tqk/logo.png">
 <meta name="twitter:card" content="summary">
-<!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
+<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-47822682-14"></script><script>
@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">tqk</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -162,10 +162,9 @@
 ##   code  
 ##   &lt;chr&gt; 
 ## 1 005930</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">samsung &lt;-<span class="st"> </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(sscode, <span class="dt">from=</span><span class="st">"2018-05-01"</span>)</a></code></pre></div>
-<pre><code>## Joining, by = "date"</code></pre>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">samsung</a></code></pre></div>
-<pre><code>## # A tibble: 136 x 7
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">samsung &lt;-<span class="st"> </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(sscode, <span class="dt">from=</span><span class="st">"2018-05-01"</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">samsung</a></code></pre></div>
+<pre><code>## # A tibble: 138 x 7
 ##    date          open    high     low   close   volume adjusted
 ##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
 ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -178,28 +177,27 @@
 ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
 ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
 ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-## # ... with 126 more rows</code></pre>
+## # ... with 128 more rows</code></pre>
 </div>
 <div id="--with-dplyr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#--with-dplyr" class="anchor"></a>파이프 (<code>%&gt;%</code>) 사용 with dplyr</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(tqk)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <pre><code>## 
-## 다음의 패키지를 부착합니다: 'dplyr'</code></pre>
+## Attaching package: 'dplyr'</code></pre>
 <pre><code>## The following objects are masked from 'package:stats':
 ## 
 ##     filter, lag</code></pre>
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="reference/code_get.html">code_get</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">"^삼성전자$"</span>, name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(code) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2018-05-01"</span>) -&gt;<span class="st"> </span>ss</a></code></pre></div>
-<pre><code>## Joining, by = "date"</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">ss</a></code></pre></div>
-<pre><code>## # A tibble: 136 x 7
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="reference/code_get.html">code_get</a></span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">grepl</span>(<span class="st">"^삼성전자$"</span>, name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(code) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2018-05-01"</span>) -&gt;<span class="st"> </span>ss</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">ss</a></code></pre></div>
+<pre><code>## # A tibble: 138 x 7
 ##    date          open    high     low   close   volume adjusted
 ##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
 ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -212,13 +210,13 @@
 ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
 ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
 ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-## # ... with 126 more rows</code></pre>
+## # ... with 128 more rows</code></pre>
 </div>
 <div class="section level2">
 <h2>설치</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"remotes"</span>)) <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"mrchypark/tqk"</span>)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="kw">library</span>(tqk)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">requireNamespace</span>(<span class="st">"remotes"</span>)) <span class="kw">install.packages</span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">remotes<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"mrchypark/tqk"</span>)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="kw">library</span>(tqk)</a></code></pre></div>
 </div>
 </div>
   </div>
