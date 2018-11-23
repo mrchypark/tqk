@@ -95,7 +95,7 @@ tqk_get <-
         df %>%
         purrr::transpose() %>%
         tibble::as_tibble() %>%
-        dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
+        dplyr::select_if( ~ !all(is.null(unlist(.x)))) %>%
         purrr::map_dfc(~ unlist(ifelse(purrr::map(.x, is.null),0,.x))) %>%
         dplyr::mutate(date = as.Date(date))
 
@@ -117,7 +117,7 @@ tqk_get <-
           .$data %>%
           purrr::transpose() %>%
           tibble::as_tibble() %>%
-          dplyr::select_if( ~ !all(is.null(.x[[1]]))) %>%
+          dplyr::select_if( ~ !all(is.null(unlist(.x)))) %>%
           purrr::map_dfc(~ unlist(ifelse(purrr::map(.x, is.null),0,.x))) %>%
           dplyr::select(date, tradePrice) %>%
           dplyr::mutate(date = as.Date(date)) %>%
