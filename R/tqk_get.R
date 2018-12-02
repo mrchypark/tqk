@@ -79,9 +79,9 @@ tqk_get <-
 
     } else if (get[1] == "daum") {
       x <- paste0("A", x)
-      root <- "http://finance.daum.net/api/quote/"
+      root <- "http://finance.daum.net/api/charts/"
 
-      ref <- paste0("http://finance.daum.net/api/charts/", x)
+      ref <- paste0("http://finance.daum.net/api/quote/", x)
       ad <- httr::add_headers(Referer = ref)
       ua <-
         httr::user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36")
