@@ -8,9 +8,9 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right'}}
 
-Support korea financial data for tidy quant package.
-            especially add stock.prices.korea option in tq_get function.
-            for now, provide tqk_get function instead.
+Support korea financial data for tidy quant package. 
+             especially add stock.prices.korea option in tq_get function. 
+             for now, provide tqk_get function instead.
 }
 \seealso{
 Useful links:

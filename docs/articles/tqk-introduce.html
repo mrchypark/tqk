@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tqk</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@
       <h1>tidyquant with tqk</h1>
                         <h4 class="author">ChanYub Park</h4>
             
-            <h4 class="date">2018-11-22</h4>
+            <h4 class="date">2018-12-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mrchypark/tqk/blob/master/vignettes/tqk-introduce.Rmd"><code>vignettes/tqk-introduce.Rmd</code></a></small>
       <div class="hidden name"><code>tqk-introduce.Rmd</code></div>
@@ -125,7 +125,7 @@
 ## [13] "alphavantager"       "rblpapi"</code></pre>
 <p>이때 코스피와 코스닥을 이르는 이름이 각각 <code>^KS11</code>와 <code>^KOSDAQ</code>입니다. 각각 한번 가져와 보겠습니다.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">tq_get</span>(<span class="st">"^KS11"</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 2,703 x 7
+<pre><code>## # A tibble: 2,710 x 7
 ##    date        open  high   low close volume adjusted
 ##    &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 2008-01-02 1891. 1892. 1853. 1853. 246800    1853.
@@ -138,18 +138,18 @@
 ##  8 2008-01-11 1845. 1847. 1776. 1782. 280200    1782.
 ##  9 2008-01-14 1781  1791. 1754. 1766. 249000    1766.
 ## 10 2008-01-15 1782. 1782. 1723. 1747. 295200    1747.
-## # ... with 2,693 more rows</code></pre>
+## # ... with 2,700 more rows</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">tq_get</span>(<span class="st">"^KOSDAQ"</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 7
 ##   date        open  high   low close volume adjusted
 ##   &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
-## 1 2018-11-21  682.  696.  677.  696. 573867     696.</code></pre>
+## 1 2018-11-30  697.  701.  693.  696. 537912     696.</code></pre>
 <p>각 기업의 주가를 가져오려면 종목 번호를 알고 있어야 합니다. 양식은 <code>종목번호.KS</code>입니다. 종목번호는 <a href="http://dart.fss.or.kr/">전자공시시스템</a>에서 사용하는 번호입니다.</p>
 <p><img src="https://user-images.githubusercontent.com/6179259/46579905-19484e00-ca55-11e8-8385-284cda1e4576.png" width="100%"></p>
 <p>삼성전자 번호는 <strong>005930</strong> 이군요!</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ss &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">"005930.KS"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2">ss</a></code></pre></div>
-<pre><code>## # A tibble: 2,703 x 7
+<pre><code>## # A tibble: 2,710 x 7
 ##    date        open  high   low close   volume adjusted
 ##    &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
 ##  1 2008-01-02 11180 11200 10840 10880 18047200    0.866
@@ -162,7 +162,7 @@
 ##  8 2008-01-11 10360 10520 10220 10320 23425150    0.822
 ##  9 2008-01-14 10280 10520 10280 10500 22167000    0.836
 ## 10 2008-01-15 10660 10820 10420 10640 40283950    0.847
-## # ... with 2,693 more rows</code></pre>
+## # ... with 2,700 more rows</code></pre>
 <p>날짜를 지정할 수도 있습니다.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">ssdate &lt;-<span class="st"> </span><span class="kw">tq_get</span>(<span class="st">"005930.KS"</span>, <span class="dt">from=</span><span class="st">"2016-01-01"</span>, <span class="dt">to=</span><span class="st">"2016-05-05"</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">ssdate</a></code></pre></div>
@@ -239,7 +239,7 @@
 <a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/tqk_get.html">tqk_get</a></span>(<span class="dt">from =</span> <span class="st">"2018-05-01"</span>)</a>
 <a class="sourceLine" id="cb15-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb15-7" data-line-number="7">ss_prices</a></code></pre></div>
-<pre><code>## # A tibble: 136 x 7
+<pre><code>## # A tibble: 143 x 7
 ##    date          open    high     low   close   volume adjusted
 ##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;
 ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -252,7 +252,7 @@
 ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
 ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
 ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-## # ... with 126 more rows</code></pre>
+## # ... with 133 more rows</code></pre>
 <p>데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 p사(구현 편의성)로 작성되어 있습니다.</p>
 <div id="quandl" class="section level3">
 <h3 class="hasAnchor">
