@@ -22,6 +22,9 @@ tqk_get <-
            to = Sys.Date(),
            tqform = T) {
 
+    . <- NULL
+    tradePrice <- NULL
+
     stopifnot(get %in% c("daum", "paxnet"))
 
     if (get[1] == "paxnet") {
@@ -76,18 +79,19 @@ tqk_get <-
 
     } else if (get[1] == "daum") {
       x <- paste0("A", x)
-      root <- "http://finance.daum.net/api/charts/"
+      root <- "http://finance.daum.net/api/quote/"
 
-      ref <- paste0("http://finance.daum.net/api/quote/", x)
+      ref <- paste0("http://finance.daum.net/api/charts/", x)
       ad <- httr::add_headers(Referer = ref)
       ua <-
-        httr::user_agent("tqk package in r by chanyub.park mrchypark@gmail.com")
+        httr::user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36")
       tar <- paste0(root, x, "/days?limit=4999&adjusted=false")
 
       df <-
         httr::GET(tar, ad, ua) %>%
         httr::content() %>%
         .$data
+
       if (is.null(df)) {
         return(df)
       }

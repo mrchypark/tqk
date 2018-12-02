@@ -1,4 +1,8 @@
-# tqk 0.0.4
+# tqk 0.1.1
+
+* Changed user agent to Chrome browser.
+
+# tqk 0.1.0
 
 * Changed param name `tqk_get()` to sync `tq_get()` from `tidyquant`.
 * Added daum source and changed as defualt.
