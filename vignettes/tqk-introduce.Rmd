@@ -87,7 +87,7 @@ if (!require(remotes)) install.packages("remotes", verbose = F)
 library(remotes)
 if (!require(tqk)) install_github("mrchypark/tqk", verbose = F)
 library(tqk)
-code<-code_get()
+code <- code_get()
 code
 ```
 
@@ -98,14 +98,14 @@ code
 ```{r}
 ss_prices <- 
   code_get() %>% 
-  filter(grepl("^삼성전자$",name)) %>% 
+  filter(name == "삼성전자") %>% 
   select(code) %>% 
   tqk_get(from = "2018-05-01")
 
 ss_prices
 ```
 
-데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 p사(구현 편의성)로 작성되어 있습니다.
+데이터는 주요 사이트인 n사, d사, p사 를 모두 대응하는 것을 목표로 하고 있고, 현재 d사 기본, p사로 작성되어 있습니다.
 
 ### Quandl
 
@@ -252,7 +252,7 @@ library(tqk)
 data(SHANK)
 
 SS <- tqk_get(code[grep("^삼성전자$",code$name),1], to = "2016-12-31")
-NVR <- tqk_get(code[grep("^NHN$",code$name),1], to = "2016-12-31")
+NVR <- tqk_get(code[grep("NAVER",code$name),1], to = "2016-12-31")
 ```
 
 'end` 매개 변수는 예제 전체에서 날짜 제한을 설정할 때 사용됩니다.

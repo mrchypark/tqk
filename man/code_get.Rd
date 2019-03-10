@@ -4,7 +4,10 @@
 \alias{code_get}
 \title{Get company code}
 \usage{
-code_get()
+code_get(market = "KOSPI")
+}
+\arguments{
+\item{market}{KOSPI is defualt. KOSPI, KOSDAQ, KONEX and all is passible.}
 }
 \value{
 a \link[tibble:tibble-package]{tibble}
