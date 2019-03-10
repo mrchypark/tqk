@@ -21,17 +21,17 @@ code_get <- function(market = "KOSPI"){
   market <- tolower(market)
 
   if (market %in% c("kospi","all")) {
-    kospi <- market_down(kospi, "kospi")
+    kospi <- market_down(kospi, "KOSPI")
   } else {
     kospi <- tibble::tibble()
   }
   if (market %in% c("kosdaq","all")) {
-    kosdaq <- market_down(kosdaq, "kosdaq")
+    kosdaq <- market_down(kosdaq, "KOSDAQ")
   } else {
     kosdaq <- tibble::tibble()
   }
   if (market %in% c("konex","all")) {
-    konex <- market_down(konex, "konex")
+    konex <- market_down(konex, "KONEX")
   } else {
     konex <- tibble::tibble()
   }
@@ -57,7 +57,7 @@ market_down <- function(tar, market) {
 
   tem <- readxl::read_xls("code.xls")
   file.remove("code.xls")
-  tem <- tem[,-1]
+  tem <- tem[,c(2,3)]
   names(tem)[c(1,2)] <- c("code", "name")
   tem$market <- market
   return(tem)
