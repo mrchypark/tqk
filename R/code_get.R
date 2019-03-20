@@ -37,6 +37,7 @@ code_get <- function(market = "KOSPI"){
   }
 
   dplyr::bind_rows(kospi, kosdaq, konex) %>%
+    # dplyr::mutate(market = factor(market)) %>%
     return()
 
 }
