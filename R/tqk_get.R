@@ -79,6 +79,7 @@ tqk_get <-
 
     } else if (get[1] == "daum") {
       x <- paste0("A", x)
+      x <- gsub("AA","A", x)
       root <- "http://finance.daum.net/api/charts/"
 
       ref <- paste0("http://finance.daum.net/api/quote/", x)
