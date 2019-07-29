@@ -146,6 +146,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/seohyunjun"><img src="https://avatars2.githubusercontent.com/u/44499749?v=4" width="100px;" alt="chobo_R"/><br /><sub><b>chobo_R</b></sub></a><br /><a href="#question-seohyunjun" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://chulhongsung.github.io/"><img src="https://avatars0.githubusercontent.com/u/37679460?v=4" width="100px;" alt="SungChul Hong"/><br /><sub><b>SungChul Hong</b></sub></a><br /><a href="#question-chulhongsung" title="Answering Questions">💬</a></td>
   </tr>
 </table>
 
