@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "seohyunjun",
+      "name": "chobo_R",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/44499749?v=4",
+      "profile": "https://github.com/seohyunjun",
+      "contributions": [
+        "question"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "tqk",
+  "projectOwner": "mrchypark",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
