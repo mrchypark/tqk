@@ -27,13 +27,14 @@ Imports:
     httr,
     dplyr,
     xml2,
-    readxl
+    readxl,
+    stringr
 Suggests:
     knitr,
     rmarkdown,
     testthat,
     remotes,
     tidyquant
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
