@@ -6,13 +6,6 @@
   "commit": false,
   "contributors": [
     {
-      "login": "seohyunjun",
-      "name": "chobo_R",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/44499749?v=4",
-      "profile": "https://github.com/seohyunjun",
- "contributions": [
-        "question"
-      ],
       "login": "chulhongsung",
       "name": "SungChul Hong",
       "avatar_url": "https://avatars0.githubusercontent.com/u/37679460?v=4",
@@ -20,11 +13,21 @@
       "contributions": [
         "question"
       ]
+    },
+    {
+      "login": "gbkim01",
+      "name": "gbkim01",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/30010992?v=4",
+      "profile": "https://gbkim01.github.io/myblog/",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "tqk",
   "projectOwner": "mrchypark",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
