@@ -1,5 +1,4 @@
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 # tqk <img src="man/figures/logo.png" align="right" height=140/>
 
 ## 스타는 더욱 많은 코드, 데이터 공개의 힘이 됩니다. ;)
@@ -14,52 +13,63 @@
 
 ## 사용 설명서
 
-`tidyquant`의 [설명서](https://github.com/business-science/tidyquant) 일부를
-번역하고 `tqk`를 적용하여 한국 주식을 예로 든
+`tidyquant`의 [설명서](https://github.com/business-science/tidyquant)
+일부를 번역하고 `tqk`를 적용하여 한국 주식을 예로 든
 [문서](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)를
-준비
-했습니다.
+준비 했습니다.
 
 ### [사용 설명서 바로가기](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)
 
 ## tidyquant에서 한국 주가 정보 활용
 
-[tidyquant](https://github.com/business-science/tidyquant)가 활용하는 yahoo나
-google 주식은 한국 주식 데이터가 유명한 것만 있어 주식 분석을 하는데 문제가 있습니다. 그래서 우리나라에서 대표적으로 주식
-데이터를 제공하는 p, n, d 사등의 페이지를 가져오는 함수를 작성하여 배포합니다.(현재 p사만 적용중)
+[tidyquant](https://github.com/business-science/tidyquant)가 활용하는
+yahoo나 google 주식은 한국 주식 데이터가 유명한 것만 있어 주식 분석을
+하는데 문제가 있습니다. 그래서 우리나라에서 대표적으로 주식 데이터를
+제공하는 p, n, d 사등의 페이지를 가져오는 함수를 작성하여
+배포합니다.(현재 p사만 적용중)
 
 ## 기능
 
-1.  code\_get : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를 가져옵니다.
-2.  tqk\_get : code와 날짜를 기반으로 주식 정보를 가져옵니다. tidyquant 의 양식이 기본값이고 가져오는
-    데이터 형식 전체를 사용하고 싶으면 tqform=F 설정하시면 됩니다. tqform=T 일때 adjusted는 아직
-    close와 같은 값으로 계산식을 업데이트 해야 합니다.
+1.  code\_get : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를
+    가져옵니다.
+2.  tqk\_get : code와 날짜를 기반으로 주식 정보를 가져옵니다. tidyquant
+    의 양식이 기본값이고 가져오는 데이터 형식 전체를 사용하고 싶으면
+    tqform=F 설정하시면 됩니다. tqform=T 일때 adjusted는 아직 close와
+    같은 값으로 계산식을 업데이트 해야 합니다.
 
 ## 사용법
 
 ``` r
 library(tqk)
 code <- code_get()
+```
+
+    ## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
+    ## Using compatibility `.name_repair`.
+    ## This warning is displayed once every 8 hours.
+    ## Call `lifecycle::last_warnings()` to see where this warning was generated.
+
+``` r
 code
 ```
 
-    ## # A tibble: 2,306 x 3
-    ##    code   name                    category
-    ##    <chr>  <chr>                   <chr>   
-    ##  1 060310 3S                      KOSDAQ  
-    ##  2 095570 AJ네트웍스              KOSPI   
-    ##  3 068400 AJ렌터카                KOSPI   
-    ##  4 006840 AK홀딩스                KOSPI   
-    ##  5 054620 APS홀딩스               KOSDAQ  
-    ##  6 265520 AP시스템                KOSDAQ  
-    ##  7 211270 AP위성                  KOSDAQ  
-    ##  8 152100 ARIRANG 200             ETF     
-    ##  9 222170 ARIRANG S&P한국배당성장 ETF     
-    ## 10 161490 ARIRANG 경기방어주      ETF     
-    ## # ... with 2,296 more rows
+    ## # A tibble: 2,386 x 3
+    ##    market   name           code  
+    ##    <chr>    <chr>          <chr> 
+    ##  1 코스닥   소룩스         290690
+    ##  2 코스닥   위드텍         348350
+    ##  3 코스닥   센코           347000
+    ##  4 코스닥   바이브컴퍼니   301300
+    ##  5 코넥스   원포유         122830
+    ##  6 코스닥   미코바이오메드 214610
+    ##  7 코스닥   피플바이오     304840
+    ##  8 유가증권 빅히트         352820
+    ##  9 코스닥   넥스틴         348210
+    ## 10 코스닥   원방테크       053080
+    ## # ... with 2,376 more rows
 
 ``` r
-sscode <- code[grep("^삼성전자$", code$name),1]
+sscode <- code[grep("^삼성전자$", code$name),3]
 sscode
 ```
 
@@ -73,7 +83,7 @@ samsung <- tqk_get(sscode, from="2018-05-01")
 samsung
 ```
 
-    ## # A tibble: 138 x 7
+    ## # A tibble: 621 x 7
     ##    date          open    high     low   close   volume adjusted
     ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
     ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -86,7 +96,7 @@ samsung
     ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
     ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
     ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 128 more rows
+    ## # ... with 611 more rows
 
 ## 파이프 (`%>%`) 사용 with dplyr
 
@@ -114,7 +124,7 @@ code_get() %>%
 ss
 ```
 
-    ## # A tibble: 138 x 7
+    ## # A tibble: 621 x 7
     ##    date          open    high     low   close   volume adjusted
     ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
     ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -127,7 +137,7 @@ ss
     ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
     ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
     ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 128 more rows
+    ## # ... with 611 more rows
 
 ## 설치
 
@@ -136,23 +146,3 @@ if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("mrchypark/tqk")
 library(tqk)
 ```
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="https://chulhongsung.github.io/"><img src="https://avatars0.githubusercontent.com/u/37679460?v=4" width="100px;" alt=""/><br /><sub><b>SungChul Hong</b></sub></a><br /><a href="#question-chulhongsung" title="Answering Questions">💬</a></td>
-    <td align="center"><a href="https://gbkim01.github.io/myblog/"><img src="https://avatars0.githubusercontent.com/u/30010992?v=4" width="100px;" alt=""/><br /><sub><b>gbkim01</b></sub></a><br /><a href="https://github.com/mrchypark/tqk/issues?q=author%3Agbkim01" title="Bug reports">🐛</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
