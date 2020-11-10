@@ -86,7 +86,6 @@ ssdiv
 
 ```{r}
 if (!requireNamespace("remotes")) install.packages("remotes", verbose = F)
-if (!requireNamespace("tqk")) remotes::install_github("mrchypark/tqk", verbose = F)
 library(tqk)
 code <- code_get()
 code
