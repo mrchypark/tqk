@@ -7,3 +7,4 @@
 README.Rmd
 .github
 .all-contributorsrc
+^pkgdown$
