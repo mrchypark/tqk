@@ -85,7 +85,7 @@ ssdiv
 본래 `tidyquant` 패키지는 symbol(ex> 애플사는 AAPL)를 인자로 주식 데이터를 가져옵니다. 한국 주식은 각 종목별로 코드가 있으며 그것 때문에 코드와 종목명이 매치되있는 데이터를 확인할 수 있어야 합니다. `tqk` 패키지는 `code_get()`함수를 통해 진행 가능합니다. 
 
 ```{r}
-if (!requireNamespace("remotes")) install.packages("remotes", verbose = F)
+if (!requireNamespace("remotes")) install.packages("remotes", repos = "https://cloud.r-project.org/", verbose = F)
 library(tqk)
 code <- code_get()
 code
