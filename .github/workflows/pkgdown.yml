@@ -19,9 +19,8 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install rmarkdown, remotes, and the local package
         run: |
-          install.packages("remotes")
-          remotes::install_cran("reticulate")
-          reticulate::install_miniconda()
+          install.packages("tidyverse")
+          install.packages("tidyquant")
         shell: Rscript {0}
       - name: Query dependencies
         run: |
