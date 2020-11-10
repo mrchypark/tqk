@@ -11,15 +11,6 @@
 
 ###### [이슈](https://github.com/mrchypark/tqk/issues)로 남겨주시면 같은 문제를 겪는 분이 해결하는데 도움이 됩니다.
 
-## 사용 설명서
-
-`tidyquant`의 [설명서](https://github.com/business-science/tidyquant)
-일부를 번역하고 `tqk`를 적용하여 한국 주식을 예로 든
-[문서](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)를
-준비 했습니다.
-
-### [사용 설명서 바로가기](https://mrchypark.github.io/tqk/articles/tqk-introduce.html)
-
 ## tidyquant에서 한국 주가 정보 활용
 
 [tidyquant](https://github.com/business-science/tidyquant)가 활용하는
@@ -83,7 +74,7 @@ samsung <- tqk_get(sscode, from="2018-05-01")
 samsung
 ```
 
-    ## # A tibble: 621 x 7
+    ## # A tibble: 622 x 7
     ##    date          open    high     low   close   volume adjusted
     ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
     ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -96,7 +87,7 @@ samsung
     ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
     ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
     ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 611 more rows
+    ## # ... with 612 more rows
 
 ## 파이프 (`%>%`) 사용 with dplyr
 
@@ -124,7 +115,7 @@ code_get() %>%
 ss
 ```
 
-    ## # A tibble: 621 x 7
+    ## # A tibble: 622 x 7
     ##    date          open    high     low   close   volume adjusted
     ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
     ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
@@ -137,7 +128,7 @@ ss
     ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
     ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
     ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 611 more rows
+    ## # ... with 612 more rows
 
 ## 설치
 
