@@ -21,6 +21,7 @@ jobs:
         run: |
           install.packages("tidyverse")
           install.packages("tidyquant")
+          install.packages("bindrcpp")
         shell: Rscript {0}
       - name: Query dependencies
         run: |
