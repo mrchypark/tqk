@@ -106,16 +106,6 @@
 </div>
 </div>
 </div>
-<div id="사용-설명서" class="section level2">
-<h2 class="hasAnchor">
-<a href="#%EC%82%AC%EC%9A%A9-%EC%84%A4%EB%AA%85%EC%84%9C" class="anchor"></a>사용 설명서</h2>
-<p><code>tidyquant</code>의 <a href="https://github.com/business-science/tidyquant">설명서</a> 일부를 번역하고 <code>tqk</code>를 적용하여 한국 주식을 예로 든 <a href="https://mrchypark.github.io/tqk/articles/tqk-introduce.html">문서</a>를 준비 했습니다.</p>
-<div id="사용-설명서-바로가기" class="section level3">
-<h3 class="hasAnchor">
-<a href="#%EC%82%AC%EC%9A%A9-%EC%84%A4%EB%AA%85%EC%84%9C-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0" class="anchor"></a><a href="https://mrchypark.github.io/tqk/articles/tqk-introduce.html">사용 설명서 바로가기</a>
-</h3>
-</div>
-</div>
 <div id="tidyquant에서-한국-주가-정보-활용" class="section level2">
 <h2 class="hasAnchor">
 <a href="#tidyquant%EC%97%90%EC%84%9C-%ED%95%9C%EA%B5%AD-%EC%A3%BC%EA%B0%80-%EC%A0%95%EB%B3%B4-%ED%99%9C%EC%9A%A9" class="anchor"></a>tidyquant에서 한국 주가 정보 활용</h2>
@@ -165,7 +155,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">samsung</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span><span class="va">sscode</span>, from<span class="op">=</span><span class="st">"2018-05-01"</span><span class="op">)</span>
 <span class="va">samsung</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## # A tibble: 621 x 7</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## # A tibble: 622 x 7</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
@@ -178,7 +168,7 @@
 <span id="cb8-11"><a href="#cb8-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
 <span id="cb8-12"><a href="#cb8-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
 <span id="cb8-13"><a href="#cb8-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## # ... with 611 more rows</span></span></code></pre></div>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## # ... with 612 more rows</span></span></code></pre></div>
 </div>
 <div id="파이프--사용-with-dplyr" class="section level2">
 <h2 class="hasAnchor">
@@ -202,7 +192,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span>from <span class="op">=</span> <span class="st">"2018-05-01"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">ss</span>
 <span class="va">ss</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## # A tibble: 621 x 7</span></span>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## # A tibble: 622 x 7</span></span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
 <span id="cb12-3"><a href="#cb12-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
 <span id="cb12-4"><a href="#cb12-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
@@ -215,7 +205,7 @@
 <span id="cb12-11"><a href="#cb12-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
 <span id="cb12-12"><a href="#cb12-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
 <span id="cb12-13"><a href="#cb12-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="co">## # ... with 611 more rows</span></span></code></pre></div>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co">## # ... with 612 more rows</span></span></code></pre></div>
 </div>
 <div id="설치" class="section level2">
 <h2 class="hasAnchor">
