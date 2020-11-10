@@ -272,10 +272,10 @@ end <- as_date("2016-12-31")
 
 ```{r}
 SS %>%
-    ggplot(aes(x = date, y = close)) +
-    geom_line() +
-    labs(title = "SamSung Line Chart", y = "Closing Price", x = "") + 
-    theme_tq()
+  ggplot(aes(x = date, y = close)) +
+  geom_line() +
+  labs(title = "SamSung Line Chart", y = "Closing Price", x = "") + 
+  theme_tq()
 ```
 
 

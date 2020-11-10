@@ -4,7 +4,8 @@
 \name{SHANK}
 \alias{SHANK}
 \title{Stock prices for the "SHANK" stocks.}
-\format{A "tibble" ("tidy" data frame) with 7,580 rows and 8 variables:
+\format{
+A "tibble" ("tidy" data frame) with 7,580 rows and 8 variables:
 \describe{
 \item{symbol}{stock ticker symbol}
 \item{date}{trade date}
@@ -14,7 +15,8 @@
 \item{close}{stock price at the close of trading, in won}
 \item{volume}{number of shares traded}
 \item{adjusted}{stock price at the close of trading adjusted for stock splits, in won}
-}}
+}
+}
 \usage{
 SHANK
 }
