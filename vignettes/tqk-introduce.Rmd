@@ -40,6 +40,8 @@ knitr::opts_chunk$set(message = FALSE,
 
 ```{r}
 if (!require(tidyquant)) install.packages("tidyquant", repos = "https://cloud.r-project.org/", verbose = F)
+if (!require(tidyverse)) install.packages("tidyverse", repos = "https://cloud.r-project.org/", verbose = F)
+library(tidyverse)
 library(tidyquant)
 tq_get_options()
 ```
@@ -97,7 +99,7 @@ code
 
 ```{r}
 ss_prices <- 
-  code_get() %>% 
+  code %>% 
   filter(name == "삼성전자") %>% 
   select(code) %>% 
   tqk_get(from = "2018-05-01")
@@ -251,8 +253,10 @@ tq_transmute_fun_options()$PerformanceAnalytics
 library(tqk)
 data(SHANK)
 
-SS <- tqk_get(code[grep("^삼성전자$",code$name),1], to = "2016-12-31")
-NVR <- tqk_get(code[grep("NAVER",code$name),1], to = "2016-12-31")
+SS <- tqk_get(code[grep("^삼성전자$",code$name),3], to = "2016-12-31")
+SS
+NVR <- tqk_get(code[grep("NAVER",code$name),3], to = "2016-12-31")
+NVR
 ```
 
 'end` 매개 변수는 예제 전체에서 날짜 제한을 설정할 때 사용됩니다.
@@ -271,11 +275,12 @@ end <- as_date("2016-12-31")
 `tidyquant`의 `geom_`함수를 사용하여 가로 막대형 차트와 촛대형 차트를 시각화하기 전에 단순한 선 차트로 주가를 시각화하여 `그래픽 문법`을 확인해보겠습니다. 이것은`ggplot2` 패키지의`geom_line`을 사용하여 이루어집니다. 주식 데이터로 시작하고 파이프 연산자 (`%> %`)를 사용하여`ggplot ()`함수로 보냅니다.
 
 ```{r}
+library(ggplot2)
 SS %>%
-    ggplot(aes(x = date, y = close)) +
-    geom_line() +
-    labs(title = "SamSung Line Chart", y = "Closing Price", x = "") + 
-    theme_tq()
+  ggplot(aes(x = date, y = close)) +
+  geom_line() +
+  labs(title = "SamSung Line Chart", y = "Closing Price", x = "") + 
+  theme_tq()
 ```
 
 

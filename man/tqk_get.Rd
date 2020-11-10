@@ -4,8 +4,13 @@
 \alias{tqk_get}
 \title{Get quantitative data from korea}
 \usage{
-tqk_get(x, get = c("daum", "paxnet"), from = "1900-01-01",
-  to = Sys.Date(), tqform = T)
+tqk_get(
+  x,
+  get = c("daum", "paxnet"),
+  from = "1900-01-01",
+  to = Sys.Date(),
+  tqform = T
+)
 }
 \arguments{
 \item{x}{Stock x. only Korean type like "005930" is samsong.}
