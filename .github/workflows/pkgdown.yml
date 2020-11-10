@@ -22,8 +22,7 @@ jobs:
           install.packages("tidyverse")
           install.packages("tidyquant")
           install.packages("bindrcpp")
-          install.packages('remotes')
-          remotes::install_github("r-lib/pkgdown")
+          install.packages("textshaping")
         shell: Rscript {0}
       - name: Query dependencies
         run: |
