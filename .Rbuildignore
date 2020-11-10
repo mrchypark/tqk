@@ -5,3 +5,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.Rmd
+.github
+.all-contributorsrc
