@@ -84,8 +84,6 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-
 <div id="tqk-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#tqk-" class="anchor"></a>tqk <img src="reference/figures/logo.png" align="right" height="140/">
@@ -136,111 +134,98 @@
 <a href="#%EC%82%AC%EC%9A%A9%EB%B2%95" class="anchor"></a>사용법</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk">tqk</a></span><span class="op">)</span>
-<span class="va">code</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/code_get.html">code_get</a></span><span class="op">(</span><span class="op">)</span>
-<span class="va">code</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## # A tibble: 2,306 x 3</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">##    code   name                    category</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">##    &lt;chr&gt;  &lt;chr&gt;                   &lt;chr&gt;   </span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">##  1 060310 3S                      KOSDAQ  </span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="co">##  2 095570 AJ네트웍스              KOSPI   </span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">##  3 068400 AJ렌터카                KOSPI   </span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">##  4 006840 AK홀딩스                KOSPI   </span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">##  5 054620 APS홀딩스               KOSDAQ  </span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">##  6 265520 AP시스템                KOSDAQ  </span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">##  7 211270 AP위성                  KOSDAQ  </span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">##  8 152100 ARIRANG 200             ETF     </span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">##  9 222170 ARIRANG S&amp;P한국배당성장 ETF     </span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">## 10 161490 ARIRANG 경기방어주      ETF     </span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">## # ... with 2,296 more rows</span></span></code></pre></div>
+<span class="va">code</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/code_get.html">code_get</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## Using compatibility `.name_repair`.</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">## This warning is displayed once every 8 hours.</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">sscode</span> <span class="op">&lt;-</span> <span class="va">code</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"^삼성전자$"</span>, <span class="va">code</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>,<span class="fl">1</span><span class="op">]</span>
-<span class="va">sscode</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## # A tibble: 1 x 1</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">##   code  </span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">##   &lt;chr&gt; </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">## 1 005930</span></span></code></pre></div>
+<code class="sourceCode R"><span class="va">code</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## # A tibble: 2,386 x 3</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">##    market   name           code  </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="co">##    &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt; </span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">##  1 코스닥   소룩스         290690</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">##  2 코스닥   위드텍         348350</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">##  3 코스닥   센코           347000</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">##  4 코스닥   바이브컴퍼니   301300</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">##  5 코넥스   원포유         122830</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">##  6 코스닥   미코바이오메드 214610</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##  7 코스닥   피플바이오     304840</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##  8 유가증권 빅히트         352820</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##  9 코스닥   넥스틴         348210</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="co">## 10 코스닥   원방테크       053080</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">## # ... with 2,376 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">sscode</span> <span class="op">&lt;-</span> <span class="va">code</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"^삼성전자$"</span>, <span class="va">code</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>,<span class="fl">3</span><span class="op">]</span>
+<span class="va">sscode</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## # A tibble: 1 x 1</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="co">##   code  </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="co">##   &lt;chr&gt; </span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## 1 005930</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">samsung</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span><span class="va">sscode</span>, from<span class="op">=</span><span class="st">"2018-05-01"</span><span class="op">)</span>
 <span class="va">samsung</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## # A tibble: 138 x 7</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="co">## # ... with 128 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## # A tibble: 621 x 7</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## # ... with 611 more rows</span></span></code></pre></div>
 </div>
 <div id="파이프--사용-with-dplyr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%ED%8C%8C%EC%9D%B4%ED%94%84--%EC%82%AC%EC%9A%A9-with-dplyr" class="anchor"></a>파이프 (<code>%&gt;%</code>) 사용 with dplyr</h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk">tqk</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## </span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">## </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">##     filter, lag</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">## </span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co">## The following objects are masked from 'package:stats':</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="co">## </span></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="co">##     filter, lag</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="co">## The following objects are masked from 'package:base':</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="co">## </span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="reference/code_get.html">code_get</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"^삼성전자$"</span>, <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span>from <span class="op">=</span> <span class="st">"2018-05-01"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">ss</span>
 <span class="va">ss</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## # A tibble: 138 x 7</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
-<span id="cb10-11"><a href="#cb10-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
-<span id="cb10-12"><a href="#cb10-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
-<span id="cb10-13"><a href="#cb10-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb10-14"><a href="#cb10-14"></a><span class="co">## # ... with 128 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## # A tibble: 621 x 7</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co">## # ... with 611 more rows</span></span></code></pre></div>
 </div>
 <div id="설치" class="section level2">
 <h2 class="hasAnchor">
 <a href="#%EC%84%A4%EC%B9%98" class="anchor"></a>설치</h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mrchypark/tqk"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk">tqk</a></span><span class="op">)</span></code></pre></div>
 </div>
-<div id="contributors-" class="section level2">
-<h2 class="hasAnchor">
-<a href="#contributors-" class="anchor"></a>Contributors ✨</h2>
-<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table class="table"><tr>
-<td align="center">
-<a href="https://chulhongsung.github.io/"><img src="https://avatars0.githubusercontent.com/u/37679460?v=4" width="100px;" alt=""><br><sub><b>SungChul Hong</b></sub></a><br><a href="#question-chulhongsung" title="Answering Questions">💬</a>
-</td>
-<td align="center">
-<a href="https://gbkim01.github.io/myblog/"><img src="https://avatars0.githubusercontent.com/u/30010992?v=4" width="100px;" alt=""><br><sub><b>gbkim01</b></sub></a><br><a href="https://github.com/mrchypark/tqk/issues?q=author%3Agbkim01" title="Bug reports">🐛</a>
-</td>
-</tr></table>
-<!-- markdownlint-enable --><!-- prettier-ignore-end --><!-- ALL-CONTRIBUTORS-LIST:END --><p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
 </div>
-</div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -268,13 +253,7 @@
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="#contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All Contributors"></a></li>
-</ul>
-</div>
-</div>
+  </div>
 </div>
 
 
