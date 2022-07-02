@@ -1,0 +1,20 @@
+test_that("tqk_get form check", {
+  skip_if_offline()
+
+  ss <- tqk_get("005930", from = "20220501")
+  col <- names(ss)
+  expect_true("date" %in% col)
+  expect_true("open" %in% col)
+  expect_true("high" %in% col)
+  expect_true("low" %in% col)
+  expect_true("close" %in% col)
+  expect_true("volume" %in% col)
+  expect_gt(nrow(ss), 0)
+
+  expect_true(inherits(ss$date, "Date"))
+  expect_true(is.integer(ss$open))
+  expect_true(is.integer(ss$high))
+  expect_true(is.integer(ss$low))
+  expect_true(is.integer(ss$close))
+  expect_true(is.integer(ss$volume))
+})
