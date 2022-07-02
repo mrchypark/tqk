@@ -10,47 +10,19 @@ code_get <- function(fresh = FALSE) {
   if (!fresh) {
     return(code)
   }
-  c("stockMkt", "kosdaqMkt", "konexMkt") %>%
-  purrr::map_dfr( ~ get_corps_info(.x)) %>%
-  return()
-}
-
-#' @importFrom rvest html_nodes html_text html_attr
-#' @importFrom stringr str_sub
-#' @importFrom httr POST content
-#' @importFrom dplyr case_when
-get_corps_info <- function(market) {
-  market_name <- dplyr::case_when(
-    market == "stockMkt" ~ "stock",
-    market == "kosdaqMkt" ~ "kosdaq",
-    market == "konexMkt" ~ "konex"
-  )
+"http://data.krx.co.kr/comm/bldAttendant/getJsonData.cmd" %>%
   httr::POST(
-    "https://kind.krx.co.kr/corpgeneral/corpList.do",
     body = list(
-      method = "searchCorpList",
-      pageIndex = 1,
-      currentPageSize = 3000,
-      fiscalYearEnd = "all",
-      marketType = market,
-      location = "all"
-    )
+      bld = "dbms/MDC/STAT/standard/MDCSTAT01901",
+      locale = "ko_KR",
+      mktId = "ALL",
+      share = 1,
+      csvxls_isNo = "false"
+    ),
+    encode = "form"
   ) %>%
-    httr::content() %>%
-    rvest::html_nodes("td.first") -> stock
-
-  stock %>%
-    rvest::html_text() %>%
-    trimws() -> name
-
-  stock %>%
-    rvest::html_nodes("a") %>%
-    rvest::html_attr("onclick") %>%
-    stringr::str_sub(22, 26) -> code
-
-  return(
-    tibble(
-      market = market_name, name, code
-    )
-  )
+  httr::content("text") %>%
+  jsonlite::fromJSON() -> res
+  return(tibble::as_tibble(res$OutBlock_1))
 }
+

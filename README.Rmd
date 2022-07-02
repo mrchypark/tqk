@@ -32,7 +32,7 @@ code <- code_get()
 code
 sscode <- code[grep("^삼성전자$", code$name),3]
 sscode
-samsung <- tqk_get(sscode, from="2018-05-01")
+samsung <- tqk_get(sscode, from = "2018-05-01")
 samsung
 ```
 

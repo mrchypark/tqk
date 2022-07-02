@@ -28,6 +28,8 @@ Imports:
     dplyr,
     stringr
 Suggests:
+    testthat (>= 3.0.0),
     usethis
 RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
+Config/testthat/edition: 3

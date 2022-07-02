@@ -21,9 +21,9 @@ yahoo나 google 주식은 한국 주식 데이터가 유명한 것만 있어 주
 
 ## 기능
 
-1.  code\_get : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를
+1.  code_get : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를
     가져옵니다.
-2.  tqk\_get : code와 날짜를 기반으로 주식 정보를 가져옵니다. tidyquant
+2.  tqk_get : code와 날짜를 기반으로 주식 정보를 가져옵니다. tidyquant
     의 양식이 기본값이고 가져오는 데이터 형식 전체를 사용하고 싶으면
     tqform=F 설정하시면 됩니다. tqform=T 일때 adjusted는 아직 close와
     같은 값으로 계산식을 업데이트 해야 합니다.
@@ -33,61 +33,45 @@ yahoo나 google 주식은 한국 주식 데이터가 유명한 것만 있어 주
 ``` r
 library(tqk)
 code <- code_get()
-```
-
-    ## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
-    ## Using compatibility `.name_repair`.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_warnings()` to see where this warning was generated.
-
-``` r
 code
 ```
 
-    ## # A tibble: 2,386 x 3
-    ##    market   name           code  
-    ##    <chr>    <chr>          <chr> 
-    ##  1 코스닥   소룩스         290690
-    ##  2 코스닥   위드텍         348350
-    ##  3 코스닥   센코           347000
-    ##  4 코스닥   바이브컴퍼니   301300
-    ##  5 코넥스   원포유         122830
-    ##  6 코스닥   미코바이오메드 214610
-    ##  7 코스닥   피플바이오     304840
-    ##  8 유가증권 빅히트         352820
-    ##  9 코스닥   넥스틴         348210
-    ## 10 코스닥   원방테크       053080
-    ## # ... with 2,376 more rows
+    ## # A tibble: 2,506 × 3
+    ##    market name             code 
+    ##    <chr>  <chr>            <chr>
+    ##  1 stock  동화약품         00002
+    ##  2 stock  KR모터스         00004
+    ##  3 stock  경방             00005
+    ##  4 stock  메리츠화재       00006
+    ##  5 stock  삼양홀딩스       00007
+    ##  6 stock  하이트진로       00008
+    ##  7 stock  유한양행         00010
+    ##  8 stock  CJ대한통운       00012
+    ##  9 stock  하이트진로홀딩스 00014
+    ## 10 stock  두산             00015
+    ## # … with 2,496 more rows
 
 ``` r
 sscode <- code[grep("^삼성전자$", code$name),3]
 sscode
 ```
 
-    ## # A tibble: 1 x 1
-    ##   code  
-    ##   <chr> 
-    ## 1 005930
+    ## # A tibble: 1 × 1
+    ##   code 
+    ##   <chr>
+    ## 1 00593
 
 ``` r
 samsung <- tqk_get(sscode, from="2018-05-01")
+```
+
+    ## No encoding supplied: defaulting to UTF-8.
+
+``` r
 samsung
 ```
 
-    ## # A tibble: 622 x 7
-    ##    date          open    high     low   close   volume adjusted
-    ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
-    ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
-    ##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000
-    ##  3 2018-05-04   53000   53900   51800   51900 39565391    51900
-    ##  4 2018-05-08   52600   53200   51900   52600 23104720    52600
-    ##  5 2018-05-09   52600   52800   50900   50900 16128305    50900
-    ##  6 2018-05-10   51700   51700   50600   51600 13905263    51600
-    ##  7 2018-05-11   52000   52200   51200   51300 10314997    51300
-    ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
-    ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
-    ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 612 more rows
+    ## NULL
 
 ## 파이프 (`%>%`) 사용 with dplyr
 
@@ -112,23 +96,15 @@ code_get() %>%
   filter(grepl("^삼성전자$", name)) %>% 
   select(code) %>% 
   tqk_get(from = "2018-05-01") -> ss
+```
+
+    ## No encoding supplied: defaulting to UTF-8.
+
+``` r
 ss
 ```
 
-    ## # A tibble: 622 x 7
-    ##    date          open    high     low   close   volume adjusted
-    ##    <date>       <dbl>   <dbl>   <dbl>   <dbl>    <int>    <dbl>
-    ##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000
-    ##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000
-    ##  3 2018-05-04   53000   53900   51800   51900 39565391    51900
-    ##  4 2018-05-08   52600   53200   51900   52600 23104720    52600
-    ##  5 2018-05-09   52600   52800   50900   50900 16128305    50900
-    ##  6 2018-05-10   51700   51700   50600   51600 13905263    51600
-    ##  7 2018-05-11   52000   52200   51200   51300 10314997    51300
-    ##  8 2018-05-14   51000   51100   49900   50100 14909272    50100
-    ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
-    ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
-    ## # ... with 612 more rows
+    ## NULL
 
 ## 설치
 
