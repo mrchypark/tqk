@@ -79,13 +79,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tqk_get</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  get <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"daum"</span>, <span class="st">"paxnet"</span><span class="op">)</span>,</span>
-<span>  from <span class="op">=</span> <span class="st">"1900-01-01"</span>,</span>
-<span>  to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  tqform <span class="op">=</span> <span class="cn">T</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tqk_get</span><span class="op">(</span><span class="va">x</span>, from <span class="op">=</span> <span class="st">"1900-01-01"</span>, to <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -94,20 +88,12 @@
 <dd><p>Stock x. only Korean type like "005930" is samsong.</p></dd>
 
 
-<dt>get</dt>
-<dd><p>where to get data. Default is daum.</p></dd>
-
-
 <dt>from</dt>
 <dd><p>Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.</p></dd>
 
 
 <dt>to</dt>
 <dd><p>Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.</p></dd>
-
-
-<dt>tqform</dt>
-<dd><p>transform data to tidyquant style.</p></dd>
 
 </dl></div>
     <div class="section level2">
