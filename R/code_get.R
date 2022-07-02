@@ -22,7 +22,25 @@ code_get <- function(fresh = FALSE) {
     encode = "form"
   ) %>%
   httr::content("text") %>%
-  jsonlite::fromJSON() -> res
-  return(tibble::as_tibble(res$OutBlock_1))
+  jsonlite::fromJSON() %>%
+  .$OutBlock_1 %>%
+  tibble::as_tibble() %>%
+  dplyr::select(
+    -LIST_DD,
+    -SECUGRP_NM,
+    -SECT_TP_NM,
+    -KIND_STKCERT_TP_NM,
+    -PARVAL,
+    -LIST_SHRS
+    ) %>%
+  dplyr::transmute(
+    market = MKT_TP_NM,
+    name = ISU_ABBRV,
+    code = ISU_SRT_CD,
+    name_full = ISU_NM,
+    name_eng = ISU_ENG_NM,
+    code_full = ISU_CD
+  ) %>%
+  return()
 }
 
