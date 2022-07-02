@@ -1,8 +1,11 @@
 # tqk 0.1.3
 
+* Fix `code_get()` function.
+* Add cache for `code_get()` function.
+
 # tqk 0.1.2
 
-* fix `code_get()` function.
+* Fix `code_get()` function.
 
 # tqk 0.1.1
 
