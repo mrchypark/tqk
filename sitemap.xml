@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>mrchypark.github.io/tqk/404.html</loc>
+  </url>
+  <url>
+    <loc>mrchypark.github.io/tqk/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>mrchypark.github.io/tqk/authors.html</loc>
+  </url>
+  <url>
     <loc>mrchypark.github.io/tqk/index.html</loc>
+  </url>
+  <url>
+    <loc>mrchypark.github.io/tqk/news/index.html</loc>
   </url>
   <url>
     <loc>mrchypark.github.io/tqk/reference/SHANK.html</loc>
   </url>
   <url>
     <loc>mrchypark.github.io/tqk/reference/code_get.html</loc>
+  </url>
+  <url>
+    <loc>mrchypark.github.io/tqk/reference/index.html</loc>
   </url>
   <url>
     <loc>mrchypark.github.io/tqk/reference/pipe.html</loc>
