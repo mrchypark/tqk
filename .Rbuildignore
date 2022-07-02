@@ -8,3 +8,4 @@ README.Rmd
 .all-contributorsrc
 ^pkgdown$
 ^data-raw$
+^\.github$
