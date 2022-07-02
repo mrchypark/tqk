@@ -6,11 +6,9 @@
 \alias{tqk-package}
 \title{tqk: Get Financial data in korea with tidyquant package}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Support korea financial data for tidy quant package. 
-             especially add stock.prices.korea option in tq_get function. 
-             for now, provide tqk_get function instead.
+Support korea financial data for tidy quant package. especially add stock.prices.korea option in tq_get function. for now, provide tqk_get function instead.
 }
 \seealso{
 Useful links:

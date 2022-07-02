@@ -4,40 +4,49 @@
 #'
 #' @return a [tibble][tibble::tibble-package]
 #' @export
-#' @importFrom rvest html_nodes html_text
-#' @importFrom stringr str_squish
-#' @importFrom xml2 read_html
-#' @importFrom httr POST content add_headers
-#' @importFrom dplyr bind_rows as_tibble select
-#' @importFrom purrr map_chr
-
+#' @importFrom purrr map_dfr
 code_get <- function() {
+  c("stockMkt", "kosdaqMkt", "konexMkt") %>%
+  purrr::map_dfr( ~ get_corps_info(.x)) %>%
+  return()
+}
 
+#' @importFrom rvest html_nodes html_text html_attr
+#' @importFrom stringr str_sub
+#' @importFrom httr POST content
+#' @importFrom dplyr case_when
+get_corps_info <- function(market) {
+  market_name <- dplyr::case_when(
+    market == "stockMkt" ~ "stock",
+    market == "kosdaqMkt" ~ "kosdaq",
+    market == "konexMkt" ~ "konex"
+  )
   httr::POST(
-    "https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&pageIndex=1&currentPageSize=5000&comAbbrv=&beginIndex=&orderMode=3&orderStat=D&isurCd=&repIsuSrtCd=&searchCodeType=&marketType=&searchType=13&industry=&fiscalYearEnd=all&comAbbrvTmp=&location=all"
+    "https://kind.krx.co.kr/corpgeneral/corpList.do",
+    body = list(
+      method = "searchCorpList",
+      pageIndex = 1,
+      currentPageSize = 3000,
+      fiscalYearEnd = "all",
+      marketType = market,
+      location = "all"
+    )
   ) %>%
     httr::content() %>%
-    rawToChar() %>%
-    xml2::read_html() %>%
-    rvest::html_nodes("td") %>%
+    rvest::html_nodes("td.first") -> stock
+
+  stock %>%
     rvest::html_text() %>%
-    stringr::str_squish() %>%
-    matrix(ncol = 9, byrow = T) %>%
-    dplyr::as_tibble() %>%
-    dplyr::select(1, 2) ->
-    dat
+    trimws() -> name
 
-  httr::POST(
-    "https://kind.krx.co.kr/corpgeneral/corpList.do?method=searchCorpList&pageIndex=1&currentPageSize=5000&comAbbrv=&beginIndex=&orderMode=3&orderStat=D&isurCd=&repIsuSrtCd=&searchCodeType=&marketType=&searchType=13&industry=&fiscalYearEnd=all&comAbbrvTmp=&location=all"
-  ) %>%
-    httr::content() %>%
-    rvest::html_nodes("td.first") %>%
-    xml2::xml_find_first("img") %>%
-    rvest::html_attr("alt") ->
-      market
+  stock %>%
+    rvest::html_nodes("a") %>%
+    rvest::html_attr("onclick") %>%
+    stringr::str_sub(22, 26) -> code
 
-    dplyr::tibble(market = market,
-                  name = dat$V1,
-                  code = dat$V2) %>%
-    return()
+  return(
+    tibble::tibble(
+      market = market_name, name, code
+    )
+  )
 }

@@ -26,15 +26,8 @@ Imports:
     purrr,
     httr,
     dplyr,
-    xml2,
-    readxl,
     stringr
 Suggests:
-    knitr,
-    rmarkdown,
-    testthat,
-    remotes,
-    tidyquant
-RoxygenNote: 7.1.1
+    usethis
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr
