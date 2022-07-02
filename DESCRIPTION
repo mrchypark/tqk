@@ -18,15 +18,12 @@ LazyData: true
 Depends:
     R (>= 3.3.0)
 Imports:
-    curl,
     jsonlite,
     magrittr,
-    rvest,
     tibble,
-    purrr,
     httr,
     dplyr,
-    stringr
+    ymd
 Suggests:
     testthat (>= 3.0.0),
     usethis
