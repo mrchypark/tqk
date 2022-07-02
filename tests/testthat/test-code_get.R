@@ -1,4 +1,7 @@
-test_that("multiplication works", {
+test_that("code_get form check", {
+
+  skip_if_offline()
+
   code <- code_get(TRUE)
   col <- names(code)
   expect_true("market" %in% col)
