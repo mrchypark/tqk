@@ -4,10 +4,13 @@
 \alias{code_get}
 \title{Get company code}
 \usage{
-code_get()
+code_get(fresh = FALSE)
+}
+\arguments{
+\item{fresh}{get code on internet. Default is FALSE.}
 }
 \value{
-a \link[tibble:tibble-package]{tibble}
+a \link[tibble:tibble-package]{tibble} with market, name, code column.
 }
 \description{
 Get code for korea finance market

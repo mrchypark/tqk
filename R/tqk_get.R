@@ -9,7 +9,6 @@
 #' @export
 #' @importFrom curl curl_fetch_memory
 #' @importFrom jsonlite fromJSON
-#' @importFrom tibble as.tibble
 #' @importFrom httr add_headers user_agent GET content
 #' @importFrom purrr transpose
 #' @importFrom tibble as_tibble
@@ -52,7 +51,7 @@ tqk_get <-
 
       dl <- lapply(cont, function(x)
         jsonlite::fromJSON(x)$list)
-      df <- tibble::as.tibble(do.call(rbind, dl))
+      df <- tibble::as_tibble(do.call(rbind, dl))
       if (tqform) {
         df <-
           df[, c("tradeDt",

@@ -2,10 +2,14 @@
 #'
 #' Get code for korea finance market
 #'
-#' @return a [tibble][tibble::tibble-package]
+#' @param fresh get code on internet. Default is FALSE.
+#' @return a [tibble][tibble::tibble-package] with market, name, code column.
 #' @export
 #' @importFrom purrr map_dfr
-code_get <- function() {
+code_get <- function(fresh = FALSE) {
+  if (!fresh) {
+    return(code)
+  }
   c("stockMkt", "kosdaqMkt", "konexMkt") %>%
   purrr::map_dfr( ~ get_corps_info(.x)) %>%
   return()
@@ -45,7 +49,7 @@ get_corps_info <- function(market) {
     stringr::str_sub(22, 26) -> code
 
   return(
-    tibble::tibble(
+    tibble(
       market = market_name, name, code
     )
   )
