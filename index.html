@@ -4,20 +4,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Get Financial data in korea with tidyquant package • tqk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Support korea financial data for tidy quant package. 
+             especially add stock.prices.korea option in tq_get function. 
+             for now, provide tqk_get function instead.">
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/5/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>Get Financial data in korea with tidyquant package • tqk</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Noto%20Sans-0.4.1/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Get Financial data in korea with tidyquant package">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Get Financial data in korea with tidyquant package">
 <meta property="og:description" content="Support korea financial data for tidy quant package. 
              especially add stock.prices.korea option in tq_get function. 
              for now, provide tqk_get function instead.">
@@ -31,58 +47,70 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-47822682-14');
-</script>
+</script><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="preferably.css">
+<link id="css-code-light" rel="stylesheet" href="code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
+<script src="darkswitch.js"></script>
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">tqk</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
-      </span>
-    </div>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">tqk</a>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="reference/index.html">Reference</a>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="news/index.html">Changelog</a>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="http://github.com/mrchypark/tqk/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="http://github.com/mrchypark/tqk/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
+
+        
+        <li>
+          <a class="external-link nav-link" id="css-toggle-btn" aria-label="github">
+            <span class="fas fa fas fa-adjust fa-lg"></span>
+          </a>
+        </li>
+        
+        
+        
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="tqk-">tqk <a class="anchor" aria-label="anchor" href="#tqk-"></a>
+</h1>
 </div>
-<!--/.navbar -->
-
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="tqk-">tqk <img src="reference/figures/logo.png" align="right" height="140/"><a class="anchor" aria-label="anchor" href="#tqk-"></a>
-</h1></div>
 <div class="section level2">
 <h2 id="스타는-더욱-많은-코드-데이터-공개의-힘이-됩니다-">스타는 더욱 많은 코드, 데이터 공개의 힘이 됩니다. ;)<a class="anchor" aria-label="anchor" href="#%EC%8A%A4%ED%83%80%EB%8A%94-%EB%8D%94%EC%9A%B1-%EB%A7%8E%EC%9D%80-%EC%BD%94%EB%93%9C-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EA%B3%B5%EA%B0%9C%EC%9D%98-%ED%9E%98%EC%9D%B4-%EB%90%A9%EB%8B%88%EB%8B%A4-"></a>
 </h2>
@@ -117,50 +145,50 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk" class="external-link">tqk</a></span><span class="op">)</span></span>
 <span><span class="va">code</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/code_get.html">code_get</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="co">## Using compatibility `.name_repair`.</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co">## This warning is displayed once every 8 hours.</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="co">## Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Using compatibility `.name_repair`.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## This warning is displayed once every 8 hours.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Call `lifecycle::last_warnings()` to see where this warning was generated.</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">code</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">## # A tibble: 2,386 x 3</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="co">##    market   name           code  </span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="co">##    &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt; </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co">##  1 코스닥   소룩스         290690</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="co">##  2 코스닥   위드텍         348350</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co">##  3 코스닥   센코           347000</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="co">##  4 코스닥   바이브컴퍼니   301300</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="co">##  5 코넥스   원포유         122830</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="co">##  6 코스닥   미코바이오메드 214610</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="co">##  7 코스닥   피플바이오     304840</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="co">##  8 유가증권 빅히트         352820</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="co">##  9 코스닥   넥스틴         348210</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="co">## 10 코스닥   원방테크       053080</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="co">## # ... with 2,376 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 2,386 x 3</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    market   name           code  </span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt; </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 코스닥   소룩스         290690</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 코스닥   위드텍         348350</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 코스닥   센코           347000</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 코스닥   바이브컴퍼니   301300</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 코넥스   원포유         122830</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 코스닥   미코바이오메드 214610</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 코스닥   피플바이오     304840</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 유가증권 빅히트         352820</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 코스닥   넥스틴         348210</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 코스닥   원방테크       053080</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 2,376 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sscode</span> <span class="op">&lt;-</span> <span class="va">code</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^삼성전자$"</span>, <span class="va">code</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>,<span class="fl">3</span><span class="op">]</span></span>
 <span><span class="va">sscode</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">## # A tibble: 1 x 1</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="co">##   code  </span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">##   &lt;chr&gt; </span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="co">## 1 005930</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 1 x 1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="do">##   code  </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   &lt;chr&gt; </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="do">## 1 005930</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">samsung</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span><span class="va">sscode</span>, from<span class="op">=</span><span class="st">"2018-05-01"</span><span class="op">)</span></span>
 <span><span class="va">samsung</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">## # A tibble: 622 x 7</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">## # ... with 612 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 622 x 7</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    date          open    high     low   close   volume adjusted</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 612 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="파이프--사용-with-dplyr">파이프 (<code>%&gt;%</code>) 사용 with dplyr<a class="anchor" aria-label="anchor" href="#%ED%8C%8C%EC%9D%B4%ED%94%84--%EC%82%AC%EC%9A%A9-with-dplyr"></a>
@@ -168,36 +196,36 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk" class="external-link">tqk</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">## </span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="co">## Attaching package: 'dplyr'</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co">## The following objects are masked from 'package:stats':</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="co">## </span></span>
-<span id="cb10-6"><a href="#cb10-6"></a><span class="co">##     filter, lag</span></span>
-<span id="cb10-7"><a href="#cb10-7"></a></span>
-<span id="cb10-8"><a href="#cb10-8"></a><span class="co">## The following objects are masked from 'package:base':</span></span>
-<span id="cb10-9"><a href="#cb10-9"></a><span class="co">## </span></span>
-<span id="cb10-10"><a href="#cb10-10"></a><span class="co">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Attaching package: 'dplyr'</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from 'package:stats':</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="do">##     filter, lag</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="do">## The following objects are masked from 'package:base':</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="do">##     intersect, setdiff, setequal, union</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/code_get.html">code_get</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^삼성전자$"</span>, <span class="va">name</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">code</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="reference/tqk_get.html">tqk_get</a></span><span class="op">(</span>from <span class="op">=</span> <span class="st">"2018-05-01"</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">ss</span></span>
 <span><span class="va">ss</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co">## # A tibble: 622 x 7</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="co">##    date          open    high     low   close   volume adjusted</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a><span class="co">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a><span class="co">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a><span class="co">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a><span class="co">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
-<span id="cb12-7"><a href="#cb12-7"></a><span class="co">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a><span class="co">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a><span class="co">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
-<span id="cb12-10"><a href="#cb12-10"></a><span class="co">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
-<span id="cb12-11"><a href="#cb12-11"></a><span class="co">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
-<span id="cb12-12"><a href="#cb12-12"></a><span class="co">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
-<span id="cb12-13"><a href="#cb12-13"></a><span class="co">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
-<span id="cb12-14"><a href="#cb12-14"></a><span class="co">## # ... with 612 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="do">## # A tibble: 622 x 7</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="do">##    date          open    high     low   close   volume adjusted</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="do">##    &lt;date&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  1 2018-05-02 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2 2018-05-03 2650000 2650000 2650000 2650000        0    53000</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  3 2018-05-04   53000   53900   51800   51900 39565391    51900</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  4 2018-05-08   52600   53200   51900   52600 23104720    52600</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  5 2018-05-09   52600   52800   50900   50900 16128305    50900</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  6 2018-05-10   51700   51700   50600   51600 13905263    51600</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  7 2018-05-11   52000   52200   51200   51300 10314997    51300</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  8 2018-05-14   51000   51100   49900   50100 14909272    50100</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  9 2018-05-15   50200   50400   49100   49200 18709146    49200</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="do">## 10 2018-05-16   49200   50200   49150   49850 15918683    49850</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="do">## # ... with 612 more rows</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="설치">설치<a class="anchor" aria-label="anchor" href="#%EC%84%A4%EC%B9%98"></a>
@@ -208,10 +236,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://github.com/mrchypark/tqk" class="external-link">tqk</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li><a href="http://github.com/mrchypark/tqk/" class="external-link">Browse source code</a></li>
@@ -245,11 +270,11 @@
 
 
 
-  </div>
+  </aside>
 </div>
 
 
-      <footer><div class="copyright">
+    <footer><div class="copyright">
   <p></p>
 <p>Developed by Chanyub Park.</p>
 </div>
@@ -257,13 +282,13 @@
 <div class="pkgdown">
   <p></p>
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
-
 
   
 
