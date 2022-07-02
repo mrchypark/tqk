@@ -19,6 +19,16 @@ yahoo나 google 주식은 한국 주식 데이터가 유명한 것만 있어 주
 제공하는 p, n, d 사등의 페이지를 가져오는 함수를 작성하여
 배포합니다.(현재 p사만 적용중)
 
+## 설치
+
+``` r
+# CRAN version NOT YET!!!
+install.packages("tqk")
+
+# Dev version
+install.packages("tqk", repos = "https://mrchypark.r-universe.dev")
+```
+
 ## 기능
 
 1.  code_get : 우리나라 주식시장의 code와 명칭, 소속 시장 정보를
@@ -121,11 +131,3 @@ ss
     ##  9 2018-05-15   50200   50400   49100   49200 18709146    49200
     ## 10 2018-05-16   49200   50200   49150   49850 15918683    49850
     ## # … with 1,016 more rows
-
-## 설치
-
-``` r
-if (!requireNamespace("remotes")) install.packages("remotes")
-remotes::install_github("mrchypark/tqk")
-library(tqk)
-```
