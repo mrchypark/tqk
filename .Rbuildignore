@@ -1,5 +1,4 @@
 ^R/\.logo\.R$
-^R/\.gendata\.R$
 ^docs$
 ^_pkgdown\.yml$
 ^.*\.Rproj$
@@ -8,3 +7,4 @@ README.Rmd
 .github
 .all-contributorsrc
 ^pkgdown$
+^data-raw$
