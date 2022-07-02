@@ -1,6 +1,6 @@
 Package: tqk
 Title: Get Financial data in korea with tidyquant package
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: person(given = "Chanyub", 
                   family = "Park", 
                   role = c("aut","cre"), 
