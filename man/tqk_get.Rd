@@ -4,24 +4,14 @@
 \alias{tqk_get}
 \title{Get quantitative data from korea}
 \usage{
-tqk_get(
-  x,
-  get = c("daum", "paxnet"),
-  from = "1900-01-01",
-  to = Sys.Date(),
-  tqform = T
-)
+tqk_get(x, from = "1900-01-01", to = Sys.Date())
 }
 \arguments{
 \item{x}{Stock x. only Korean type like "005930" is samsong.}
 
-\item{get}{where to get data. Default is daum.}
-
 \item{from}{Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.}
 
 \item{to}{Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.}
-
-\item{tqform}{transform data to tidyquant style.}
 }
 \value{
 a \link[tibble:tibble-package]{tibble}
