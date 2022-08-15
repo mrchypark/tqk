@@ -7,7 +7,7 @@
 tqk_get(x, from = "1900-01-01", to = Sys.Date())
 }
 \arguments{
-\item{x}{Stock x. only Korean type like "005930" is samsong.}
+\item{x}{Stock x. only Korean type like "005930" is samsung.}
 
 \item{from}{Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.}
 

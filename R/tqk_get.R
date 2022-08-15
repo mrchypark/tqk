@@ -1,7 +1,7 @@
 #' Get quantitative data from korea
 #'
 #' @return a [tibble][tibble::tibble-package]
-#' @param x Stock x. only Korean type like "005930" is samsong.
+#' @param x Stock x. only Korean type like "005930" is samsung.
 #' @param from Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.
 #' @param to Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.
 #' @export
@@ -18,12 +18,19 @@ tqk_get <- function(x,
     TDD_OPNPRC <-
     TDD_HGPRC <- TDD_LWPRC <- TDD_CLSPRC <- ACC_TRDVOL <- NULL
 
+  x <- as.character(x)
+  stopifnot(valid_code_format(x))
+  stopifnot(check_code_exist(x))
+
+  code_full <-
+    krcodedata[krcodedata$code == x, "code_full"]
+
   "http://data.krx.co.kr/comm/bldAttendant/getJsonData.cmd" %>%
     httr::POST(
       body = list(
         bld = "dbms/MDC/STAT/standard/MDCSTAT01701",
         locale = "ko_KR",
-        isuCd = code[code$code == x, "code_full"],
+        isuCd = code_full,
         strtDd = gsub("-", "", from),
         endDd = gsub("-", "", to),
         csvxls_isNo = "false"
@@ -43,4 +50,15 @@ tqk_get <- function(x,
       volume = to_int(ACC_TRDVOL)
     ) %>%
     return()
+}
+
+valid_code_format <- function(x) {
+  all(nchar(x) == 6,
+  !any(is.na(suppressWarnings(as.numeric(strsplit(
+    x, ""
+  )[[1]])))))
+}
+
+check_code_exist <- function(x) {
+  nrow(krcodedata[krcodedata$code == x, ]) == 1
 }

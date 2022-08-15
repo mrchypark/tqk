@@ -11,7 +11,7 @@
 #' @importFrom dplyr transmute
 code_get <- function(fresh = FALSE) {
   if (!fresh) {
-    return(code)
+    return(krcodedata)
   }
   . <-
     MKT_TP_NM <-
