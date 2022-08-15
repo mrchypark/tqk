@@ -1,3 +1,7 @@
+# tqk 0.1.4
+
+* Add valid code on `tqk_get()`.
+
 # tqk 0.1.3
 
 * Fix `code_get()` function.
