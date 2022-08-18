@@ -4,6 +4,7 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tqk)
 ```
 
 # tqk [<img src="man/figures/logo.png" align="right" height=140/>](https://mrchypark.github.io/tqk/index.html)
@@ -31,25 +32,42 @@ install.packages("tqk", repos = "https://mrchypark.r-universe.dev")
 
 ## How to use
 
+### Stock code
+
+`code_get()` function provide stock code.
+
 ```{r}
-library(tqk)
-code <- code_get()
-code
-sscode <- code[grep("^삼성전자$", code$name),3]
-sscode
-samsung <- tqk_get(sscode, from = "2018-05-01")
-samsung
+code_get()
 ```
 
+If want to get current version of stock code, add `fresh = TRUE`.
 
 ```{r}
-library(tqk)
-library(dplyr)
+code_get(fresh = TRUE)
+```
+
+### Stock data
+
+`tqk_get()` function provide stock data.
+First parameter named `x` is korean stock code like "005930" is samsung.
+Result of `code_get()` function has `code` column for `x` parameter on `tqk_get()` function.
+
+```{r}
 code_get() %>% 
-  filter(grepl("^삼성전자$", name)) %>% 
-  select(code) %>% 
+  dplyr::filter("삼성전자" == name) %>%
+  dplyr::pull(code) %>% 
   tqk_get(from = "2018-05-01") -> ss
 ss
+```
+
+## Built-in dataset
+
+`{tqk}` has built-in dataset called `SHANK` that is data to `2017-09-07` with Samsung Elect, Hyundai Motor, Amore pacific, Naver, Kakao.
+
+```{r}
+SHANK %>%
+  dplyr::distinct(symbol)
+SHANK
 ```
 
 [1]: https://github.com/business-science/tidyquant
