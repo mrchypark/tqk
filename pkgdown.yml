@@ -2,7 +2,7 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-08-18T04:03Z
+last_built: 2022-08-18T04:47Z
 urls:
   reference: mrchypark.github.io/tqk/reference
   article: mrchypark.github.io/tqk/articles
