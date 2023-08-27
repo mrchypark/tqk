@@ -27,7 +27,10 @@ library(tqk)
 install.packages("tqk")
 
 # Dev version
-install.packages("tqk", repos = "https://mrchypark.r-universe.dev")
+install.packages('tqk', repos = c(
+                     'https://mrchypark.r-universe.dev',
+                     'https://cloud.r-project.org'
+                 ))
 ```
 
 ## How to use

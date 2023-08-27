@@ -9,7 +9,6 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr transmute
-#' @importFrom ymd ymd
 tqk_get <- function(x,
                     from = "1900-01-01",
                     to = Sys.Date()) {
@@ -42,7 +41,7 @@ tqk_get <- function(x,
     .$output %>%
     tibble::as_tibble() %>%
     dplyr::transmute(
-      date = ymd::ymd(TRD_DD),
+      date = as.Date(TRD_DD),
       open = to_int(TDD_OPNPRC),
       high = to_int(TDD_HGPRC),
       low = to_int(TDD_LWPRC),
@@ -52,13 +51,4 @@ tqk_get <- function(x,
     return()
 }
 
-valid_code_format <- function(x) {
-  all(nchar(x) == 6,
-  !any(is.na(suppressWarnings(as.numeric(strsplit(
-    x, ""
-  )[[1]])))))
-}
 
-check_code_exist <- function(x) {
-  nrow(krcodedata[krcodedata$code == x, ]) == 1
-}
