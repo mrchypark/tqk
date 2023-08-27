@@ -1,6 +1,6 @@
 Package: tqk
 Title: Get Financial data in korea with tidyquant package
-Version: 0.1.4
+Version: 0.1.5
 Authors@R: person(given = "Chanyub", 
                   family = "Park", 
                   role = c("aut","cre"), 
@@ -22,11 +22,10 @@ Imports:
     magrittr,
     tibble,
     httr,
-    dplyr,
-    ymd
+    dplyr
 Suggests:
     testthat (>= 3.0.0),
     usethis
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
