@@ -4,18 +4,18 @@
 \name{tqk-package}
 \alias{tqk}
 \alias{tqk-package}
-\title{tqk: Get Financial data in korea with tidyquant package}
+\title{tqk: Get Financial Data in Korea}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Support korea financial data for tidy quant package. especially add stock.prices.korea option in tq_get function. for now, provide tqk_get function instead.
+Support Korea financial data for tidyquant package. especially add stock.prices.korea option in tq_get function. for now, provide tqk_get function instead.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{http://github.com/mrchypark/tqk}
+  \item \url{https://github.com/mrchypark/tqk}
   \item \url{https://mrchypark.github.io/tqk}
-  \item Report bugs at \url{http://github.com/mrchypark/tqk/issues}
+  \item Report bugs at \url{https://github.com/mrchypark/tqk/issues}
 }
 
 }
