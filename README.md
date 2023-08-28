@@ -6,13 +6,8 @@
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mrchypark/tqk/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/tqk/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/tqk)](https://CRAN.R-project.org/package=tqk)
 [![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
-[![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](https://mrchypark.r-universe.dev/ui#packages)
-[![metacran
-downloads](https://cranlogs.r-pkg.org/badges/tqk)](https://cran.r-project.org/package=tqk)
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/tqk)](https://cran.rstudio.com/package=tqk)
+[![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 [![Codecov test
 coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/tqk?branch=main)
 <!-- badges: end -->
@@ -61,7 +56,7 @@ If want to get current version of stock code, add `fresh = TRUE`.
 code_get(fresh = TRUE)
 ```
 
-    ## # A tibble: 2,748 × 6
+    ## # A tibble: 2,746 × 6
     ##    market name           code   name_full              name_eng        code_full
     ##    <chr>  <chr>          <chr>  <chr>                  <chr>           <chr>    
     ##  1 KOSDAQ 마이크로컨텍솔 098120 (주)마이크로컨텍솔루션 Micro Contact … KR709812…
@@ -74,7 +69,7 @@ code_get(fresh = TRUE)
     ##  8 KOSPI  BYC우          001465 BYC1우선주             BYC(1P)         KR700146…
     ##  9 KOSPI  BYC            001460 BYC보통주              BYC             KR700146…
     ## 10 KOSPI  CJ우           001045 CJ1우선주              CJ(1P)          KR700104…
-    ## # ℹ 2,738 more rows
+    ## # ℹ 2,736 more rows
 
 ### Stock data
 
@@ -90,20 +85,20 @@ code_get() %>%
 ss
 ```
 
-    ## # A tibble: 1,312 × 6
+    ## # A tibble: 1,313 × 6
     ##    date        open  high   low close   volume
     ##    <date>     <int> <int> <int> <int>    <int>
-    ##  1 2023-08-25 67100 67400 66900 67100  7032462
-    ##  2 2023-08-24 68300 68700 67900 68200 15044463
-    ##  3 2023-08-23 66700 67100 66400 67100  9549352
-    ##  4 2023-08-22 67200 67700 66300 66600 10500242
-    ##  5 2023-08-21 66600 67100 66300 66600  9720067
-    ##  6 2023-08-18 66000 66700 65800 66300 11745006
-    ##  7 2023-08-17 66300 66800 66000 66700 10778652
-    ##  8 2023-08-16 66700 67100 66300 67000 13174578
-    ##  9 2023-08-14 67500 67900 66900 67300  9352343
-    ## 10 2023-08-11 68400 68800 67500 67500  9781038
-    ## # ℹ 1,302 more rows
+    ##  1 2023-08-28 66800 67000 66500 66500  4010121
+    ##  2 2023-08-25 67100 67400 66900 67100  7032462
+    ##  3 2023-08-24 68300 68700 67900 68200 15044463
+    ##  4 2023-08-23 66700 67100 66400 67100  9549352
+    ##  5 2023-08-22 67200 67700 66300 66600 10500242
+    ##  6 2023-08-21 66600 67100 66300 66600  9720067
+    ##  7 2023-08-18 66000 66700 65800 66300 11745006
+    ##  8 2023-08-17 66300 66800 66000 66700 10778652
+    ##  9 2023-08-16 66700 67100 66300 67000 13174578
+    ## 10 2023-08-14 67500 67900 66900 67300  9352343
+    ## # ℹ 1,303 more rows
 
 ## Built-in dataset
 

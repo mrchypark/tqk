@@ -1,5 +1,7 @@
 # tqk 0.1.7
 
+* Fix license file for CRAN.
+
 # tqk 0.1.6
 
 * Fix urls for CRAN.

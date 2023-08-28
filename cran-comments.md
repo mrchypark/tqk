@@ -80,4 +80,6 @@
 
 ## Notes comments
 
+Run `urlchecker::url_update()` and all fix done.
+
 The two notes appear to be because it is a new submission. lastMiKTeXException is a known bug of the rhub check, and the note on fedora was confirmed to be due to the host system's settings. 
