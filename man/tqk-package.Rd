@@ -14,7 +14,7 @@ Support Korea financial data for tidyquant package. especially add stock.prices.
 Useful links:
 \itemize{
   \item \url{https://github.com/mrchypark/tqk}
-  \item \url{https://mrchypark.github.io/tqk}
+  \item \url{https://mrchypark.github.io/tqk/}
   \item Report bugs at \url{https://github.com/mrchypark/tqk/issues}
 }
 

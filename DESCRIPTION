@@ -7,11 +7,11 @@ Authors@R: person(given = "Chanyub",
                   email = "mrchypark@gmail.com", 
                   comment = c(ORCID = "0000-0001-6474-2570")
                   )
-Description: Support Korea financial data for tidyquant package. 
-             especially add stock.prices.korea option in tq_get function. 
-             for now, provide tqk_get function instead.
+Description: Support Korea financial data for `tidyquant` package. 
+             especially add stock.prices.korea option in `tq_get` function. 
+             for now, provide `tqk_get` function instead.
 License: MIT + file LICENSE
-URL: https://github.com/mrchypark/tqk, https://mrchypark.github.io/tqk
+URL: https://github.com/mrchypark/tqk, https://mrchypark.github.io/tqk/
 BugReports: https://github.com/mrchypark/tqk/issues
 Encoding: UTF-8
 LazyData: true
