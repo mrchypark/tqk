@@ -1,6 +1,6 @@
 Package: tqk
 Title: Get Financial Data in Korea
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: person(given = "Chanyub", 
                   family = "Park", 
                   role = c("aut","cre"), 

@@ -1,4 +1,8 @@
+# tqk 0.1.7
+
 # tqk 0.1.6
+
+* Fix urls for CRAN.
 
 # tqk 0.1.5
 
