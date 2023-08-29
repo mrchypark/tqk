@@ -10,6 +10,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 [![Codecov test
 coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/tqk?branch=main)
+[![R-CMD-check](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Installation
@@ -85,20 +86,20 @@ code_get() %>%
 ss
 ```
 
-    ## # A tibble: 1,313 × 6
+    ## # A tibble: 1,314 × 6
     ##    date        open  high   low close   volume
     ##    <date>     <int> <int> <int> <int>    <int>
-    ##  1 2023-08-28 66800 67000 66500 66500  4010121
-    ##  2 2023-08-25 67100 67400 66900 67100  7032462
-    ##  3 2023-08-24 68300 68700 67900 68200 15044463
-    ##  4 2023-08-23 66700 67100 66400 67100  9549352
-    ##  5 2023-08-22 67200 67700 66300 66600 10500242
-    ##  6 2023-08-21 66600 67100 66300 66600  9720067
-    ##  7 2023-08-18 66000 66700 65800 66300 11745006
-    ##  8 2023-08-17 66300 66800 66000 66700 10778652
-    ##  9 2023-08-16 66700 67100 66300 67000 13174578
-    ## 10 2023-08-14 67500 67900 66900 67300  9352343
-    ## # ℹ 1,303 more rows
+    ##  1 2023-08-29 66900 67200 66600 66800  9102086
+    ##  2 2023-08-28 66800 67000 66500 66800  5824628
+    ##  3 2023-08-25 67100 67400 66900 67100  7032462
+    ##  4 2023-08-24 68300 68700 67900 68200 15044463
+    ##  5 2023-08-23 66700 67100 66400 67100  9549352
+    ##  6 2023-08-22 67200 67700 66300 66600 10500242
+    ##  7 2023-08-21 66600 67100 66300 66600  9720067
+    ##  8 2023-08-18 66000 66700 65800 66300 11745006
+    ##  9 2023-08-17 66300 66800 66000 66700 10778652
+    ## 10 2023-08-16 66700 67100 66300 67000 13174578
+    ## # ℹ 1,304 more rows
 
 ## Built-in dataset
 
