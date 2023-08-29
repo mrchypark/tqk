@@ -2,7 +2,7 @@
 # tqk [<img src="man/figures/logo.png" align="right" height=140/>](https://mrchypark.github.io/tqk/index.html)
 
 <!-- badges: start -->
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mrchypark/tqk/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/tqk/actions)
@@ -138,3 +138,23 @@ SHANK
     ##  9 SS     2017-08-28 2351000 2362000 2298000 2305000 199242
     ## 10 SS     2017-08-25 2394000 2394000 2336000 2351000 224871
     ## # ℹ 22,249 more rows
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://chulhongsung.github.io/"><img src="https://avatars0.githubusercontent.com/u/37679460?v=4" width="100px;" alt=""/><br /><sub><b>SungChul Hong</b></sub></a><br /><a href="#question-chulhongsung" title="Answering Questions">💬</a></td>
+    <td align="center"><a href="https://gbkim01.github.io/myblog/"><img src="https://avatars0.githubusercontent.com/u/30010992?v=4" width="100px;" alt=""/><br /><sub><b>gbkim01</b></sub></a><br /><a href="https://github.com/mrchypark/tqk/issues?q=author%3Agbkim01" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
