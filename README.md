@@ -5,12 +5,11 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![R-CMD-check](https://github.com/mrchypark/tqk/workflows/R-CMD-check/badge.svg)](https://github.com/mrchypark/tqk/actions)
-[![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
-[![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 [![Codecov test
 coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/tqk?branch=main)
-[![R-CMD-check](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/mrchypark/tqk/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/mrchypark/tqk/actions/workflows/check-standard.yaml)
+[![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
+[![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 <!-- badges: end -->
 
 ## Installation
