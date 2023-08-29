@@ -15,6 +15,7 @@ library(tqk)
 [![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 [![Codecov test coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/tqk?branch=main)
+[![R-CMD-check](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mrchypark/tqk/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## Installation
