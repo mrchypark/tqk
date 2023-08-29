@@ -7,6 +7,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 [![Codecov test
 coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](https://app.codecov.io/gh/mrchypark/tqk?branch=main)
 [![R-CMD-check](https://github.com/mrchypark/tqk/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/mrchypark/tqk/actions/workflows/check-standard.yaml)
+[![CRAN status](https://www.r-pkg.org/badges/version/tqk)](https://CRAN.R-project.org/package=tqk)
 [![runiverse-name](https://mrchypark.r-universe.dev/badges/:name)](https://mrchypark.r-universe.dev/)
 [![runiverse-package](https://mrchypark.r-universe.dev/badges/tqk)](http://mrchypark.r-universe.dev/ui/)
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
