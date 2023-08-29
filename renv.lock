@@ -204,13 +204,13 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "1.0.2",
+      "Version": "0.15.4",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "utils"
       ],
-      "Hash": "4b22ac016fe54028b88d0c68badbd061"
+      "Hash": "c1078316e1d4f70275fc1ea60c0bc431"
     },
     "rlang": {
       "Package": "rlang",
