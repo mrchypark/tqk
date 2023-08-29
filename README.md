@@ -15,7 +15,7 @@ coverage](https://codecov.io/gh/mrchypark/tqk/branch/main/graph/badge.svg)](http
 ## Installation
 
 ``` r
-# CRAN version NOT YET!!!
+# CRAN version
 install.packages("tqk")
 
 # Dev version
