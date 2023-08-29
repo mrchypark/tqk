@@ -1,5 +1,8 @@
 # tqk 0.1.8
 
+* Fix Description
+* Add value for md.
+
 # tqk 0.1.7
 
 * Fix license file for CRAN.

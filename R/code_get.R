@@ -5,6 +5,11 @@
 #' @param fresh get code on internet. Default is FALSE.
 #' @return a [tibble][tibble::tibble-package] with market, name, code column.
 #' @export
+#' @examples
+#' \donttest{
+#'   code_get()
+#'   code_get(fresh = TRUE)
+#' }
 #' @importFrom httr POST content
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble

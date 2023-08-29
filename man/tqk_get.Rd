@@ -19,3 +19,10 @@ a \link[tibble:tibble-package]{tibble}
 \description{
 Get quantitative data from korea
 }
+\examples{
+\donttest{
+  tqk_get(x = "005930")
+  tqk_get(x = "005930", from = "2018-05-01")
+  tqk_get(x = "005930", from = "2018-05-01", to = "2018-05-31")
+}
+}

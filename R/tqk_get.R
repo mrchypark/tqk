@@ -5,6 +5,12 @@
 #' @param from Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.
 #' @param to Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.
 #' @export
+#' @examples
+#' \donttest{
+#'   tqk_get(x = "005930")
+#'   tqk_get(x = "005930", from = "2018-05-01")
+#'   tqk_get(x = "005930", from = "2018-05-01", to = "2018-05-31")
+#' }
 #' @importFrom httr POST content
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble

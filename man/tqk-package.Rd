@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Support Korea financial data for 'tidyquant' package. especially add 'stock.prices.korea' option in 'tq_get()' function. for now, provide 'tqk_get()' function instead.
+Enables the acquisition of Korean financial market data, designed to integrate seamlessly with the 'tidyquant' package.
 }
 \seealso{
 Useful links:

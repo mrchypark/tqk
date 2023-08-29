@@ -15,3 +15,9 @@ a \link[tibble:tibble-package]{tibble} with market, name, code column.
 \description{
 Get code for korea finance market
 }
+\examples{
+\donttest{
+  code_get()
+  code_get(fresh = TRUE)
+}
+}

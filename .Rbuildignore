@@ -1,6 +1,6 @@
 ^renv$
 ^renv\.lock$
-^R/\.logo\.R$
+^tools/logo\.R$
 ^docs$
 ^_pkgdown\.yml$
 ^.*\.Rproj$
@@ -13,3 +13,4 @@ README.Rmd
 ^\.github$
 ^cran-comments\.md$
 ^LICENSE\.md$
+^CRAN-SUBMISSION$
