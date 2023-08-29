@@ -1,15 +1,14 @@
 Package: tqk
 Title: Get Financial Data in Korea
-Version: 0.1.7
+Version: 0.1.8
 Authors@R: person(given = "Chanyub", 
                   family = "Park", 
                   role = c("aut","cre"), 
                   email = "mrchypark@gmail.com", 
                   comment = c(ORCID = "0000-0001-6474-2570")
                   )
-Description: Support Korea financial data for 'tidyquant' package. 
-             especially add 'stock.prices.korea' option in 'tq_get()' function. 
-             for now, provide 'tqk_get()' function instead.
+Description: Enables the acquisition of Korean financial market data, 
+            designed to integrate seamlessly with the 'tidyquant' package.
 License: MIT + file LICENSE
 URL: https://github.com/mrchypark/tqk, https://mrchypark.github.io/tqk/
 BugReports: https://github.com/mrchypark/tqk/issues
