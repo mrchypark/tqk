@@ -4,7 +4,13 @@
 \alias{tqk_get}
 \title{Get quantitative data from korea}
 \usage{
-tqk_get(x, from = "1900-01-01", to = Sys.Date())
+tqk_get(
+  x,
+  from = Sys.Date() - 7,
+  to = Sys.Date(),
+  auth_key = Sys.getenv("KRX_AUTH_KEY", unset = ""),
+  sample = FALSE
+)
 }
 \arguments{
 \item{x}{Stock x. only Korean type like "005930" is samsung.}
@@ -12,6 +18,10 @@ tqk_get(x, from = "1900-01-01", to = Sys.Date())
 \item{from}{Optional for various time series functions. A character string representing a start date in YYYY-MM-DD format.}
 
 \item{to}{Optional for various time series functions. A character string representing a end date in YYYY-MM-DD format.}
+
+\item{auth_key}{KRX OPEN API AUTH_KEY. If omitted, uses \code{Sys.getenv("KRX_AUTH_KEY")}.}
+
+\item{sample}{Use sample endpoints (\code{/svc/sample/apis}). When \code{TRUE}, public sample key is used if \code{auth_key} is empty.}
 }
 \value{
 a \link[tibble:tibble-package]{tibble}
@@ -21,8 +31,7 @@ Get quantitative data from korea
 }
 \examples{
 \donttest{
-  tqk_get(x = "005930")
-  tqk_get(x = "005930", from = "2018-05-01")
-  tqk_get(x = "005930", from = "2018-05-01", to = "2018-05-31")
+  tqk_get(x = "088980", sample = TRUE)
+  tqk_get(x = "088980", from = "2024-01-02", to = "2024-01-05", sample = TRUE)
 }
 }

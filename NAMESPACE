@@ -2,11 +2,7 @@
 
 export("%>%")
 export(code_get)
+export(krx_service_list)
+export(krx_service_spec)
 export(tqk_get)
-importFrom(dplyr,transmute)
-importFrom(httr,POST)
-importFrom(httr,content)
-importFrom(jsonlite,fromJSON)
 importFrom(magrittr,"%>%")
-importFrom(tibble,as_tibble)
-importFrom(tibble,tibble)

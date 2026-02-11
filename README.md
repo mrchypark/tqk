@@ -26,6 +26,13 @@ install.packages('tqk', repos = c(
 
 ## How to use
 
+`{tqk}` now uses KRX OPEN API endpoints as source. For production API
+calls, set your key first:
+
+``` r
+Sys.setenv(KRX_AUTH_KEY = "YOUR_KRX_AUTH_KEY")
+```
+
 ### Stock code
 
 `code_get()` function provide stock code.
@@ -52,7 +59,7 @@ code_get()
 If want to get current version of stock code, add `fresh = TRUE`.
 
 ``` r
-code_get(fresh = TRUE)
+code_get(fresh = TRUE, sample = TRUE, bas_dd = "2024-01-02")
 ```
 
     ## # A tibble: 2,746 × 6
@@ -72,32 +79,27 @@ code_get(fresh = TRUE)
 
 ### Stock data
 
-`tqk_get()` function provide stock data. First parameter named `x` is
-korean stock code like “005930” is samsung. Result of `code_get()`
-function has `code` column for `x` parameter on `tqk_get()` function.
+`tqk_get()` function provide stock data through KRX OPEN API.
+For real endpoints, set `KRX_AUTH_KEY`; for testing, you can use
+`sample = TRUE`.
 
 ``` r
-code_get() %>% 
-  dplyr::filter("삼성전자" == name) %>%
-  dplyr::pull(code) %>% 
-  tqk_get(from = "2018-05-01") -> ss
+ss <- tqk_get(
+  x = "088980",
+  from = "2024-01-02",
+  to = "2024-01-05",
+  sample = TRUE
+)
 ss
 ```
 
-    ## # A tibble: 1,314 × 6
+    ## # A tibble: 4 × 6
     ##    date        open  high   low close   volume
     ##    <date>     <int> <int> <int> <int>    <int>
-    ##  1 2023-08-29 66900 67200 66600 66800  9102086
-    ##  2 2023-08-28 66800 67000 66500 66800  5824628
-    ##  3 2023-08-25 67100 67400 66900 67100  7032462
-    ##  4 2023-08-24 68300 68700 67900 68200 15044463
-    ##  5 2023-08-23 66700 67100 66400 67100  9549352
-    ##  6 2023-08-22 67200 67700 66300 66600 10500242
-    ##  7 2023-08-21 66600 67100 66300 66600  9720067
-    ##  8 2023-08-18 66000 66700 65800 66300 11745006
-    ##  9 2023-08-17 66300 66800 66000 66700 10778652
-    ## 10 2023-08-16 66700 67100 66300 67000 13174578
-    ## # ℹ 1,304 more rows
+    ##  1 2024-01-02 12400 12530 12300 12510 1436093
+    ##  2 2024-01-03 12490 12610 12460 12570 1286995
+    ##  3 2024-01-04 12530 12570 12410 12420  563036
+    ##  4 2024-01-05 12450 12490 12350 12390  405719
 
 ## Built-in dataset
 
