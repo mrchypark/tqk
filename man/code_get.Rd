@@ -16,7 +16,7 @@ code_get(
 
 \item{auth_key}{KRX OPEN API AUTH_KEY. If omitted, uses \code{Sys.getenv("KRX_AUTH_KEY")}.}
 
-\item{sample}{Use sample endpoints (\code{/svc/sample/apis}). When \code{TRUE}, public sample key is used if \code{auth_key} is empty.}
+\item{sample}{Use sample endpoints (\verb{/svc/sample/apis}). When \code{TRUE}, public sample key is used if \code{auth_key} is empty.}
 
 \item{bas_dd}{Base date used for OPEN API query. Supports \code{Date}, \code{YYYY-MM-DD}, \code{YYYYMMDD}.}
 }

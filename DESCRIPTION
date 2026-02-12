@@ -28,6 +28,6 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     usethis
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3

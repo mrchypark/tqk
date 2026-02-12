@@ -46,7 +46,16 @@ tqk_get <- function(x,
         sample = sample,
         bas_dd = to_date
       ),
-      error = function(e) krcodedata
+      error = function(e) {
+        warning(
+          sprintf(
+            "Failed to refresh stock codes, using cached data. Reason: %s",
+            conditionMessage(e)
+          ),
+          call. = FALSE
+        )
+        krcodedata
+      }
     )
   }
   if (!(x %in% codes$code)) {

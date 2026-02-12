@@ -1,7 +1,8 @@
 # KRX OPEN API docs and data endpoints
 .krx_openapi_info_url <- "https://openapi.krx.co.kr/contents/OPP/INFO/service/OPPINFO004.cmd"
 .krx_openapi_base_url <- "https://data-dbg.krx.co.kr"
-.krx_openapi_sample_auth_key <- "74D1B99DFBF345BBA3FB4476510A4BED4C78D13A"
+.krx_openapi_sample_auth_url <- "https://openapi.krx.co.kr/contents/OPP/USES/service/OPPUSES002_S2.cmd?BO_ID=JvJFzlAENzZlPBDNGAWC"
+.krx_openapi_sample_auth_env <- "KRX_SAMPLE_AUTH_KEY"
 .krx_openapi_code_api_ids <- c(
   "stk_isu_base_info",
   "ksq_isu_base_info",
@@ -116,7 +117,7 @@
   auth_key <- as.character(auth_key)[1]
   if (is.na(auth_key) || !nzchar(auth_key)) {
     if (isTRUE(sample)) {
-      return(.krx_openapi_sample_auth_key)
+      return(.krx_sample_auth_key())
     }
     stop(
       "`auth_key` is required for non-sample calls. Set `KRX_AUTH_KEY` or pass `auth_key`.",
@@ -125,6 +126,34 @@
   }
   auth_key
 }
+
+.krx_sample_auth_key <- local({
+  key_cache <- NULL
+  function() {
+    if (!is.null(key_cache) && nzchar(key_cache)) {
+      return(key_cache)
+    }
+
+    env_key <- Sys.getenv(.krx_openapi_sample_auth_env, unset = "")
+    if (nzchar(env_key)) {
+      key_cache <<- env_key
+      return(key_cache)
+    }
+
+    response <- httr::GET(.krx_openapi_sample_auth_url)
+    httr::stop_for_status(response)
+    doc <- xml2::read_html(httr::content(response, "text", encoding = "UTF-8"))
+    sample_key <- .krx_attr(xml2::xml_find_first(doc, "//input[@name='AUTH_KEY']"), "value")
+    if (is.na(sample_key) || !nzchar(sample_key)) {
+      stop(
+        "Could not resolve sample AUTH_KEY from KRX docs. Set `KRX_SAMPLE_AUTH_KEY` or pass `auth_key`.",
+        call. = FALSE
+      )
+    }
+    key_cache <<- sample_key
+    sample_key
+  }
+})
 
 .krx_openapi_get <- function(api_id,
                              query = list(),
@@ -147,11 +176,15 @@
   parsed <- jsonlite::fromJSON(payload, simplifyDataFrame = TRUE)
 
   if (is.list(parsed) && !is.null(parsed$respCode)) {
+    resp_msg <- parsed$respMsg
+    if (is.null(resp_msg) || is.na(resp_msg) || !nzchar(as.character(resp_msg))) {
+      resp_msg <- "unknown error"
+    }
     stop(
       sprintf(
         "KRX OPEN API error (%s): %s",
         parsed$respCode,
-        parsed$respMsg %||% "unknown error"
+        resp_msg
       ),
       call. = FALSE
     )
@@ -247,12 +280,4 @@ krx_service_spec <- function(bo_id, detail_url = NULL) {
     input = .krx_parse_bld_fields(bld_xml, "input"),
     output = .krx_parse_bld_fields(bld_xml, "output")
   )
-}
-
-# internal fallback for base R releases without `%||%`
-`%||%` <- function(x, y) {
-  if (is.null(x) || is.na(x) || !nzchar(as.character(x))) {
-    return(y)
-  }
-  x
 }
