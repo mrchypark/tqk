@@ -1,7 +1,7 @@
 test_that("tqk_get form check", {
   skip_if_offline()
 
-  ss <- tqk_get("005930", from = "20220501")
+  ss <- tqk_get("088980", from = "2024-01-02", to = "2024-01-05", sample = TRUE)
   col <- names(ss)
   expect_true("date" %in% col)
   expect_true("open" %in% col)

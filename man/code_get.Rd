@@ -4,10 +4,21 @@
 \alias{code_get}
 \title{Get company code}
 \usage{
-code_get(fresh = FALSE)
+code_get(
+  fresh = FALSE,
+  auth_key = Sys.getenv("KRX_AUTH_KEY", unset = ""),
+  sample = FALSE,
+  bas_dd = Sys.Date()
+)
 }
 \arguments{
 \item{fresh}{get code on internet. Default is FALSE.}
+
+\item{auth_key}{KRX OPEN API AUTH_KEY. If omitted, uses \code{Sys.getenv("KRX_AUTH_KEY")}.}
+
+\item{sample}{Use sample endpoints (\verb{/svc/sample/apis}). When \code{TRUE}, public sample key is used if \code{auth_key} is empty.}
+
+\item{bas_dd}{Base date used for OPEN API query. Supports \code{Date}, \code{YYYY-MM-DD}, \code{YYYYMMDD}.}
 }
 \value{
 a \link[tibble:tibble-package]{tibble} with market, name, code column.
@@ -18,6 +29,6 @@ Get code for korea finance market
 \examples{
 \donttest{
   code_get()
-  code_get(fresh = TRUE)
+  code_get(fresh = TRUE, sample = TRUE, bas_dd = "2024-01-02")
 }
 }

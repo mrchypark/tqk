@@ -7,6 +7,8 @@ Authors@R: person(given = "Chanyub",
                   email = "mrchypark@gmail.com", 
                   comment = c(ORCID = "0000-0001-6474-2570")
                   )
+Author: Chanyub Park [aut, cre]
+Maintainer: Chanyub Park <mrchypark@gmail.com>
 Description: Enables the acquisition of Korean financial market data, 
             designed to integrate seamlessly with the 'tidyquant' package.
 License: MIT + file LICENSE
@@ -21,10 +23,11 @@ Imports:
     magrittr,
     tibble,
     httr,
-    dplyr
+    dplyr,
+    xml2
 Suggests:
     testthat (>= 3.0.0),
     usethis
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
